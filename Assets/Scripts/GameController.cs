@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
 
     private GameStateValues gameState;
 
+ 
     private Vector3Int cellUserSelectedPosition;
     
     private Vector3Int freeBoxSelectedPosition;
@@ -25,18 +26,18 @@ public class GameController : MonoBehaviour
         gameInitialized = default,
         waitCellUserToBeSelected = 1,
         waitFreeBoxToBeSelected = 2,
-        endOfGame = 3,
+        computerReadyToPlay = 3,
+        endOfGame = 4,
     }
     
     private void Start()
     {
         model = new GameModel();
         view.Subscribe(model);
-        model.InitGameModel();
-        
         gameState = GameStateValues.gameInitialized;
         
         Debug.Log($"start GameController");
+        Debug.Log("GameStateValues.gameInitialized");
     }
 
     private void OnDestroy()
@@ -57,18 +58,25 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
+        Vector3Int clickPosition;
+
         //handle user action
-        if (!Input.GetMouseButtonDown(0) && gameState != GameStateValues.gameInitialized) return;
-        
-        var clickPosition = GetPositionCellSelected();
+        if (!Input.GetMouseButtonDown(0) && 
+            (gameState == GameStateValues.waitCellUserToBeSelected ||
+             gameState == GameStateValues.waitFreeBoxToBeSelected ||
+             gameState == GameStateValues.computerReadyToPlay ||
+             gameState == GameStateValues.endOfGame)) return;
+
         switch (gameState)
         {
-            case GameStateValues.gameInitialized : 
+            case GameStateValues.gameInitialized :
+                model.InitGameModel();
                 gameState = GameStateValues.waitCellUserToBeSelected;
                 Debug.Log("GameStateValues.waitCellUserToBeSelected");
                 break;
             
             case GameStateValues.waitCellUserToBeSelected :
+                clickPosition = GetPositionCellSelected();
                 if (model.ABoxWithCellValueIsChosen(clickPosition,GameModel.BoxValue.PlayerCell))
                 {
                     cellUserSelectedPosition = clickPosition;
@@ -79,29 +87,43 @@ public class GameController : MonoBehaviour
                 break;
             
             case GameStateValues.waitFreeBoxToBeSelected :
+                clickPosition = GetPositionCellSelected();
                 if (model.ABoxWithCellValueIsChosen(clickPosition,GameModel.BoxValue.FreeBox))
                 {
                     model.MoveOrCloneTheCell(cellUserSelectedPosition,clickPosition,GameModel.BoxValue.PlayerCell);
-
-                    model.ComputerToPlay();
-                    gameState = model.NoMoreBoxesWithCellValue(GameModel.BoxValue.FreeBox) ||
-                               model.NoMoreBoxesWithCellValue(GameModel.BoxValue.ComputerCell)
-                                ? GameStateValues.endOfGame
-                                : GameStateValues.waitCellUserToBeSelected;
                     
-                    if (gameState.Equals(GameStateValues.waitCellUserToBeSelected))
-                        Debug.Log("GameStateValues.waitCellUserToBeSelected");
+                    gameState = model.NoMoreBoxesWithCellValue(GameModel.BoxValue.FreeBox) ||
+                                model.NoMoreBoxesWithCellValue(GameModel.BoxValue.ComputerCell)
+                        ? GameStateValues.endOfGame
+                        : GameStateValues.computerReadyToPlay;
+                    
+                    if (gameState.Equals(GameStateValues.computerReadyToPlay))
+                        Debug.Log("GameStateValues.computerReadyToPlay");
                     else
                         Debug.Log("GameStateValues.endOfGame");
-                    
 
                 }
                 break;
             
+            case GameStateValues.computerReadyToPlay :
+                
+                model.ComputerToPlay();
+                gameState = model.NoMoreBoxesWithCellValue(GameModel.BoxValue.FreeBox) ||
+                            model.NoMoreBoxesWithCellValue(GameModel.BoxValue.PlayerCell)
+                    ? GameStateValues.endOfGame
+                    : GameStateValues.waitCellUserToBeSelected;
+
+                if (gameState.Equals(GameStateValues.waitCellUserToBeSelected))
+                    Debug.Log("GameStateValues.waitCellUserToBeSelected");
+                else
+                    Debug.Log("GameStateValues.endOfGame");
+                break;
+            
             case GameStateValues.endOfGame:
                 
-                //todo display the results
-                
+                //initialize the game (for test) 
+                gameState = GameStateValues.gameInitialized;
+                Debug.Log("GameStateValues.gameInitialized");
                 break;
             
             default:

@@ -9,6 +9,12 @@ public class GameModel
     private const int NB_ROWS = 7;
     private const int NB_COLUMNS = 7;
 
+    private enum BoxSurroundedCriteria
+    {
+        TheMost = default,
+        TheLess = 1,
+    }
+
     public enum BoxValue
     {
         FreeBox = default,
@@ -16,8 +22,86 @@ public class GameModel
         PlayerCell = 2,
     }
 
+
     private BoxValue[,] biologicalCellBox = new BoxValue[NB_COLUMNS, NB_ROWS];
     //private readonly GameView view;
+
+    enum SelectionType
+    {
+        TheMost = default,
+        TheLess = 1,
+    }
+    
+  
+    struct BoxInfos {
+        public BoxValue boxValueSelected;
+        public SelectionType chosenSelectionType;
+        public BoxValue adjacentBoxValue;
+        public Vector3Int position;
+        public int nbAdjacentCells;
+    }
+
+    
+    
+
+    private BoxInfos IdentifySurroundedBox(BoxInfos boxInfosInputCriterias )
+    {
+        BoxInfos currentBoxSelectedInfos = new BoxInfos(),
+                lastBoxSelectedInfos = new BoxInfos();
+        currentBoxSelectedInfos.boxValueSelected = boxInfosInputCriterias.boxValueSelected;
+        lastBoxSelectedInfos.boxValueSelected = boxInfosInputCriterias.boxValueSelected;
+
+        int x, y;
+        bool firstCellSelected = true;
+
+        for (x = 0; x < NB_COLUMNS; x++)
+        {
+            for (y = 0; y < NB_ROWS; y++)
+            {
+                var currentBox = this[x, y];
+                if (currentBox.Equals(boxInfosInputCriterias.boxValueSelected))
+                {
+                    boxInfosInputCriterias.position = new Vector3Int(x,y);
+                    currentBoxSelectedInfos = ExploreAdjacentBoxes(boxInfosInputCriterias, x, y);
+                    if (firstCellSelected ||    
+                        (currentBoxSelectedInfos.nbAdjacentCells < lastBoxSelectedInfos.nbAdjacentCells &&
+                         boxInfosInputCriterias.chosenSelectionType == SelectionType.TheLess) ||
+                        (currentBoxSelectedInfos.nbAdjacentCells > lastBoxSelectedInfos.nbAdjacentCells &&
+                         boxInfosInputCriterias.chosenSelectionType == SelectionType.TheMost))
+                    {
+                        lastBoxSelectedInfos = currentBoxSelectedInfos;
+                        firstCellSelected = false;
+                    }
+                    
+                }
+            }
+        }
+
+        return lastBoxSelectedInfos;
+
+    }
+
+    private BoxInfos ExploreAdjacentBoxes(BoxInfos boxInfosInputCriterias, int x, int y)
+    {
+        BoxInfos currentBoxSelectedInfos = boxInfosInputCriterias;
+        currentBoxSelectedInfos.nbAdjacentCells = 0;
+        for (var xBoxAdjacent = x - 1; xBoxAdjacent <= x + 1; xBoxAdjacent++)
+        {
+            if (xBoxAdjacent < 0 || xBoxAdjacent >= NB_COLUMNS) continue;
+            for (var yBoxAdjacent = y - 1; yBoxAdjacent <= y + 1; yBoxAdjacent++)
+            {
+                if (yBoxAdjacent < 0 || yBoxAdjacent >= NB_ROWS) continue;
+                var adjacentBox = this[xBoxAdjacent, yBoxAdjacent];
+                if (adjacentBox.Equals(boxInfosInputCriterias.adjacentBoxValue))
+                {
+                    currentBoxSelectedInfos.nbAdjacentCells++;
+                            
+                }
+            }
+        }
+
+        return currentBoxSelectedInfos;
+    }
 
 
     public event Action OnInitialize;
@@ -89,6 +173,22 @@ public class GameModel
         PlaceAndContaminateNearbyCells(posDestination, boxValue);
     }
 
+    
+    private int countBoxesWithBoxValue(BoxValue cellValue)
+    {
+        var resultCount = 0;
+        for (var x = 0; x < NB_COLUMNS; x++)
+        {
+            for (var y = 0; y < NB_ROWS; y++)
+            {
+                var cell = this[x, y];
+                if (cell == cellValue) resultCount++;
+            }
+        }
+        return resultCount;
+        
+    }
+
     public void InitGameModel()
     {
         OnInitialize?.Invoke();
@@ -110,33 +210,70 @@ public class GameModel
  
     public void ComputerToPlay()
     {
+        BoxInfos freeBoxToSelect;
         
-        if ( NoMoreBoxesWithCellValue(GameModel.BoxValue.FreeBox) 
-            || NoMoreBoxesWithCellValue(GameModel.BoxValue.ComputerCell) ) return;
-        
-        var time = DateTime.Now;
-        
-        var rndX = new Unity.Mathematics.Random((uint)time.Ticks);
-        var rndY = new Unity.Mathematics.Random((uint)time.Ticks);
+        //select the computer cell which has less adjacent cells
+        var boxInfosInputCriteria = new BoxInfos
+        {
+            boxValueSelected = BoxValue.ComputerCell,
+            adjacentBoxValue = BoxValue.ComputerCell,
+            chosenSelectionType = SelectionType.TheLess
+        };
+        var computerCellToSelect = IdentifySurroundedBox(boxInfosInputCriteria);
 
-        var computerCellSelection = new Vector3Int();
-        var freeBoxSelection = new Vector3Int();
-       
-        do
+
+        //potential attack
+        //select the free box which as the most adjacent player cells
+        boxInfosInputCriteria = new BoxInfos
         {
-            computerCellSelection.x = rndX.NextInt(NB_COLUMNS);
-            computerCellSelection.y = rndY.NextInt(NB_ROWS);
-        } while (!ABoxWithCellValueIsChosen(computerCellSelection,BoxValue.ComputerCell));
-        
-        do
+            boxValueSelected = BoxValue.FreeBox,
+            adjacentBoxValue = BoxValue.PlayerCell,
+            chosenSelectionType = SelectionType.TheMost
+        };
+        var freeboxCandidate1 = IdentifySurroundedBox(boxInfosInputCriteria);
+
+        //last attack
+        if (freeboxCandidate1.nbAdjacentCells == countBoxesWithBoxValue(BoxValue.PlayerCell))
         {
-            freeBoxSelection.x = rndX.NextInt(NB_COLUMNS);;
-            freeBoxSelection.y = rndY.NextInt(NB_ROWS);
-        } while (!ABoxWithCellValueIsChosen(freeBoxSelection,BoxValue.FreeBox));
+            freeBoxToSelect = freeboxCandidate1;
+            Debug.Log("last attack");
+        }
+        else
+        {
+            //potential consolidation
+            //select the free box which as the most adjacent computer cells
+            boxInfosInputCriteria = new BoxInfos
+            {
+                boxValueSelected = BoxValue.FreeBox,
+                adjacentBoxValue = BoxValue.ComputerCell,
+                chosenSelectionType = SelectionType.TheMost
+            };
+            var freeBoxCandidate2 = IdentifySurroundedBox(boxInfosInputCriteria);
+
+            //better to consolidate
+            if (freeBoxCandidate2.nbAdjacentCells > freeboxCandidate1.nbAdjacentCells)
+            {
+                freeBoxToSelect = freeBoxCandidate2;
+                Debug.Log("consolidation");
+            }
+            //attack instead 
+            else
+            {
+                freeBoxToSelect = freeboxCandidate1;
+                Debug.Log("attack");
+
+            }
+            
+        }
         
-        MoveOrCloneTheCell(computerCellSelection,freeBoxSelection,BoxValue.ComputerCell);
+        //move or clone the cell
+        Debug.Log("Computer MoveOrCloneTheCell");
+        MoveOrCloneTheCell(computerCellToSelect.position,
+            freeBoxToSelect.position,
+            BoxValue.ComputerCell);
         
     }
+
 
     public bool NoMoreBoxesWithCellValue(BoxValue cellValue)
     {
