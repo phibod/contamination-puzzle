@@ -1180,8 +1180,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1157436890}
   biologicCellMap: {fileID: 1023732956}
-  computerCell: {fileID: 11400000, guid: ffac93bdd942d81488971bc53ea0e0e8, type: 2}
-  playerCell: {fileID: 11400000, guid: c1531857a63c21c478c7528ee84e9db0, type: 2}
+  computerTileCell: {fileID: 11400000, guid: ffac93bdd942d81488971bc53ea0e0e8, type: 2}
+  playerTileCell: {fileID: 11400000, guid: c1531857a63c21c478c7528ee84e9db0, type: 2}
+  playerCellPrefab: {fileID: 6342432092625598272, guid: e7f84c3debaf94b4faaf160d76100498, type: 3}
+  computerCellPrefab: {fileID: 681758342764211858, guid: 8db7224e308d14a4eb31e5d0431f0622, type: 3}
+  moveDuration: 1
 --- !u!114 &1157436890
 MonoBehaviour:
   m_ObjectHideFlags: 0

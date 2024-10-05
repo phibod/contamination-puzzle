@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
 
 public class GameModel
 {
     private const int NB_ROWS = 7;
     private const int NB_COLUMNS = 7;
-
-    private enum BoxSurroundedCriteria
-    {
-        TheMost = default,
-        TheLess = 1,
-    }
-
+    public static readonly int MAX_DISTANCE_MOVE = 2;
+    
     public enum BoxValue
     {
         FreeBox = default,
@@ -23,204 +21,199 @@ public class GameModel
     }
 
 
-    private BoxValue[,] biologicalCellBox = new BoxValue[NB_COLUMNS, NB_ROWS];
+    private BoxValue[,] biologicalCellBox;
     //private readonly GameView view;
 
     enum SelectionType
     {
         TheMost = default,
-        TheLess = 1,
+        TheLeast = 1,
     }
-    
-  
-    struct BoxInfos {
+
+
+    struct BoxInfos
+    {
         public BoxValue boxValueSelected;
         public SelectionType chosenSelectionType;
         public BoxValue adjacentBoxValue;
-        public Vector3Int position;
+        public RectInt rectZone;
+        public Vector2Int positionDestination;
         public int nbAdjacentCells;
     }
 
-    
-    
 
-    private BoxInfos IdentifySurroundedBox(BoxInfos boxInfosInputCriterias )
+    private void DoInArea(RectInt area, Action<Vector2Int, BoxValue> action)
     {
-        BoxInfos currentBoxSelectedInfos = new BoxInfos(),
-                lastBoxSelectedInfos = new BoxInfos();
-        currentBoxSelectedInfos.boxValueSelected = boxInfosInputCriterias.boxValueSelected;
-        lastBoxSelectedInfos.boxValueSelected = boxInfosInputCriterias.boxValueSelected;
+        foreach (var currentPosition in area.allPositionsWithin)
+        {
+            if (currentPosition.x < 0
+                || currentPosition.y < 0
+                || currentPosition.x >= NB_ROWS
+                || currentPosition.y >= NB_ROWS) continue;
 
-        int x, y;
+            var currentBox = this[currentPosition.x, currentPosition.y];
+            action.Invoke(currentPosition, currentBox);
+        }
+    }
+
+    private BoxInfos IdentifySurroundedBox(BoxInfos boxInfosCriteria)
+    {
+        //a copy of boxInfosCriteria
+        var lastBoxSelectedInfos = boxInfosCriteria;
+
         bool firstCellSelected = true;
-
-        for (x = 0; x < NB_COLUMNS; x++)
+        DoInArea(boxInfosCriteria.rectZone,(pos, value) =>
         {
-            for (y = 0; y < NB_ROWS; y++)
+            if (value.Equals(boxInfosCriteria.boxValueSelected))
             {
-                var currentBox = this[x, y];
-                if (currentBox.Equals(boxInfosInputCriterias.boxValueSelected))
-                {
-                    boxInfosInputCriterias.position = new Vector3Int(x,y);
-                    currentBoxSelectedInfos = ExploreAdjacentBoxes(boxInfosInputCriterias, x, y);
-                    if (firstCellSelected ||    
-                        (currentBoxSelectedInfos.nbAdjacentCells < lastBoxSelectedInfos.nbAdjacentCells &&
-                         boxInfosInputCriterias.chosenSelectionType == SelectionType.TheLess) ||
-                        (currentBoxSelectedInfos.nbAdjacentCells > lastBoxSelectedInfos.nbAdjacentCells &&
-                         boxInfosInputCriterias.chosenSelectionType == SelectionType.TheMost))
-                    {
-                        lastBoxSelectedInfos = currentBoxSelectedInfos;
-                        firstCellSelected = false;
-                    }
-                    
-                }
-            }
-        }
+                boxInfosCriteria.positionDestination = pos;
+                ExploreAdjacentBoxes(boxInfosCriteria,pos);
 
+                if (firstCellSelected ||
+                    (boxInfosCriteria.nbAdjacentCells <= lastBoxSelectedInfos.nbAdjacentCells &&
+                     boxInfosCriteria.chosenSelectionType == SelectionType.TheLeast) ||
+                    (boxInfosCriteria.nbAdjacentCells >= lastBoxSelectedInfos.nbAdjacentCells &&
+                     boxInfosCriteria.chosenSelectionType == SelectionType.TheMost))
+                {
+                    lastBoxSelectedInfos.positionDestination = boxInfosCriteria.positionDestination;
+                    lastBoxSelectedInfos.nbAdjacentCells = boxInfosCriteria.nbAdjacentCells;
+                    firstCellSelected = false;
+                }
+            }       
+        });
+
+      
         return lastBoxSelectedInfos;
-
     }
 
-    private BoxInfos ExploreAdjacentBoxes(BoxInfos boxInfosInputCriterias, int x, int y)
+
+  
+    private void ExploreAdjacentBoxes(BoxInfos boxInfosCriterias, Vector2Int centerPosition)
     {
-        BoxInfos currentBoxSelectedInfos = boxInfosInputCriterias;
-        currentBoxSelectedInfos.nbAdjacentCells = 0;
-        for (var xBoxAdjacent = x - 1; xBoxAdjacent <= x + 1; xBoxAdjacent++)
+        
+        boxInfosCriterias.nbAdjacentCells = 0;
+        var recZone =new RectInt(centerPosition - Vector2Int.one, new Vector2Int(3, 3));
+        DoInArea(recZone,(pos, valueToIdentify) =>
         {
-            if (xBoxAdjacent < 0 || xBoxAdjacent >= NB_COLUMNS) continue;
-            for (var yBoxAdjacent = y - 1; yBoxAdjacent <= y + 1; yBoxAdjacent++)
-            {
-                if (yBoxAdjacent < 0 || yBoxAdjacent >= NB_ROWS) continue;
-                var adjacentBox = this[xBoxAdjacent, yBoxAdjacent];
-                if (adjacentBox.Equals(boxInfosInputCriterias.adjacentBoxValue))
-                {
-                    currentBoxSelectedInfos.nbAdjacentCells++;
-                            
-                }
-            }
-        }
-
-        return currentBoxSelectedInfos;
+            //Increment the number of adjacent cells with the valueToIdentify
+            var currentBoxValue= this[pos.x, pos.y];
+            if (pos != centerPosition && currentBoxValue == valueToIdentify)
+                boxInfosCriterias.nbAdjacentCells++;
+        });
+        
     }
-
 
     public event Action OnInitialize;
-    public event Action<int,int,BoxValue> OnTileChanged;
+    public event Action<Vector2Int, Vector2Int, BoxValue> OnTileChanged;
 
     /// <summary>
     /// Indexer of the biologicalCellBox
     /// </summary>
     /// <param name="col"></param>
     /// <param name="row"></param>
-    private BoxValue this[int col, int row]
+    private BoxValue this[int col, int row] => biologicalCellBox[col, row];
+
+    private void SetTile(Vector2Int posOrigin, Vector2Int posDestination, BoxValue value)
     {
-        get => biologicalCellBox[col, row];
-        set
-        {
-            biologicalCellBox[col, row] = value;
-            OnTileChanged?.Invoke(col, row, value);
-        }
+        OnTileChanged?.Invoke(posOrigin, posDestination, value);
+        biologicalCellBox[posDestination.x, posDestination.y] = value;
     }
 
-    private bool ClickInGameArea(Vector3Int clickPosition)
+    private bool ClickInGameArea(Vector2Int clickPosition)
     {
         return (clickPosition.x >= 0 && clickPosition.x < NB_COLUMNS && clickPosition.y >= 0 &&
                 clickPosition.y < NB_ROWS);
     }
-    
-    
-    private void PlaceAndContaminateNearbyCells(Vector3Int posCell, BoxValue boxValue)
+
+
+    private void PlaceAndContaminateNearbyCells(Vector2Int posOrigin, Vector2Int posCell, BoxValue boxValue)
     {
         //todo : notify placement to the view.
-        this[posCell.x, posCell.y] = boxValue;
-        
-        for (int x = posCell.x - 1; x <= posCell.x + 1; x++)
+        SetTile(posOrigin, posCell, boxValue);
+
+        DoInArea(new RectInt(posCell - Vector2Int.one, new Vector2Int(3, 3)), (pos, value) =>
         {
-            if (x < 0 || x >= NB_COLUMNS) 
-                continue;
-            for (int y = posCell.y - 1; y <= posCell.y + 1; y++)
-            {
-                if (y < 0 || y >= NB_ROWS)
-                    continue;
-                
-                var cell = this[x, y];
-                
-                //contaminate the cell nearby
-                if (cell != BoxValue.FreeBox && cell != boxValue)
-                {
-                    this[x, y] = boxValue;
-                }
-            }
-        }
+            //contaminate the cell nearby
+            if (value != BoxValue.FreeBox && boxValue != value)
+                SetTile(posCell, pos, boxValue);
+        });
     }
 
-    private void MoveACell(Vector3Int posOrigin, Vector3Int posDestination)
+
+    private void MoveACell(Vector2Int posOrigin, Vector2Int posDestination)
     {
-        
         Debug.Log("MoveACell");
         var previousCell = this[posOrigin.x, posOrigin.y];
 
         if (previousCell == BoxValue.FreeBox)
             throw new InvalidDataException($"Can't move a {nameof(BoxValue.FreeBox)} cell");
-        
-        this[posOrigin.x, posOrigin.y] = BoxValue.FreeBox;
-        PlaceAndContaminateNearbyCells(posDestination, previousCell);
+
+        SetTile(posOrigin, posOrigin, BoxValue.FreeBox);
+        SetTile(posOrigin, posDestination, previousCell);
+        PlaceAndContaminateNearbyCells(posOrigin, posDestination, previousCell);
     }
-    
-    private void CloneACell(Vector3Int posDestination, BoxValue boxValue)
+
+    private void CloneACell(Vector2Int posOrigin, Vector2Int posDestination, BoxValue boxValue)
     {
         Debug.Log("CloneACell");
-        PlaceAndContaminateNearbyCells(posDestination, boxValue);
+        PlaceAndContaminateNearbyCells(posOrigin, posDestination, boxValue);
     }
 
-    
-    private int countBoxesWithBoxValue(BoxValue cellValue)
+    private int CountBoxesWithBoxValue(BoxValue cellValue)
     {
         var resultCount = 0;
-        for (var x = 0; x < NB_COLUMNS; x++)
-        {
-            for (var y = 0; y < NB_ROWS; y++)
-            {
-                var cell = this[x, y];
-                if (cell == cellValue) resultCount++;
-            }
-        }
-        return resultCount;
         
+        DoInArea(new RectInt(new Vector2Int(0, 0), new Vector2Int(NB_ROWS, NB_COLUMNS)), (pos, value) =>
+        {
+            //the current box has the value
+            if (value == cellValue)
+                resultCount++;
+        });
+    
+        return resultCount;
     }
+    
 
+   
     public void InitGameModel()
     {
         OnInitialize?.Invoke();
-        
+        biologicalCellBox = new BoxValue[NB_COLUMNS, NB_ROWS];
+
         //two computer cells and two player cells
-        this[0, 0] = BoxValue.ComputerCell;
-        this[NB_COLUMNS - 1, NB_ROWS - 1] = BoxValue.ComputerCell;
-        this[0, NB_ROWS - 1] = BoxValue.PlayerCell;
-        this[NB_COLUMNS - 1, 0] = BoxValue.PlayerCell;
+        var posOrigin = new Vector2Int(Mathf.CeilToInt(NB_COLUMNS / 2f), Mathf.CeilToInt(NB_ROWS / 2f));
 
+        SetTile(posOrigin, new Vector2Int(0, 0), BoxValue.ComputerCell);
+        SetTile(posOrigin, new Vector2Int(NB_COLUMNS - 1, NB_ROWS - 1), BoxValue.ComputerCell);
+        SetTile(posOrigin, new Vector2Int(0, NB_ROWS - 1), BoxValue.PlayerCell);
+        SetTile(posOrigin, new Vector2Int(NB_COLUMNS - 1, 0), BoxValue.PlayerCell);
     }
- 
-    
-    public bool ABoxWithCellValueIsChosen(Vector3Int cellPosition, BoxValue boxValue)
-    {
-        return  ClickInGameArea(cellPosition) && this[cellPosition.x, cellPosition.y] == boxValue;
-    }   
 
- 
+
+    public bool ABoxWithCellValueIsChosen(Vector2Int cellPosition, BoxValue boxValue)
+    {
+        return ClickInGameArea(cellPosition) && this[cellPosition.x, cellPosition.y] == boxValue;
+    }
+
+
     public void ComputerToPlay()
     {
         BoxInfos freeBoxToSelect;
-        
+
         //select the computer cell which has less adjacent cells
         var boxInfosInputCriteria = new BoxInfos
         {
             boxValueSelected = BoxValue.ComputerCell,
             adjacentBoxValue = BoxValue.ComputerCell,
-            chosenSelectionType = SelectionType.TheLess
+            chosenSelectionType = SelectionType.TheLeast,
+            rectZone = new RectInt(0, 0, NB_COLUMNS, NB_ROWS)
         };
         var computerCellToSelect = IdentifySurroundedBox(boxInfosInputCriteria);
 
+        //select the computer cell which has less adjacent cells ?????
+
+
+        //try to identify a computer cell that can be cloned 
 
         //potential attack
         //select the free box which as the most adjacent player cells
@@ -228,12 +221,22 @@ public class GameModel
         {
             boxValueSelected = BoxValue.FreeBox,
             adjacentBoxValue = BoxValue.PlayerCell,
-            chosenSelectionType = SelectionType.TheMost
+            chosenSelectionType = SelectionType.TheMost,
+            rectZone = new RectInt(computerCellToSelect.positionDestination.x - MAX_DISTANCE_MOVE,
+                computerCellToSelect.positionDestination.y - MAX_DISTANCE_MOVE,
+                MAX_DISTANCE_MOVE * 2,
+                MAX_DISTANCE_MOVE * 2)
         };
         var freeboxCandidate1 = IdentifySurroundedBox(boxInfosInputCriteria);
 
+        Debug.Log("Potential attack");
+        Debug.Log("x =" + freeboxCandidate1.positionDestination.x);
+        Debug.Log("y=" + freeboxCandidate1.positionDestination.y);
+        Debug.Log("nbAdajcentCells = " + freeboxCandidate1.nbAdjacentCells);
+
+
         //last attack
-        if (freeboxCandidate1.nbAdjacentCells == countBoxesWithBoxValue(BoxValue.PlayerCell))
+        if (freeboxCandidate1.nbAdjacentCells == CountBoxesWithBoxValue(BoxValue.PlayerCell))
         {
             freeBoxToSelect = freeboxCandidate1;
             Debug.Log("last attack");
@@ -246,9 +249,19 @@ public class GameModel
             {
                 boxValueSelected = BoxValue.FreeBox,
                 adjacentBoxValue = BoxValue.ComputerCell,
-                chosenSelectionType = SelectionType.TheMost
+                chosenSelectionType = SelectionType.TheMost,
+                rectZone = new RectInt(computerCellToSelect.positionDestination.x - MAX_DISTANCE_MOVE,
+                    computerCellToSelect.positionDestination.y - MAX_DISTANCE_MOVE,
+                    MAX_DISTANCE_MOVE * 2,
+                    MAX_DISTANCE_MOVE * 2)
             };
             var freeBoxCandidate2 = IdentifySurroundedBox(boxInfosInputCriteria);
+
+            Debug.Log("potential consolidation");
+            Debug.Log("x =" + freeBoxCandidate2.positionDestination.x);
+            Debug.Log("y=" + freeBoxCandidate2.positionDestination.y);
+            Debug.Log("nbAdajcentCells = " + freeBoxCandidate2.nbAdjacentCells);
+
 
             //better to consolidate
             if (freeBoxCandidate2.nbAdjacentCells > freeboxCandidate1.nbAdjacentCells)
@@ -261,17 +274,13 @@ public class GameModel
             {
                 freeBoxToSelect = freeboxCandidate1;
                 Debug.Log("attack");
-
             }
-            
         }
-        
+
         //move or clone the cell
         Debug.Log("Computer MoveOrCloneTheCell");
-        MoveOrCloneTheCell(computerCellToSelect.position,
-            freeBoxToSelect.position,
+        MoveOrCloneTheCell(computerCellToSelect.positionDestination, freeBoxToSelect.positionDestination,
             BoxValue.ComputerCell);
-        
     }
 
 
@@ -285,26 +294,18 @@ public class GameModel
                 if (cell == cellValue) return false;
             }
         }
+
         return true;
-        
     }
 
-    public void MoveOrCloneTheCell(Vector3Int posOrigin,Vector3Int posDestination, BoxValue cellValue)
+    public void MoveOrCloneTheCell(Vector2Int posOrigin, Vector2Int posDestination, BoxValue cellValue)
     {
-        var deltaX = Mathf.Abs(posDestination.x- posOrigin.x);
-        var deltaY = Mathf.Abs(posDestination.y- posOrigin.y);
+        var deltaX = Mathf.Abs(posDestination.x - posOrigin.x);
+        var deltaY = Mathf.Abs(posDestination.y - posOrigin.y);
 
-        if ( deltaX <= 1 &&
-             deltaY <= 1)
-        {
-            CloneACell(posDestination,
-                cellValue);
-        }
+        if (deltaX <= 1 && deltaY <= 1)
+            CloneACell(posOrigin, posDestination, cellValue);
         else
-        {
-            MoveACell(posOrigin,
-                posDestination);
-
-        }
+            MoveACell(posOrigin, posDestination);
     }
 }

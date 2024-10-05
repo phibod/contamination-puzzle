@@ -6,14 +6,12 @@ using UnityEngine.UIElements;
 
 public class GameController : MonoBehaviour
 {
-    public static event Action OnDrawInitGame;
-
     private GameStateValues gameState;
 
  
-    private Vector3Int cellUserSelectedPosition;
+    private Vector2Int cellUserSelectedPosition;
     
-    private Vector3Int freeBoxSelectedPosition;
+    private Vector2Int freeBoxSelectedPosition;
     
     private GameModel model;
 
@@ -46,10 +44,10 @@ public class GameController : MonoBehaviour
     }
 
 
-    private Vector3Int GetPositionCellSelected()
+    private Vector2Int GetPositionCellSelected()
     {
-        Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int cellPosition = grid.WorldToCell(worldPoint);
+        Vector3 worldPoint = Camera.main!.ScreenToWorldPoint(Input.mousePosition);
+        Vector2Int cellPosition = (Vector2Int)grid.WorldToCell(worldPoint);
         
         return cellPosition;
         
@@ -58,7 +56,8 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        Vector3Int clickPosition;
+        Vector2Int clickPosition;
+        Vector2Int distMove;
 
         //handle user action
         if (!Input.GetMouseButtonDown(0) && 
@@ -79,6 +78,7 @@ public class GameController : MonoBehaviour
                 clickPosition = GetPositionCellSelected();
                 if (model.ABoxWithCellValueIsChosen(clickPosition,GameModel.BoxValue.PlayerCell))
                 {
+                    
                     cellUserSelectedPosition = clickPosition;
                     gameState = GameStateValues.waitFreeBoxToBeSelected;
                     Debug.Log("GameStateValues.waitFreeBoxToBeSelected");
@@ -90,18 +90,25 @@ public class GameController : MonoBehaviour
                 clickPosition = GetPositionCellSelected();
                 if (model.ABoxWithCellValueIsChosen(clickPosition,GameModel.BoxValue.FreeBox))
                 {
-                    model.MoveOrCloneTheCell(cellUserSelectedPosition,clickPosition,GameModel.BoxValue.PlayerCell);
+                    distMove = clickPosition - cellUserSelectedPosition;
+                    if (Math.Abs(distMove.x) <= GameModel.MAX_DISTANCE_MOVE && Math.Abs(distMove.y) <= GameModel.MAX_DISTANCE_MOVE)
+                    {
+                        model.MoveOrCloneTheCell(cellUserSelectedPosition,clickPosition,GameModel.BoxValue.PlayerCell);
                     
-                    gameState = model.NoMoreBoxesWithCellValue(GameModel.BoxValue.FreeBox) ||
-                                model.NoMoreBoxesWithCellValue(GameModel.BoxValue.ComputerCell)
-                        ? GameStateValues.endOfGame
-                        : GameStateValues.computerReadyToPlay;
-                    
-                    if (gameState.Equals(GameStateValues.computerReadyToPlay))
-                        Debug.Log("GameStateValues.computerReadyToPlay");
-                    else
-                        Debug.Log("GameStateValues.endOfGame");
+                        gameState = model.NoMoreBoxesWithCellValue(GameModel.BoxValue.FreeBox) ||
+                                    model.NoMoreBoxesWithCellValue(GameModel.BoxValue.ComputerCell)
+                            ? GameStateValues.endOfGame
+                            : GameStateValues.computerReadyToPlay;
 
+                        Debug.Log(gameState.Equals(GameStateValues.computerReadyToPlay)
+                            ? "GameStateValues.computerReadyToPlay"
+                            : "GameStateValues.endOfGame");
+                        
+                    }
+                    else
+                    {
+                        Debug.Log("Not authorized");
+                    }
                 }
                 break;
             
@@ -113,10 +120,9 @@ public class GameController : MonoBehaviour
                     ? GameStateValues.endOfGame
                     : GameStateValues.waitCellUserToBeSelected;
 
-                if (gameState.Equals(GameStateValues.waitCellUserToBeSelected))
-                    Debug.Log("GameStateValues.waitCellUserToBeSelected");
-                else
-                    Debug.Log("GameStateValues.endOfGame");
+                Debug.Log(gameState.Equals(GameStateValues.waitCellUserToBeSelected)
+                    ? "GameStateValues.waitCellUserToBeSelected"
+                    : "GameStateValues.endOfGame");
                 break;
             
             case GameStateValues.endOfGame:
