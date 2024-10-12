@@ -12,8 +12,10 @@ public class GameController : MonoBehaviour
     private Vector2Int cellUserSelectedPosition;
     
     private Vector2Int freeBoxSelectedPosition;
-    
+
     private GameModel model;
+    
+    private ComputerStrategy computerStrategy;
 
     [SerializeField] private Grid grid;
 
@@ -32,7 +34,10 @@ public class GameController : MonoBehaviour
     {
         model = new GameModel();
         view.Subscribe(model);
+
+        computerStrategy = new ComputerStrategy(model);
         gameState = GameStateValues.gameInitialized;
+        
         
         Debug.Log($"start GameController");
         Debug.Log("GameStateValues.gameInitialized");
@@ -91,7 +96,7 @@ public class GameController : MonoBehaviour
                 if (model.ABoxWithCellValueIsChosen(clickPosition,GameModel.BoxValue.FreeBox))
                 {
                     distMove = clickPosition - cellUserSelectedPosition;
-                    if (Math.Abs(distMove.x) <= GameModel.MAX_DISTANCE_MOVE && Math.Abs(distMove.y) <= GameModel.MAX_DISTANCE_MOVE)
+                    if (Math.Abs(distMove.x) <= GameModel.MaxDistanceMove && Math.Abs(distMove.y) <= GameModel.MaxDistanceMove)
                     {
                         model.MoveOrCloneTheCell(cellUserSelectedPosition,clickPosition,GameModel.BoxValue.PlayerCell);
                     
@@ -114,7 +119,10 @@ public class GameController : MonoBehaviour
             
             case GameStateValues.computerReadyToPlay :
                 
-                model.ComputerToPlay();
+                computerStrategy.Play();
+                
+                //TODO Verify if the player is not stuck or if the computer is not stuck
+                
                 gameState = model.NoMoreBoxesWithCellValue(GameModel.BoxValue.FreeBox) ||
                             model.NoMoreBoxesWithCellValue(GameModel.BoxValue.PlayerCell)
                     ? GameStateValues.endOfGame
