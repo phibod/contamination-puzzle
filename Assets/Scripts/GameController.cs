@@ -6,9 +6,18 @@ using UnityEngine.UIElements;
 
 public class GameController : MonoBehaviour
 {
-    private GameStateValues gameState;
+    static public Vector3Int GetCursorPositionInGrid(Grid gridOfGame)
+    {
+        Vector3 worldPoint = Camera.main!.ScreenToWorldPoint(Input.mousePosition);
+        Vector3Int positionInGrid = gridOfGame.WorldToCell(worldPoint);
+        
+        return positionInGrid;
+  
+    }
 
- 
+    
+    private GameStateValues gameState;
+    
     private Vector2Int cellUserSelectedPosition;
     
     private Vector2Int freeBoxSelectedPosition;
@@ -49,16 +58,7 @@ public class GameController : MonoBehaviour
     }
 
 
-    private Vector2Int GetPositionCellSelected()
-    {
-        Vector3 worldPoint = Camera.main!.ScreenToWorldPoint(Input.mousePosition);
-        Vector2Int cellPosition = (Vector2Int)grid.WorldToCell(worldPoint);
-        
-        return cellPosition;
-        
-
-    }
-
+    
     private void Update()
     {
         Vector2Int clickPosition;
@@ -80,26 +80,47 @@ public class GameController : MonoBehaviour
                 break;
             
             case GameStateValues.waitCellUserToBeSelected :
-                clickPosition = GetPositionCellSelected();
-                if (model.ABoxWithCellValueIsChosen(clickPosition,GameModel.BoxValue.PlayerCell))
+                if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.PlayerCell).Count == 0)
                 {
-                    
-                    cellUserSelectedPosition = clickPosition;
-                    gameState = GameStateValues.waitFreeBoxToBeSelected;
-                    Debug.Log("GameStateValues.waitFreeBoxToBeSelected");
+                    if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.ComputerCell).Count == 0)
+                    {
+                        gameState = GameStateValues.endOfGame;
+                        Debug.Log("GameStateValues.endOfGame");
 
+                    }
+                    else
+                    {
+                        gameState = GameStateValues.computerReadyToPlay;
+                        Debug.Log("GameStateValues.computerReadyToPlay");
+
+                    }
                 }
+
+                if (gameState == GameStateValues.waitCellUserToBeSelected)
+                {
+                    clickPosition = (Vector2Int) GetCursorPositionInGrid(grid);
+                    if (model.CandidateCellIsChosen(clickPosition,GameModel.BoxValue.PlayerCell))
+                    {
+                    
+                        cellUserSelectedPosition = clickPosition;
+                        gameState = GameStateValues.waitFreeBoxToBeSelected;
+                        Debug.Log("GameStateValues.waitFreeBoxToBeSelected");
+
+                    }
+                    
+                }
+
                 break;
             
             case GameStateValues.waitFreeBoxToBeSelected :
-                clickPosition = GetPositionCellSelected();
-                if (model.ABoxWithCellValueIsChosen(clickPosition,GameModel.BoxValue.FreeBox))
+                clickPosition = (Vector2Int) GetCursorPositionInGrid(grid);
+                if (model.CandidateCellIsChosen(clickPosition,GameModel.BoxValue.FreeBox))
                 {
                     distMove = clickPosition - cellUserSelectedPosition;
                     if (Math.Abs(distMove.x) <= GameModel.MaxDistanceMove && Math.Abs(distMove.y) <= GameModel.MaxDistanceMove)
                     {
                         model.MoveOrCloneTheCell(cellUserSelectedPosition,clickPosition,GameModel.BoxValue.PlayerCell);
-                    
+                        
                         gameState = model.NoMoreBoxesWithCellValue(GameModel.BoxValue.FreeBox) ||
                                     model.NoMoreBoxesWithCellValue(GameModel.BoxValue.ComputerCell)
                             ? GameStateValues.endOfGame
@@ -118,19 +139,37 @@ public class GameController : MonoBehaviour
                 break;
             
             case GameStateValues.computerReadyToPlay :
-                
-                computerStrategy.Play();
-                
-                //TODO Verify if the player is not stuck or if the computer is not stuck
-                
-                gameState = model.NoMoreBoxesWithCellValue(GameModel.BoxValue.FreeBox) ||
-                            model.NoMoreBoxesWithCellValue(GameModel.BoxValue.PlayerCell)
-                    ? GameStateValues.endOfGame
-                    : GameStateValues.waitCellUserToBeSelected;
 
-                Debug.Log(gameState.Equals(GameStateValues.waitCellUserToBeSelected)
-                    ? "GameStateValues.waitCellUserToBeSelected"
-                    : "GameStateValues.endOfGame");
+                if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.ComputerCell).Count == 0)
+                {
+                    if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.PlayerCell).Count == 0)
+                    {
+                        gameState = GameStateValues.endOfGame;
+                        Debug.Log("GameStateValues.endOfGame");
+                    }
+                    else
+                    {
+                        gameState = GameStateValues.waitCellUserToBeSelected;
+                        Debug.Log("GameStateValues.waitCellUserToBeSelected");
+                    }
+                }
+
+                if (gameState == GameStateValues.computerReadyToPlay)
+                {
+                    
+                    computerStrategy.Play();
+
+                    gameState = model.NoMoreBoxesWithCellValue(GameModel.BoxValue.FreeBox) ||
+                                model.NoMoreBoxesWithCellValue(GameModel.BoxValue.PlayerCell)
+                        ? GameStateValues.endOfGame
+                        : GameStateValues.waitCellUserToBeSelected;
+
+                    Debug.Log(gameState.Equals(GameStateValues.waitCellUserToBeSelected)
+                        ? "GameStateValues.waitCellUserToBeSelected"
+                        : "GameStateValues.endOfGame");
+                }
+                
+
                 break;
             
             case GameStateValues.endOfGame:

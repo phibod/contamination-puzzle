@@ -16,16 +16,13 @@ public class ComputerStrategy
         
     struct BoxInputSearchParameters
     {
-        public BoxValue boxValueSelected;
         public BoxValue adjacentBoxValue;
         public GameModel.SelectionType chosenSelectionType;
-        public RectInt rectZone;
-        public List<Vector2Int> boxPositionsToExclude;
+        public List<Vector2Int> boxPositionsCandidates;
     }
     
     struct BoxOutputSearchParameters
     {
-        public Boolean noBoxWithValueFound;
         public Vector2Int positionBoxFound;
         public int nbAdjacentCells;
     }
@@ -47,37 +44,32 @@ public class ComputerStrategy
     
        return resultCount;
    }
-
-   
  
     private BoxOutputSearchParameters IdentifySurroundedBox(BoxInputSearchParameters boxInputSearchParameters)
     {
-     
-        BoxOutputSearchParameters boxOutputSearchParameter = new BoxOutputSearchParameters
-        {
-            noBoxWithValueFound = true
-        };
-        gameModel.DoInArea(boxInputSearchParameters.rectZone,(pos, value) =>
+
+        Boolean firstBoxFound = true;
+        BoxOutputSearchParameters boxOutputSearchParameter = new BoxOutputSearchParameters{};
+       
+        foreach (var currentPosition in boxInputSearchParameters.boxPositionsCandidates)
         {
 
-            if (value.Equals(boxInputSearchParameters.boxValueSelected) && 
-                !boxInputSearchParameters.boxPositionsToExclude.Contains(pos))
+
+            var nbAdjacentCells = ExploreAdjacentBoxes(boxInputSearchParameters,currentPosition);
+
+            if (firstBoxFound ||
+                (nbAdjacentCells < boxOutputSearchParameter.nbAdjacentCells &&
+                 boxInputSearchParameters.chosenSelectionType == GameModel.SelectionType.TheLeast) ||
+                (nbAdjacentCells > boxOutputSearchParameter.nbAdjacentCells &&
+                 boxInputSearchParameters.chosenSelectionType == GameModel.SelectionType.TheMost))
             {
-                var nbAdjacentCells = ExploreAdjacentBoxes(boxInputSearchParameters,pos);
-
-                if (boxOutputSearchParameter.noBoxWithValueFound ||
-                    (nbAdjacentCells < boxOutputSearchParameter.nbAdjacentCells &&
-                     boxInputSearchParameters.chosenSelectionType == GameModel.SelectionType.TheLeast) ||
-                    (nbAdjacentCells > boxOutputSearchParameter.nbAdjacentCells &&
-                     boxInputSearchParameters.chosenSelectionType == GameModel.SelectionType.TheMost))
-                {
-                    boxOutputSearchParameter.positionBoxFound = pos;
-                    boxOutputSearchParameter.nbAdjacentCells = nbAdjacentCells;
-                    boxOutputSearchParameter.noBoxWithValueFound = false;
-                }
-            }       
-        });
-
+                boxOutputSearchParameter.positionBoxFound = currentPosition;
+                boxOutputSearchParameter.nbAdjacentCells = nbAdjacentCells;
+                firstBoxFound = false;
+            }
+          
+            
+        }
       
         return boxOutputSearchParameter;
     }
@@ -115,57 +107,36 @@ public class ComputerStrategy
     */
     private Boolean Strategy1(ref Vector2Int computerCellToSelectPosition,ref Vector2Int freeBoxCellToSelectPosition)
     {
-        BoxInputSearchParameters searchParametersFreeBox;
-        BoxOutputSearchParameters computerCellToSelect,freeBoxToSelect,freeBoxCandidate1;
+        BoxOutputSearchParameters freeBoxToSelect;
 
         //select the computer cell which has less adjacent cells
         var searchParametersComputerCell = new BoxInputSearchParameters
         {
-            boxValueSelected = GameModel.BoxValue.ComputerCell,
-            adjacentBoxValue = GameModel.BoxValue.ComputerCell,
+            adjacentBoxValue = BoxValue.ComputerCell,
             chosenSelectionType = GameModel.SelectionType.TheLeast,
-            rectZone = new RectInt(0, 0, GameModel.NbColumns, GameModel.NbRows),
-            boxPositionsToExclude = new List<Vector2Int>()
+            boxPositionsCandidates = gameModel.ReturnPlayableCellsPositions(BoxValue.ComputerCell)
+        };
+        
+        var computerCellToSelect = IdentifySurroundedBox(searchParametersComputerCell);
+
+        //select the freebox which has the most adjacent player cells
+        var rectZone = new RectInt(computerCellToSelect.positionBoxFound.x - GameModel.MaxDistanceMove,
+            computerCellToSelect.positionBoxFound.y - GameModel.MaxDistanceMove,
+            GameModel.MaxDistanceMove * 2 + 1,
+            GameModel.MaxDistanceMove * 2 + 1 );
+        var searchParametersFreeBox = new BoxInputSearchParameters
+        {
+            adjacentBoxValue = BoxValue.PlayerCell,
+            chosenSelectionType = GameModel.SelectionType.TheMost,
+            boxPositionsCandidates = gameModel.ReturnFreeBoxesInArea(rectZone)
 
         };
-
-        //a computer cell that can be moved or cloned must be selected
-        do
-        {
-            computerCellToSelect = IdentifySurroundedBox(searchParametersComputerCell);
-            searchParametersFreeBox = new BoxInputSearchParameters
-            {
-                boxValueSelected = GameModel.BoxValue.FreeBox,
-                adjacentBoxValue = GameModel.BoxValue.PlayerCell,
-                chosenSelectionType = GameModel.SelectionType.TheMost,
-                rectZone = new RectInt(computerCellToSelect.positionBoxFound.x - GameModel.MaxDistanceMove,
-                    computerCellToSelect.positionBoxFound.y - GameModel.MaxDistanceMove,
-                    GameModel.MaxDistanceMove * 2,
-                    GameModel.MaxDistanceMove * 2),
-                boxPositionsToExclude = new List<Vector2Int>()
-
-            };
-
-        
-            freeBoxCandidate1 = IdentifySurroundedBox(searchParametersFreeBox);
-
-            //exclude a computer cell that can not be moved
-            if (freeBoxCandidate1.noBoxWithValueFound)
-            {
-                searchParametersComputerCell.boxPositionsToExclude.Add(computerCellToSelect.positionBoxFound); 
-            }
-            
-        } while (!computerCellToSelect.noBoxWithValueFound && freeBoxCandidate1.noBoxWithValueFound);
-        
-        //strategy is aborted
-        if (computerCellToSelect.noBoxWithValueFound) return false;
-        
+        var freeBoxCandidate1 = IdentifySurroundedBox(searchParametersFreeBox);
         
         Debug.Log("Potential attack");
         Debug.Log("x =" + freeBoxCandidate1.positionBoxFound.x);
         Debug.Log("y=" + freeBoxCandidate1.positionBoxFound.y);
         Debug.Log("nbAdajcentCells = " + freeBoxCandidate1.nbAdjacentCells);
-
 
         //last attack
         if (freeBoxCandidate1.nbAdjacentCells == CountBoxesWithBoxValue(GameModel.BoxValue.PlayerCell))
@@ -179,14 +150,9 @@ public class ComputerStrategy
             //select the free box which as the most adjacent computer cells
             searchParametersFreeBox = new BoxInputSearchParameters
             {
-                boxValueSelected = GameModel.BoxValue.FreeBox,
-                adjacentBoxValue = GameModel.BoxValue.ComputerCell,
+                adjacentBoxValue = BoxValue.ComputerCell,
                 chosenSelectionType = GameModel.SelectionType.TheMost,
-                rectZone = new RectInt(computerCellToSelect.positionBoxFound.x - GameModel.MaxDistanceMove,
-                    computerCellToSelect.positionBoxFound.y - GameModel.MaxDistanceMove,
-                    GameModel.MaxDistanceMove * 2,
-                    GameModel.MaxDistanceMove * 2),
-                boxPositionsToExclude = new List<Vector2Int>()
+                boxPositionsCandidates =gameModel.ReturnFreeBoxesInArea(rectZone)
 
             };
             var freeBoxCandidate2 = IdentifySurroundedBox(searchParametersFreeBox);

@@ -52,7 +52,7 @@ public class GameView : MonoBehaviour
                     _ => null
                 };
                 biologicCellMap.SetTile((Vector3Int)posDestination, tile);
-                Destroy(tileGO);
+               Destroy(tileGO);
             });
     }
 
