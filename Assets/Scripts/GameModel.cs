@@ -49,11 +49,6 @@ public class GameModel
         biologicalCellBox[posDestination.x, posDestination.y] = value;
     }
 
-    private bool ClickInGameArea(Vector2Int clickPosition)
-    {
-        return (clickPosition.x >= 0 && clickPosition.x < NbColumns && clickPosition.y >= 0 &&
-                clickPosition.y < NbRows);
-    }
 
 
     private void PlaceAndContaminateNearbyCells(Vector2Int posOrigin, Vector2Int posCell, BoxValue boxValue)

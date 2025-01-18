@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
         return positionInGrid;
   
     }
-
+    
     
     private GameStateValues gameState;
     
@@ -24,11 +24,15 @@ public class GameController : MonoBehaviour
 
     private GameModel model;
     
+    private CursorModel cursorModel;
+    
     private ComputerStrategy computerStrategy;
 
     [SerializeField] private Grid grid;
 
-    [SerializeField] private GameView view;
+    [SerializeField] private GameView gameView;
+    
+    [SerializeField] private CursorView cursorView;
 
     private enum GameStateValues
     {
@@ -42,8 +46,10 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         model = new GameModel();
-        view.Subscribe(model);
-
+        gameView.Subscribe(model);
+        
+        cursorModel = cursorView.GetCursorModel();
+ 
         computerStrategy = new ComputerStrategy(model);
         gameState = GameStateValues.gameInitialized;
         
@@ -54,7 +60,7 @@ public class GameController : MonoBehaviour
 
     private void OnDestroy()
     {
-        view.UnSubscribe(model);        
+        gameView.UnSubscribe(model);        
     }
 
 

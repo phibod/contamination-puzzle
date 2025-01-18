@@ -41,12 +41,41 @@ Contraintes ou limites
 ----------------------
 
 - Une seule cellule à la fois peut être clonée ou déplacée par le joueur
+- Impossible de changer de cellule. Une fois sélectionnée , elle doit être soit clonée ou déplacée
 - Ne pas donner de contrainte de temps au joueur
 - Limite de temps à 5 secondes dans la durée d'éxécution de l'ordinateur
 - Pas de possibilité de reprise d'une partie en cours
+- Le déplacement maximal d'une cellule est de 2 cases que ce soit horizontal , vertical ou en diagonale
  
 Specificités UI
 ----------------
-- a identifier
 
+* Etats du curseur * 
 
+(PositionHorsGrille)
+La position est en dehors de la grille  
+
+(CelluleJoueurAchoisir-PositionInvalide)
+Dans la grille. 
+La cellule pointée n'est pas jouable. C'est à dire qu'elle ne peut pas être clonée , ni déplacée
+
+(CelluleJoueurAchoisir-PositionValide)
+Dans la grille
+La cellule pointée est jouable . Elle peut être clonée et déplacée 
+ 
+(ChoixTrouLibre - PositionInvalide)
+Le déplacement "potentiel" est impossible pour la cellule sélectionnée
+
+(ChoixTrouLibre - PositionValide)
+Le déplacement "potentiel " est possible pour la cellule sélectionnée
+
+* Etat de la cellule *
+
+(Idle) 
+Cellule en attente d'être sélectionnée. 
+
+(Sélectionnée)
+Cellule animée en attente de déplacement 
+
+(déplacée)
+Cellule en déplacement

@@ -21,8 +21,9 @@ public class GameView : MonoBehaviour
 
     public void Subscribe(GameModel model)
     {
-        model.OnInitialize += ClearBoard;
-        model.OnTileChanged += DrawTileDependingOnCellValue;
+       
+       model.OnInitialize += ClearBoard;
+       model.OnTileChanged += DrawTileDependingOnCellValue;
     }
 
     private void DrawTileDependingOnCellValue(Vector2Int posOrigin, Vector2Int posDestination,
