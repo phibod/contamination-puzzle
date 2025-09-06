@@ -15,6 +15,10 @@ public class GameController : MonoBehaviour
   
     }
     
+    private float delay = 1f; // 1 second delay
+    private float timer = 0f;
+    private bool isWaiting = false;
+
     
     private GameStateValues gameState;
     
@@ -74,7 +78,6 @@ public class GameController : MonoBehaviour
         if (!Input.GetMouseButtonDown(0) && 
             (gameState == GameStateValues.waitCellUserToBeSelected ||
              gameState == GameStateValues.waitFreeBoxToBeSelected ||
-             gameState == GameStateValues.computerReadyToPlay ||
              gameState == GameStateValues.endOfGame)) return;
 
         switch (gameState)
@@ -142,10 +145,33 @@ public class GameController : MonoBehaviour
                         Debug.Log("Not authorized");
                     }
                 }
+
+                //study the ability to select a playerCell twice
+                if (model.CandidateCellIsChosen(clickPosition, GameModel.BoxValue.PlayerCell))
+                {
+                    
+                }
+
+
+                if (gameState == GameStateValues.computerReadyToPlay) isWaiting = true;
+                
                 break;
             
             case GameStateValues.computerReadyToPlay :
+                
+                
+                if (isWaiting)
+                {
+                    timer += Time.deltaTime;
+                    if (timer >= delay)
+                    {
+                        isWaiting = false;
+                        timer = 0f;
+                    }
+                    return; // Skip the rest of Update while waiting
+                }
 
+                
                 if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.ComputerCell).Count == 0)
                 {
                     if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.PlayerCell).Count == 0)
