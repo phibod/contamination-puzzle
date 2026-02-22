@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Rendering;
-using UnityEngine.UIElements;
 using static GameModel;
-using Random = UnityEngine.Random;
 
 
 public class ComputerStrategy
@@ -112,9 +106,9 @@ public class ComputerStrategy
         //select the computer cell which has less adjacent cells
         var searchParametersComputerCell = new BoxInputSearchParameters
         {
-            adjacentBoxValue = BoxValue.ComputerCell,
+            adjacentBoxValue = BoxValue.IsComputerCell,
             chosenSelectionType = GameModel.SelectionType.TheLeast,
-            boxPositionsCandidates = gameModel.ReturnPlayableCellsPositions(BoxValue.ComputerCell)
+            boxPositionsCandidates = gameModel.ReturnPlayableCellsPositions(BoxValue.IsComputerCell)
         };
         
         var computerCellToSelect = IdentifySurroundedBox(searchParametersComputerCell);
@@ -126,7 +120,7 @@ public class ComputerStrategy
             GameModel.MaxDistanceMove * 2 + 1 );
         var searchParametersFreeBox = new BoxInputSearchParameters
         {
-            adjacentBoxValue = BoxValue.PlayerCell,
+            adjacentBoxValue = BoxValue.IsUserCell,
             chosenSelectionType = GameModel.SelectionType.TheMost,
             boxPositionsCandidates = gameModel.ReturnFreeBoxesInArea(rectZone)
 
@@ -139,7 +133,7 @@ public class ComputerStrategy
         Debug.Log("nbAdajcentCells = " + freeBoxCandidate1.nbAdjacentCells);
 
         //last attack
-        if (freeBoxCandidate1.nbAdjacentCells == CountBoxesWithBoxValue(GameModel.BoxValue.PlayerCell))
+        if (freeBoxCandidate1.nbAdjacentCells == CountBoxesWithBoxValue(GameModel.BoxValue.IsUserCell))
         {
             freeBoxToSelect = freeBoxCandidate1;
             Debug.Log("last attack");
@@ -150,7 +144,7 @@ public class ComputerStrategy
             //select the free box which as the most adjacent computer cells
             searchParametersFreeBox = new BoxInputSearchParameters
             {
-                adjacentBoxValue = BoxValue.ComputerCell,
+                adjacentBoxValue = BoxValue.IsComputerCell,
                 chosenSelectionType = GameModel.SelectionType.TheMost,
                 boxPositionsCandidates =gameModel.ReturnFreeBoxesInArea(rectZone)
 
@@ -184,24 +178,28 @@ public class ComputerStrategy
    
     }
 
-    public void Play()
+    public List<CellAnimationStep> Play()
     {
+
+        List<CellAnimationStep> steps = null;
         
         Vector2Int computerCellToSelectPosition = new Vector2Int();
         Vector2Int freeBoxCellToSelectPosition = new Vector2Int();
 
-        if (Strategy1(ref computerCellToSelectPosition,ref freeBoxCellToSelectPosition))
+        
+        if (Strategy1(computerCellToSelectPosition: ref computerCellToSelectPosition,ref freeBoxCellToSelectPosition))
         {
             //move or clone the cell
             Debug.Log("Computer MoveOrCloneTheCell");
-            gameModel.MoveOrCloneTheCell(computerCellToSelectPosition, freeBoxCellToSelectPosition,
-                GameModel.BoxValue.ComputerCell);
-            
+            steps = gameModel.MoveOrCloneTheCell(computerCellToSelectPosition, freeBoxCellToSelectPosition);
+
         }
         else
         {
             Debug.Log("Computer stuck. No computer cell can move !!!!");
         }
+
+        return steps;
 
     }
 

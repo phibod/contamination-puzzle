@@ -1,12 +1,10 @@
 ﻿using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UIElements;
+using Object = UnityEngine.Object;
 
 public class GameController : MonoBehaviour
 {
-    static public Vector3Int GetCursorPositionInGrid(Grid gridOfGame)
+    public static Vector3Int GetCursorPositionInGrid(Grid gridOfGame)
     {
         Vector3 worldPoint = Camera.main!.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int positionInGrid = gridOfGame.WorldToCell(worldPoint);
@@ -15,127 +13,145 @@ public class GameController : MonoBehaviour
   
     }
     
-    private float delay = 1f; // 1 second delay
-    private float timer = 0f;
-    private bool isWaiting = false;
-
-    
     private GameStateValues gameState;
     
     private Vector2Int cellUserSelectedPosition;
     
     private Vector2Int freeBoxSelectedPosition;
-
-    private GameModel model;
-    
+ 
     private CursorModel cursorModel;
     
     private ComputerStrategy computerStrategy;
 
+    private GameModel model;
+    
     [SerializeField] private Grid grid;
 
     [SerializeField] private GameView gameView;
     
     [SerializeField] private CursorView cursorView;
 
+    [SerializeField] private GameObject cellPrefab;
+
+    
+    public event Action<AnimationData> GameBoardToAnimate;
+
+    public bool isWaitingEndOfAnimation;
+    private GameObject selectedCellGO;
+
     private enum GameStateValues
     {
-        gameInitialized = default,
-        waitCellUserToBeSelected = 1,
-        waitFreeBoxToBeSelected = 2,
-        computerReadyToPlay = 3,
-        endOfGame = 4,
+        GameInitialized = default,
+        WaitCellUserToBeSelected = 1,
+        WaitFreeBoxToBeSelected = 2,
+        ComputerReadyToPlay = 3,
+        EndOfGame = 4,
     }
     
     private void Start()
     {
-        model = new GameModel();
+        model = new GameModel(cellPrefab);
         gameView.Subscribe(model);
-        
+        gameView.Subscribe(this);
         cursorModel = cursorView.GetCursorModel();
  
         computerStrategy = new ComputerStrategy(model);
-        gameState = GameStateValues.gameInitialized;
+        gameState = GameStateValues.GameInitialized;
+        isWaitingEndOfAnimation = false;
         
         
         Debug.Log($"start GameController");
-        Debug.Log("GameStateValues.gameInitialized");
+        Debug.Log("GameStateValues.GameInitialized");
     }
 
     private void OnDestroy()
     {
-        gameView.UnSubscribe(model);        
+        gameView.UnSubscribe(model);
+        gameView.UnSubscribe(this);
     }
-
-
     
     private void Update()
     {
         Vector2Int clickPosition;
-        Vector2Int distMove;
 
-        //handle user action
-        if (!Input.GetMouseButtonDown(0) && 
-            (gameState == GameStateValues.waitCellUserToBeSelected ||
-             gameState == GameStateValues.waitFreeBoxToBeSelected ||
-             gameState == GameStateValues.endOfGame)) return;
+        //A user action is needed in these states
+        if (!Input.GetMouseButtonDown(0) &&
+            ( (gameState == GameStateValues.WaitCellUserToBeSelected && model.ReturnPlayableCellsPositions(GameModel.BoxValue.IsUserCell).Count > 0)
+               ||
+             gameState == GameStateValues.WaitFreeBoxToBeSelected 
+               ||
+             gameState == GameStateValues.EndOfGame)) return;
 
+      
+        
         switch (gameState)
         {
-            case GameStateValues.gameInitialized :
+            case GameStateValues.GameInitialized :
+                isWaitingEndOfAnimation = true;
                 model.InitGameModel();
-                gameState = GameStateValues.waitCellUserToBeSelected;
+                gameState = GameStateValues.WaitCellUserToBeSelected;
                 Debug.Log("GameStateValues.waitCellUserToBeSelected");
                 break;
             
-            case GameStateValues.waitCellUserToBeSelected :
-                if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.PlayerCell).Count == 0)
+            case GameStateValues.WaitCellUserToBeSelected :
+                if (isWaitingEndOfAnimation) break;
+                if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.IsUserCell).Count == 0)
                 {
-                    if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.ComputerCell).Count == 0)
+                    if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.IsComputerCell).Count == 0)
                     {
-                        gameState = GameStateValues.endOfGame;
+                        gameState = GameStateValues.EndOfGame;
                         Debug.Log("GameStateValues.endOfGame");
 
                     }
                     else
                     {
-                        gameState = GameStateValues.computerReadyToPlay;
+                        gameState = GameStateValues.ComputerReadyToPlay;
                         Debug.Log("GameStateValues.computerReadyToPlay");
 
                     }
                 }
-
-                if (gameState == GameStateValues.waitCellUserToBeSelected)
+                
+                if (gameState == GameStateValues.WaitCellUserToBeSelected)
                 {
                     clickPosition = (Vector2Int) GetCursorPositionInGrid(grid);
-                    if (model.CandidateCellIsChosen(clickPosition,GameModel.BoxValue.PlayerCell))
+                    if (model.CandidateCellIsChosen(clickPosition,GameModel.BoxValue.IsUserCell))
                     {
-                    
-                        cellUserSelectedPosition = clickPosition;
-                        gameState = GameStateValues.waitFreeBoxToBeSelected;
-                        Debug.Log("GameStateValues.waitFreeBoxToBeSelected");
 
+                        // Nouvelle sélection
+                        SelectCellUser(clickPosition);
+
+                        gameState = GameStateValues.WaitFreeBoxToBeSelected;
+                        Debug.Log("GameStateValues.waitFreeBoxToBeSelected");
                     }
                     
                 }
-
                 break;
             
-            case GameStateValues.waitFreeBoxToBeSelected :
+            case GameStateValues.WaitFreeBoxToBeSelected :
+                if (isWaitingEndOfAnimation) break;
+                
                 clickPosition = (Vector2Int) GetCursorPositionInGrid(grid);
-                if (model.CandidateCellIsChosen(clickPosition,GameModel.BoxValue.FreeBox))
+                if (model.CandidateCellIsChosen(clickPosition,GameModel.BoxValue.IsFreeBox))
                 {
-                    distMove = clickPosition - cellUserSelectedPosition;
+                    var distMove = clickPosition - cellUserSelectedPosition;
                     if (Math.Abs(distMove.x) <= GameModel.MaxDistanceMove && Math.Abs(distMove.y) <= GameModel.MaxDistanceMove)
                     {
-                        model.MoveOrCloneTheCell(cellUserSelectedPosition,clickPosition,GameModel.BoxValue.PlayerCell);
+                        //animation du move ou du clone : la cellule est désélectionnée avant l'animation
+                        //TODO verifier l'enchainement en séquence
+                        gameView.DeselectCurrentCell(selectedCellGO);
+                        var animationSteps = model.MoveOrCloneTheCell(cellUserSelectedPosition,clickPosition);
                         
-                        gameState = model.NoMoreBoxesWithCellValue(GameModel.BoxValue.FreeBox) ||
-                                    model.NoMoreBoxesWithCellValue(GameModel.BoxValue.ComputerCell)
-                            ? GameStateValues.endOfGame
-                            : GameStateValues.computerReadyToPlay;
+                        //update the view
+                        isWaitingEndOfAnimation = true;
+                        var animationData = new AnimationData(animationSteps);
+                        GameBoardToAnimate?.Invoke(animationData);
+                        
+                        gameState = model.NoMoreBoxesWithCellValue(GameModel.BoxValue.IsFreeBox) ||
+                                    model.NoMoreBoxesWithCellValue(GameModel.BoxValue.IsComputerCell)
+                            ? GameStateValues.EndOfGame
+                            : GameStateValues.ComputerReadyToPlay;
 
-                        Debug.Log(gameState.Equals(GameStateValues.computerReadyToPlay)
+                        Debug.Log(gameState.Equals(GameStateValues.ComputerReadyToPlay)
                             ? "GameStateValues.computerReadyToPlay"
                             : "GameStateValues.endOfGame");
                         
@@ -145,58 +161,68 @@ public class GameController : MonoBehaviour
                         Debug.Log("Not authorized");
                     }
                 }
-
-                //study the ability to select a playerCell twice
-                if (model.CandidateCellIsChosen(clickPosition, GameModel.BoxValue.PlayerCell))
+                else if (model.CandidateCellIsChosen(clickPosition, GameModel.BoxValue.IsUserCell))
                 {
-                    
+                    var cellGO = model.GetCellGameObject(clickPosition.x, clickPosition.y);
+
+                    // Si l'utilisateur clique à nouveau sur la même cellule on la désélectionne
+                    if (selectedCellGO == cellGO)
+                    {
+                        // Désélection
+                        gameView.DeselectCurrentCell(selectedCellGO);
+                        selectedCellGO = null;
+
+                        // Retour à l'état précédent
+                        gameState = GameStateValues.WaitCellUserToBeSelected;
+                        Debug.Log("Retour à WaitCellUserToBeSelected");
+                        break;
+                    }
+
+                    // Si l'utilisateur clique une autre cellule user jouable
+                    if (selectedCellGO != null && selectedCellGO != cellGO)
+                    {
+                        gameView.DeselectCurrentCell(selectedCellGO);
+                    }
+
+                    // Nouvelle sélection
+                    SelectCellUser(clickPosition);
+
+                    Debug.Log("Nouvelle cellule sélectionnée en WaitFreeBoxToBeSelected");
                 }
-
-
-                if (gameState == GameStateValues.computerReadyToPlay) isWaiting = true;
-                
                 break;
             
-            case GameStateValues.computerReadyToPlay :
-                
-                
-                if (isWaiting)
-                {
-                    timer += Time.deltaTime;
-                    if (timer >= delay)
-                    {
-                        isWaiting = false;
-                        timer = 0f;
-                    }
-                    return; // Skip the rest of Update while waiting
-                }
+            case GameStateValues.ComputerReadyToPlay :
 
-                
-                if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.ComputerCell).Count == 0)
+                if (isWaitingEndOfAnimation) break;                
+                if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.IsComputerCell).Count == 0)
                 {
-                    if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.PlayerCell).Count == 0)
+                    if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.IsUserCell).Count == 0)
                     {
-                        gameState = GameStateValues.endOfGame;
+                        gameState = GameStateValues.EndOfGame;
                         Debug.Log("GameStateValues.endOfGame");
                     }
                     else
                     {
-                        gameState = GameStateValues.waitCellUserToBeSelected;
+                        gameState = GameStateValues.WaitCellUserToBeSelected;
                         Debug.Log("GameStateValues.waitCellUserToBeSelected");
                     }
                 }
 
-                if (gameState == GameStateValues.computerReadyToPlay)
+                if (gameState == GameStateValues.ComputerReadyToPlay)
                 {
+                    var animationSteps = computerStrategy.Play();
                     
-                    computerStrategy.Play();
+                    //update the view
+                    isWaitingEndOfAnimation = true;
+                    var animationData = new AnimationData(animationSteps);
+                    GameBoardToAnimate?.Invoke(animationData);
 
-                    gameState = model.NoMoreBoxesWithCellValue(GameModel.BoxValue.FreeBox) ||
-                                model.NoMoreBoxesWithCellValue(GameModel.BoxValue.PlayerCell)
-                        ? GameStateValues.endOfGame
-                        : GameStateValues.waitCellUserToBeSelected;
+                    gameState = model.NoMoreBoxesWithCellValue(GameModel.BoxValue.IsFreeBox) ||
+                                model.NoMoreBoxesWithCellValue(GameModel.BoxValue.IsUserCell)
+                        ? GameStateValues.EndOfGame
+                        : GameStateValues.WaitCellUserToBeSelected;
 
-                    Debug.Log(gameState.Equals(GameStateValues.waitCellUserToBeSelected)
+                    Debug.Log(gameState.Equals(GameStateValues.WaitCellUserToBeSelected)
                         ? "GameStateValues.waitCellUserToBeSelected"
                         : "GameStateValues.endOfGame");
                 }
@@ -204,11 +230,12 @@ public class GameController : MonoBehaviour
 
                 break;
             
-            case GameStateValues.endOfGame:
-                
-                //initialize the game (for test) 
-                gameState = GameStateValues.gameInitialized;
-                Debug.Log("GameStateValues.gameInitialized");
+            case GameStateValues.EndOfGame:
+                if (isWaitingEndOfAnimation) break;  
+
+                //TODO manage a restart game button
+                gameState = GameStateValues.GameInitialized;
+                Debug.Log("GameStateValues.GameInitialized");
                 break;
             
             default:
@@ -218,6 +245,12 @@ public class GameController : MonoBehaviour
 
 
     }
-   
 
+    private void SelectCellUser(Vector2Int clickPosition)
+    {
+        var cellGO = model.GetCellGameObject(clickPosition.x, clickPosition.y);
+        selectedCellGO = cellGO;
+        gameView.SelectCell(cellGO);
+        cellUserSelectedPosition = clickPosition;
+    }
 }
