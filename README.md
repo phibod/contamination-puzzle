@@ -1,0 +1,48 @@
+But du jeu 
+------------
+
+Dans une grille limitée à un certain nombre de cases , un joueur et l'ordinateur s'affrontent chacun leur tour 
+en dupliquant ou déplaçant des cellules qui leur appartiennent.
+Chaque cellule peut être clonée ou déplacée seulement dans une case libre de la grille.
+Une cellule contamine toutes les autres cellules qui lui sont adjacentes.
+La contamination revient à changer la couleur de la cellule qui est adjacente avec celle de la couleur de la cellule qui la contamine.
+Le jeu se termine lorsqu'il n'existe plus aucune case de libre.
+Le gagnant est celui qui a le plus de cellules de sa couleur dans le dashboard
+
+
+Présentation 
+------------
+
+-- Au démmarage --
+
+1) Un Dashboard 7x7 dont 49 cases vides
+
+2) 1 Cellule bleu se positionne dans la case du coin en haut à gauche
+   1 Cellule verte se positionne dans la case du coin en haut à droite
+   1 Cellule verte se positionne dans la case du coin en bas à gauche
+   1 Cellule bleu se positionne dans la case du coin en bas à droite
+
+3) Un curseur de la taille d'une case avec la forme d'un oeil apparait sur le dashboard pour indiquer
+   l'attente de l'intervention du joueur
+
+
+Liste des fonctionnalités 
+--------------------------
+
+- Initialiser le dashboard
+- Déplacer une cellule ou la cloner.
+  (L'action de clonage représente la duplication d'une cellule vers une case libre adjacente
+  On déplace une cellule , lorsque la case destination est au minumum à deux cases de la cellule d'origine)
+- Contaminer les cellules adjacentes à celle qui vient d'être clonée ou déplacée
+- Élaborer une stratégie de l'ordinateur
+- Identifier le gagnant en comptabilisant le nombre de cellules de sa couleur
+
+Contraintes ou limites 
+----------------------
+
+- Une seule cellule à la fois peut être clonée ou déplacée par le joueur
+- Impossible de changer de cellule. Une fois sélectionnée , elle doit être soit clonée ou déplacée
+- Ne pas donner de contrainte de temps au joueur
+- Limite de temps à 5 secondes dans la durée d'éxécution de l'ordinateur
+- Pas de possibilité de reprise d'une partie en cours
+- Le déplacement maximal d'une cellule est de 2 cases que ce soit horizontal , vertical ou en diagonale
