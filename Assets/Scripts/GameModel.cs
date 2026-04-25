@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Vector2Int = UnityEngine.Vector2Int;
@@ -49,18 +47,18 @@ public record CellAnimationStep
 }
 
 
-public record AnimationData
+public record AnimationData(IReadOnlyList<CellAnimationStep> animations)
 {
-    public IReadOnlyList<CellAnimationStep> animations { get; }
-
-    public AnimationData(IReadOnlyList<CellAnimationStep> animations)
-    {
-        this.animations = animations;
-    }
+    public IReadOnlyList<CellAnimationStep> animations { get; } = animations;
 }
 
+public record ScoreData(int playerScore, int computerScore)
+{
+      public int playerScore { get; } = playerScore;
+      public int computerScore { get; } = computerScore;
+}
 
-public class GameModel 
+public class GameModel
 {
     public enum BoxValue
     {
@@ -81,7 +79,8 @@ public class GameModel
 
  
     public event Action<AnimationData> OnInitialize;
-
+    
+ 
     private readonly GameObject cellPrefab;
     
     private const string TriggerNameUserCellBirth = "giveBirthToUserCell",
@@ -302,6 +301,32 @@ public class GameModel
         return candidateCells;
     }
 
+    public ScoreData GetScoreData()
+    {
+        int playerCellCount = 0,
+            computerCellCount = 0;
+        var recZone = new RectInt(Vector2Int.zero, new Vector2Int(NbColumns, NbRows));
+        DoInArea(recZone, (pos, _) =>
+        {
+            var boxValue = this[pos.x, pos.y];
+            switch (boxValue)
+            {
+                case BoxValue.IsFreeBox:
+                    break;
+                case BoxValue.IsComputerCell:
+                    computerCellCount++;
+                    break;
+                case BoxValue.IsUserCell:
+                    playerCellCount++;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(boxValue), boxValue, null);
+            }
+ 
+        });
+        return new ScoreData(playerCellCount, computerCellCount);
+    }
+
     private GameObject InstanciateCellPrefab(Vector2Int position)
     {
         var goCell = Object.Instantiate(cellPrefab, (Vector3Int)position + new Vector3(0.5f, 0.5f, 0),
@@ -342,7 +367,7 @@ public class GameModel
 
     private CellAnimationStep MoveACell(Vector2Int posOrigin, Vector2Int posDestination)
     {
-        Debug.Log("MoveACell");
+        //Debug.Log("MoveACell");
 
         // 1. Récupérer la cellule à déplacer
         var cellGO = cellsBoard[posOrigin.x, posOrigin.y];
@@ -365,7 +390,7 @@ public class GameModel
 
     private List<CellAnimationStep> CloneACell(Vector2Int posOrigin, Vector2Int posDestination)
     {
-        Debug.Log("CloneACell posOrigin=" + posOrigin + "  posDestination=" + posDestination);
+        //Debug.Log("CloneACell posOrigin=" + posOrigin + "  posDestination=" + posDestination);
 
         var steps = new List<CellAnimationStep>();
 

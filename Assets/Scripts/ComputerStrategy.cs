@@ -127,16 +127,16 @@ public class ComputerStrategy
         };
         var freeBoxCandidate1 = IdentifySurroundedBox(searchParametersFreeBox);
         
-        Debug.Log("Potential attack");
-        Debug.Log("x =" + freeBoxCandidate1.positionBoxFound.x);
-        Debug.Log("y=" + freeBoxCandidate1.positionBoxFound.y);
-        Debug.Log("nbAdajcentCells = " + freeBoxCandidate1.nbAdjacentCells);
+        //Debug.Log("Potential attack");
+        //Debug.Log("x =" + freeBoxCandidate1.positionBoxFound.x);
+        //Debug.Log("y=" + freeBoxCandidate1.positionBoxFound.y);
+        //Debug.Log("nbAdajcentCells = " + freeBoxCandidate1.nbAdjacentCells);
 
         //last attack
         if (freeBoxCandidate1.nbAdjacentCells == CountBoxesWithBoxValue(GameModel.BoxValue.IsUserCell))
         {
             freeBoxToSelect = freeBoxCandidate1;
-            Debug.Log("last attack");
+            //Debug.Log("last attack");
         }
         else
         {
@@ -151,10 +151,10 @@ public class ComputerStrategy
             };
             var freeBoxCandidate2 = IdentifySurroundedBox(searchParametersFreeBox);
 
-            Debug.Log("potential consolidation");
-            Debug.Log("x =" + freeBoxCandidate2.positionBoxFound.x);
-            Debug.Log("y=" + freeBoxCandidate2.positionBoxFound.y);
-            Debug.Log("nbAdajcentCells = " + freeBoxCandidate2.nbAdjacentCells);
+            //Debug.Log("potential consolidation");
+            //Debug.Log("x =" + freeBoxCandidate2.positionBoxFound.x);
+            //Debug.Log("y=" + freeBoxCandidate2.positionBoxFound.y);
+            //Debug.Log("nbAdajcentCells = " + freeBoxCandidate2.nbAdjacentCells);
 
 
             //better to consolidate
@@ -190,7 +190,7 @@ public class ComputerStrategy
         if (Strategy1(computerCellToSelectPosition: ref computerCellToSelectPosition,ref freeBoxCellToSelectPosition))
         {
             //move or clone the cell
-            Debug.Log("Computer MoveOrCloneTheCell");
+            //Debug.Log("Computer MoveOrCloneTheCell");
             steps = gameModel.MoveOrCloneTheCell(computerCellToSelectPosition, freeBoxCellToSelectPosition);
 
         }

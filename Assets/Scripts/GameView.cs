@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.Tilemaps;
 
 public class GameView : MonoBehaviour
 {
@@ -20,14 +18,17 @@ public class GameView : MonoBehaviour
         UnRegister,
     }
 
-    private GameModel model;
+    private GameModel gameModel;
 
     private int currentStepIndex;
  
     private IReadOnlyList<CellAnimationStep> stepsToAnimate;
     private List<CellAnimationStep> chainedAnimations;
     private int dotweenOffset;
+    
+    public event Action<ScoreData> OnEndRound;
 
+   
     public void Subscribe(GameModel paramGameModel)
     {
        paramGameModel.OnInitialize += ClearBoard;
@@ -59,7 +60,15 @@ public class GameView : MonoBehaviour
         // Fin de toutes les animations
         if (currentStepIndex >= stepsToAnimate.Count)
         {
+            //reactivate the GameController
             controller.isWaitingEndOfAnimation = false;
+            
+            //request the new scoreData
+            var scoreData = gameModel.GetScoreData(); 
+            
+            //update the ui scores
+            OnEndRound?.Invoke(scoreData);
+            
             return;
         }
 
@@ -100,17 +109,17 @@ public class GameView : MonoBehaviour
         if (step.animationType != AnimationType.ChainedAnimation) return;
         var animator = step.cellGO.GetComponent<Animator>();
         animator.SetTrigger(step.triggerName);
-        Debug.Log("GO " + step.cellGO.GetEntityId() + " triggered "+step.triggerName);
+      //  Debug.Log("GO " + step.cellGO.GetEntityId() + " triggered "+step.triggerName);
     }
 
     // Next chained animation
     private void HandleCellAnimationExitState()
     {
         currentStepIndex++;
-        Debug.Log("HandleCellAnimationExitState currentStepIndex="+currentStepIndex);
+        //Debug.Log("HandleCellAnimationExitState currentStepIndex="+currentStepIndex);
         if (currentStepIndex >= stepsToAnimate.Count || stepsToAnimate[currentStepIndex].animationType != AnimationType.ChainedAnimation )
         {
-            Debug.Log("End animation chained indexStepAnimation="+currentStepIndex+", chainedAnimations.count="+chainedAnimations.Count);
+            //Debug.Log("End animation chained indexStepAnimation="+currentStepIndex+", chainedAnimations.count="+chainedAnimations.Count);
             RegisterOrUnregisterCells(chainedAnimations,RegisterType.UnRegister);
             PlayNextStep();
         }
@@ -174,7 +183,13 @@ public class GameView : MonoBehaviour
         var animator = cellGO.GetComponent<Animator>();
         animator.SetTrigger("deselectCell");
     }
+ 
     
+    public void SetModel(GameModel gameModel)
+    {
+        this.gameModel = gameModel;
+
+    }
  
     public void UnSubscribe(GameModel model)
     {
@@ -198,5 +213,5 @@ public class GameView : MonoBehaviour
         PlayNextStep();
 
     }
-    
+
 }

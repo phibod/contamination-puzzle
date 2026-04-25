@@ -1,5 +1,4 @@
 ﻿    using System;
-    using Unity.VisualScripting;
     using UnityEngine;
 
     public class CellStateBehaviour : StateMachineBehaviour
@@ -9,7 +8,7 @@
         {
             //Invoke the event
             OnCellExitState?.Invoke(); 
-            Debug.Log("OnCellExitState called LayerIndex="+layerIndex);
+           //Debug.Log("OnCellExitState called LayerIndex="+layerIndex);
             
         }
         

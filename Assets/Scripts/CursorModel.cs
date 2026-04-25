@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Rendering;
-using Random = UnityEngine.Random;
-
-public class CursorModel
+﻿public class CursorModel
 {
         
     public enum CursorState

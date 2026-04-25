@@ -1,6 +1,6 @@
 ﻿using System;
+using UI;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 public class GameController : MonoBehaviour
 {
@@ -23,20 +23,27 @@ public class GameController : MonoBehaviour
     
     private ComputerStrategy computerStrategy;
 
-    private GameModel model;
     
     [SerializeField] private Grid grid;
-
+    
     [SerializeField] private GameView gameView;
     
     [SerializeField] private CursorView cursorView;
 
     [SerializeField] private GameObject cellPrefab;
-
     
-    public event Action<AnimationData> GameBoardToAnimate;
+    [SerializeField] private UIController uiController;
 
+    private GameModel model;
+    public GameModel gameModel => model;
+
+    public event Action<AnimationData> GameBoardToAnimate;
+  
     public bool isWaitingEndOfAnimation;
+
+    public bool IsPlayerTurn => isPlayerTurn;
+
+    private bool isPlayerTurn;
     private GameObject selectedCellGO;
 
     private enum GameStateValues
@@ -51,17 +58,17 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         model = new GameModel(cellPrefab);
+        gameView.SetModel(model);
         gameView.Subscribe(model);
         gameView.Subscribe(this);
+        uiController.SetModel(model);
+        
         cursorModel = cursorView.GetCursorModel();
  
         computerStrategy = new ComputerStrategy(model);
         gameState = GameStateValues.GameInitialized;
         isWaitingEndOfAnimation = false;
-        
-        
-        Debug.Log($"start GameController");
-        Debug.Log("GameStateValues.GameInitialized");
+       
     }
 
     private void OnDestroy()
@@ -73,6 +80,9 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         Vector2Int clickPosition;
+        
+        //Is a modal window displayed
+        var isModalMode = uiController.isModalMode;
 
         //A user action is needed in these states
         if (!Input.GetMouseButtonDown(0) &&
@@ -80,7 +90,9 @@ public class GameController : MonoBehaviour
                ||
              gameState == GameStateValues.WaitFreeBoxToBeSelected 
                ||
-             gameState == GameStateValues.EndOfGame)) return;
+             gameState == GameStateValues.EndOfGame)
+                ||
+             isModalMode) return;
 
       
         
@@ -90,11 +102,14 @@ public class GameController : MonoBehaviour
                 isWaitingEndOfAnimation = true;
                 model.InitGameModel();
                 gameState = GameStateValues.WaitCellUserToBeSelected;
-                Debug.Log("GameStateValues.waitCellUserToBeSelected");
+                isPlayerTurn = true;
+
+                //Debug.Log("GameStateValues.waitCellUserToBeSelected");
                 break;
             
             case GameStateValues.WaitCellUserToBeSelected :
                 if (isWaitingEndOfAnimation) break;
+                
                 if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.IsUserCell).Count == 0)
                 {
                     if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.IsComputerCell).Count == 0)
@@ -106,7 +121,7 @@ public class GameController : MonoBehaviour
                     else
                     {
                         gameState = GameStateValues.ComputerReadyToPlay;
-                        Debug.Log("GameStateValues.computerReadyToPlay");
+                        //Debug.Log("GameStateValues.computerReadyToPlay");
 
                     }
                 }
@@ -121,7 +136,7 @@ public class GameController : MonoBehaviour
                         SelectCellUser(clickPosition);
 
                         gameState = GameStateValues.WaitFreeBoxToBeSelected;
-                        Debug.Log("GameStateValues.waitFreeBoxToBeSelected");
+                        //Debug.Log("GameStateValues.waitFreeBoxToBeSelected");
                     }
                     
                 }
@@ -129,6 +144,7 @@ public class GameController : MonoBehaviour
             
             case GameStateValues.WaitFreeBoxToBeSelected :
                 if (isWaitingEndOfAnimation) break;
+
                 
                 clickPosition = (Vector2Int) GetCursorPositionInGrid(grid);
                 if (model.CandidateCellIsChosen(clickPosition,GameModel.BoxValue.IsFreeBox))
@@ -151,9 +167,11 @@ public class GameController : MonoBehaviour
                             ? GameStateValues.EndOfGame
                             : GameStateValues.ComputerReadyToPlay;
 
-                        Debug.Log(gameState.Equals(GameStateValues.ComputerReadyToPlay)
-                            ? "GameStateValues.computerReadyToPlay"
-                            : "GameStateValues.endOfGame");
+                        //Debug.Log(gameState.Equals(GameStateValues.ComputerReadyToPlay)
+                         //   ? "GameStateValues.computerReadyToPlay"
+                          //  : "GameStateValues.endOfGame");
+                        
+                        isPlayerTurn = false;
                         
                     }
                     else
@@ -174,7 +192,7 @@ public class GameController : MonoBehaviour
 
                         // Retour à l'état précédent
                         gameState = GameStateValues.WaitCellUserToBeSelected;
-                        Debug.Log("Retour à WaitCellUserToBeSelected");
+                        //Debug.Log("Retour à WaitCellUserToBeSelected");
                         break;
                     }
 
@@ -187,13 +205,15 @@ public class GameController : MonoBehaviour
                     // Nouvelle sélection
                     SelectCellUser(clickPosition);
 
-                    Debug.Log("Nouvelle cellule sélectionnée en WaitFreeBoxToBeSelected");
+                    //Debug.Log("Nouvelle cellule sélectionnée en WaitFreeBoxToBeSelected");
                 }
                 break;
             
             case GameStateValues.ComputerReadyToPlay :
 
-                if (isWaitingEndOfAnimation) break;                
+                if (isWaitingEndOfAnimation) break; 
+                
+
                 if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.IsComputerCell).Count == 0)
                 {
                     if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.IsUserCell).Count == 0)
@@ -222,9 +242,11 @@ public class GameController : MonoBehaviour
                         ? GameStateValues.EndOfGame
                         : GameStateValues.WaitCellUserToBeSelected;
 
-                    Debug.Log(gameState.Equals(GameStateValues.WaitCellUserToBeSelected)
-                        ? "GameStateValues.waitCellUserToBeSelected"
-                        : "GameStateValues.endOfGame");
+                    //Debug.Log(gameState.Equals(GameStateValues.WaitCellUserToBeSelected)
+                     //   ? "GameStateValues.waitCellUserToBeSelected"
+                     //   : "GameStateValues.endOfGame");
+                    
+                    isPlayerTurn = true;
                 }
                 
 
@@ -232,10 +254,8 @@ public class GameController : MonoBehaviour
             
             case GameStateValues.EndOfGame:
                 if (isWaitingEndOfAnimation) break;  
-
-                //TODO manage a restart game button
-                gameState = GameStateValues.GameInitialized;
-                Debug.Log("GameStateValues.GameInitialized");
+                //Debug.Log("GameStateValues.EndOfGame");
+                
                 break;
             
             default:

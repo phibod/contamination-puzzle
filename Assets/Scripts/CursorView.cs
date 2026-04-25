@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.Tilemaps;
 
 public class CursorView : MonoBehaviour
 {
@@ -14,7 +11,7 @@ public class CursorView : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private CursorModel cursorModel;
-
+    
     public CursorModel GetCursorModel()
     {
         return cursorModel;
