@@ -1,4 +1,5 @@
 ﻿using System;
+using ContaminationPuzzle.Entities;
 using UI;
 using UnityEngine;
 
@@ -86,7 +87,7 @@ public class GameController : MonoBehaviour
 
         //A user action is needed in these states
         if (!Input.GetMouseButtonDown(0) &&
-            ( (gameState == GameStateValues.WaitCellUserToBeSelected && model.ReturnPlayableCellsPositions(GameModel.BoxValue.IsUserCell).Count > 0)
+            ( (gameState == GameStateValues.WaitCellUserToBeSelected && model.ReturnPlayableCellsPositions(BoxValue.IsUserCell).Count > 0)
                ||
              gameState == GameStateValues.WaitFreeBoxToBeSelected 
                ||
@@ -110,9 +111,9 @@ public class GameController : MonoBehaviour
             case GameStateValues.WaitCellUserToBeSelected :
                 if (isWaitingEndOfAnimation) break;
                 
-                if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.IsUserCell).Count == 0)
+                if (model.ReturnPlayableCellsPositions(BoxValue.IsUserCell).Count == 0)
                 {
-                    if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.IsComputerCell).Count == 0)
+                    if (model.ReturnPlayableCellsPositions(BoxValue.IsComputerCell).Count == 0)
                     {
                         gameState = GameStateValues.EndOfGame;
                         Debug.Log("GameStateValues.endOfGame");
@@ -129,7 +130,7 @@ public class GameController : MonoBehaviour
                 if (gameState == GameStateValues.WaitCellUserToBeSelected)
                 {
                     clickPosition = (Vector2Int) GetCursorPositionInGrid(grid);
-                    if (model.CandidateCellIsChosen(clickPosition,GameModel.BoxValue.IsUserCell))
+                    if (model.CandidateCellIsChosen(clickPosition,BoxValue.IsUserCell))
                     {
 
                         // Nouvelle sélection
@@ -147,7 +148,7 @@ public class GameController : MonoBehaviour
 
                 
                 clickPosition = (Vector2Int) GetCursorPositionInGrid(grid);
-                if (model.CandidateCellIsChosen(clickPosition,GameModel.BoxValue.IsFreeBox))
+                if (model.CandidateCellIsChosen(clickPosition,BoxValue.IsFreeBox))
                 {
                     var distMove = clickPosition - cellUserSelectedPosition;
                     if (Math.Abs(distMove.x) <= GameModel.MaxDistanceMove && Math.Abs(distMove.y) <= GameModel.MaxDistanceMove)
@@ -162,8 +163,8 @@ public class GameController : MonoBehaviour
                         var animationData = new AnimationData(animationSteps);
                         GameBoardToAnimate?.Invoke(animationData);
                         
-                        gameState = model.NoMoreBoxesWithCellValue(GameModel.BoxValue.IsFreeBox) ||
-                                    model.NoMoreBoxesWithCellValue(GameModel.BoxValue.IsComputerCell)
+                        gameState = model.NoMoreBoxesWithCellValue(BoxValue.IsFreeBox) ||
+                                    model.NoMoreBoxesWithCellValue(BoxValue.IsComputerCell)
                             ? GameStateValues.EndOfGame
                             : GameStateValues.ComputerReadyToPlay;
 
@@ -179,7 +180,7 @@ public class GameController : MonoBehaviour
                         Debug.Log("Not authorized");
                     }
                 }
-                else if (model.CandidateCellIsChosen(clickPosition, GameModel.BoxValue.IsUserCell))
+                else if (model.CandidateCellIsChosen(clickPosition, BoxValue.IsUserCell))
                 {
                     var cellGO = model.GetCellGameObject(clickPosition.x, clickPosition.y);
 
@@ -214,9 +215,9 @@ public class GameController : MonoBehaviour
                 if (isWaitingEndOfAnimation) break; 
                 
 
-                if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.IsComputerCell).Count == 0)
+                if (model.ReturnPlayableCellsPositions(BoxValue.IsComputerCell).Count == 0)
                 {
-                    if (model.ReturnPlayableCellsPositions(GameModel.BoxValue.IsUserCell).Count == 0)
+                    if (model.ReturnPlayableCellsPositions(BoxValue.IsUserCell).Count == 0)
                     {
                         gameState = GameStateValues.EndOfGame;
                         Debug.Log("GameStateValues.endOfGame");
@@ -237,8 +238,8 @@ public class GameController : MonoBehaviour
                     var animationData = new AnimationData(animationSteps);
                     GameBoardToAnimate?.Invoke(animationData);
 
-                    gameState = model.NoMoreBoxesWithCellValue(GameModel.BoxValue.IsFreeBox) ||
-                                model.NoMoreBoxesWithCellValue(GameModel.BoxValue.IsUserCell)
+                    gameState = model.NoMoreBoxesWithCellValue(BoxValue.IsFreeBox) ||
+                                model.NoMoreBoxesWithCellValue(BoxValue.IsUserCell)
                         ? GameStateValues.EndOfGame
                         : GameStateValues.WaitCellUserToBeSelected;
 

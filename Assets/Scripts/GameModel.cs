@@ -1,86 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using ContaminationPuzzle.Entities;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Vector2Int = UnityEngine.Vector2Int;
 
 
-public enum AnimationType
-{
-    Move,
-    ChainedAnimation
-}
-
-public record CellAnimationStep
-{
-    public AnimationType animationType { get; }
-    public GameObject cellGO { get; }
-    public string? triggerName { get; }
-    public Vector2Int? positionOrigin { get; }
-    public Vector2Int? positionDestination { get; }
-
-    private CellAnimationStep(
-        AnimationType animationType,
-        GameObject cellGO,
-        string? triggerName,
-        Vector2Int? positionOrigin,
-        Vector2Int? positionDestination)
-    {
-        this.animationType = animationType;
-        this.cellGO = cellGO;
-        this.triggerName = triggerName;
-        this.positionOrigin = positionOrigin;
-        this.positionDestination = positionDestination;
-    }
-
-    // --- Factory pour animation chaînée ---
-    public static CellAnimationStep Chained(GameObject cellGO, string triggerName)
-    {
-        return new CellAnimationStep(AnimationType.ChainedAnimation, cellGO, triggerName, null, null);
-    }
-
-    // --- Factory pour un move ---
-    public static CellAnimationStep Move(GameObject cellGO, Vector2Int origin, Vector2Int destination)
-    {
-        return new CellAnimationStep(AnimationType.Move, cellGO, null, origin, destination);
-    }
-}
-
-
-public record AnimationData(IReadOnlyList<CellAnimationStep> animations)
-{
-    public IReadOnlyList<CellAnimationStep> animations { get; } = animations;
-}
-
-public record ScoreData(int playerScore, int computerScore)
-{
-      public int playerScore { get; } = playerScore;
-      public int computerScore { get; } = computerScore;
-}
-
 public class GameModel
 {
-    public enum BoxValue
-    {
-        IsUserCell,
-        IsComputerCell,
-        IsFreeBox
-    }
-
-    public enum SelectionType
-    {
-        TheMost = default,
-        TheLeast = 1
-    }
-
     public const int NbRows = 7;
     public const int NbColumns = 7;
     public const int MaxDistanceMove = 2;
 
- 
     public event Action<AnimationData> OnInitialize;
     
- 
     private readonly GameObject cellPrefab;
     
     private const string TriggerNameUserCellBirth = "giveBirthToUserCell",
@@ -250,7 +183,7 @@ public class GameModel
 
         DoInArea(area, (pos, _) =>
         {
-            // Utilise l’indexeur basé sur cellsBoard + Animator
+            // Utilise l'indexeur basé sur cellsBoard + Animator
             if (this[pos.x, pos.y] == BoxValue.IsFreeBox)
                 freeBoxesPosition.Add(pos);
         });
@@ -322,7 +255,7 @@ public class GameModel
                 default:
                     throw new ArgumentOutOfRangeException(nameof(boxValue), boxValue, null);
             }
- 
+  
         });
         return new ScoreData(playerCellCount, computerCellCount);
     }
@@ -380,7 +313,7 @@ public class GameModel
         // 3. Placer la cellule dans la nouvelle case
         cellsBoard[posDestination.x, posDestination.y] = cellGO;
 
-        // 4. Retourner un step d’animation Move
+        // 4. Retourner un step d'animation Move
         return CellAnimationStep.Move(
             cellGO,
             posOrigin,

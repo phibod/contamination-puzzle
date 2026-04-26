@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using ContaminationPuzzle.Entities;
 using UnityEngine;
-using static GameModel;
+using static ContaminationPuzzle.Entities.BoxValue;
 
 
 public class ComputerStrategy
@@ -11,7 +12,7 @@ public class ComputerStrategy
     struct BoxInputSearchParameters
     {
         public BoxValue adjacentBoxValue;
-        public GameModel.SelectionType chosenSelectionType;
+        public SelectionType chosenSelectionType;
         public List<Vector2Int> boxPositionsCandidates;
     }
     
@@ -29,7 +30,7 @@ public class ComputerStrategy
    {
        var resultCount = 0;
         
-       gameModel.DoInArea(new RectInt(new Vector2Int(0, 0), new Vector2Int(NbRows, NbColumns)), (pos, value) =>
+       gameModel.DoInArea(new RectInt(new Vector2Int(0, 0), new Vector2Int(GameModel.NbRows, GameModel.NbColumns)), (pos, value) =>
        {
            //the current box has the value
            if (value == cellValue)
@@ -53,9 +54,9 @@ public class ComputerStrategy
 
             if (firstBoxFound ||
                 (nbAdjacentCells < boxOutputSearchParameter.nbAdjacentCells &&
-                 boxInputSearchParameters.chosenSelectionType == GameModel.SelectionType.TheLeast) ||
+                 boxInputSearchParameters.chosenSelectionType == SelectionType.TheLeast) ||
                 (nbAdjacentCells > boxOutputSearchParameter.nbAdjacentCells &&
-                 boxInputSearchParameters.chosenSelectionType == GameModel.SelectionType.TheMost))
+                 boxInputSearchParameters.chosenSelectionType == SelectionType.TheMost))
             {
                 boxOutputSearchParameter.positionBoxFound = currentPosition;
                 boxOutputSearchParameter.nbAdjacentCells = nbAdjacentCells;
@@ -106,9 +107,9 @@ public class ComputerStrategy
         //select the computer cell which has less adjacent cells
         var searchParametersComputerCell = new BoxInputSearchParameters
         {
-            adjacentBoxValue = BoxValue.IsComputerCell,
-            chosenSelectionType = GameModel.SelectionType.TheLeast,
-            boxPositionsCandidates = gameModel.ReturnPlayableCellsPositions(BoxValue.IsComputerCell)
+            adjacentBoxValue = IsComputerCell,
+            chosenSelectionType = SelectionType.TheLeast,
+            boxPositionsCandidates = gameModel.ReturnPlayableCellsPositions(IsComputerCell)
         };
         
         var computerCellToSelect = IdentifySurroundedBox(searchParametersComputerCell);
@@ -120,8 +121,8 @@ public class ComputerStrategy
             GameModel.MaxDistanceMove * 2 + 1 );
         var searchParametersFreeBox = new BoxInputSearchParameters
         {
-            adjacentBoxValue = BoxValue.IsUserCell,
-            chosenSelectionType = GameModel.SelectionType.TheMost,
+            adjacentBoxValue = IsUserCell,
+            chosenSelectionType = SelectionType.TheMost,
             boxPositionsCandidates = gameModel.ReturnFreeBoxesInArea(rectZone)
 
         };
@@ -133,7 +134,7 @@ public class ComputerStrategy
         //Debug.Log("nbAdajcentCells = " + freeBoxCandidate1.nbAdjacentCells);
 
         //last attack
-        if (freeBoxCandidate1.nbAdjacentCells == CountBoxesWithBoxValue(GameModel.BoxValue.IsUserCell))
+        if (freeBoxCandidate1.nbAdjacentCells == CountBoxesWithBoxValue(IsUserCell))
         {
             freeBoxToSelect = freeBoxCandidate1;
             //Debug.Log("last attack");
@@ -144,8 +145,8 @@ public class ComputerStrategy
             //select the free box which as the most adjacent computer cells
             searchParametersFreeBox = new BoxInputSearchParameters
             {
-                adjacentBoxValue = BoxValue.IsComputerCell,
-                chosenSelectionType = GameModel.SelectionType.TheMost,
+                adjacentBoxValue = IsComputerCell,
+                chosenSelectionType = SelectionType.TheMost,
                 boxPositionsCandidates =gameModel.ReturnFreeBoxesInArea(rectZone)
 
             };

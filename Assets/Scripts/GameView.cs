@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ContaminationPuzzle.Entities;
 using DG.Tweening;
 using UnityEngine;
 
@@ -81,7 +82,7 @@ public class GameView : MonoBehaviour
             return;
         }
 
-        // Sinon → construire une séquence DOTween jusqu’au prochain ChainedAnimation
+        // Sinon → construire une séquence DOTween jusqu'au prochain ChainedAnimation
         PlayDotweenSequence();
     }
 
@@ -173,7 +174,7 @@ public class GameView : MonoBehaviour
     public void SelectCell(GameObject cellGO)
     {
  
-        // Déclenche l’animation de sélection
+        // Déclenche l'animation de sélection
         var animator = cellGO.GetComponent<Animator>();
         animator.SetTrigger("selectCell");
     }
