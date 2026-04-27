@@ -1,34 +1,38 @@
 ﻿using System;
+using ContaminationPuzzle.Entities;
+using ContaminationPuzzle.Gameplay;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace ContaminationPuzzle.UI
 {
-    
-    
+    /// <summary>
+    /// Main UI controller orchestrating all UI components and panels.
+    /// Manages modal dialogs, score displays, and player turn indicators.
+    /// </summary>
     public class UIController : MonoBehaviour
     {
         private static readonly int IsPlayerTurn = Animator.StringToHash("isPlayerTurn");
         private static readonly int IsplayerTurn = Animator.StringToHash("IsplayerTurn");
         private GameObject currentPanel = null;
-        
+
         public bool isModalMode = false;
 
-        
+
         [SerializeField]
         private GameController gameController;
 
         [SerializeField]
-        private  GameView gameView;
-        
+        private GameView gameView;
+
         [Header("Panels")]
         [SerializeField]
         private GameObject confirmRestartPanel;
-        
+
         [SerializeField]
         private GameObject confirmQuitPanel;
-      
+
         [Header("ScoreTexts")]
         [SerializeField]
         private TextMeshProUGUI playerScoreText;
@@ -45,12 +49,15 @@ namespace UI
         [Header("NextPlayerIndicator")]
         [SerializeField]
         private Animator NextPlayerIndicator;
-        
+
         private GameModel gameModel;
 
         private GameObject playerScore;
         private GameObject opponentScore;
 
+        /// <summary>
+        /// Sets the game model for this UI controller.
+        /// </summary>
         public void SetModel(GameModel gameModel)
         {
             this.gameModel = gameModel;
@@ -61,13 +68,13 @@ namespace UI
             this.Subscribe(gameView);
         }
 
-        private void DesactivateCurrentPanel() 
+        private void DesactivateCurrentPanel()
         {
             isModalMode = false;
             currentPanel.SetActive(false);
         }
 
-        private void ActivateCurrentPanel(GameObject panel) 
+        private void ActivateCurrentPanel(GameObject panel)
         {
             isModalMode = true;
             panel.SetActive(true);
@@ -79,32 +86,32 @@ namespace UI
             view.OnEndRound += UpdateLeftPanelComponents;
         }
 
-        
+
         private void UpdatePlayerIndicator(bool isPlayerTurnState)
         {
-            NextPlayerIndicator.SetBool("IsPlayerTurn",isPlayerTurnState);
+            NextPlayerIndicator.SetBool("IsPlayerTurn", isPlayerTurnState);
         }
 
 
         private void UpdateLeftPanelComponents(ScoreData scoreData)
         {
-            
+
             playerScoreText.text = scoreData.playerScore.ToString("00");
             computerScoreText.text = scoreData.computerScore.ToString("00");
-            
+
             float totalCells = scoreData.playerScore + scoreData.computerScore;
-            var dominancePlayerRatio = scoreData.playerScore/totalCells;
+            var dominancePlayerRatio = scoreData.playerScore / totalCells;
             fillPlayerDominance.fillAmount = dominancePlayerRatio;
             fillComputerDominance.fillAmount = 1 - dominancePlayerRatio;
 
-             var isPlayerTurnState = gameController.IsPlayerTurn;
-             Debug.Log("isPlayerTurnState ="+ isPlayerTurnState);
-             NextPlayerIndicator.SetBool("IsPlayerTurn",isPlayerTurnState);
-    
+            var isPlayerTurnState = gameController.IsPlayerTurn;
+            Debug.Log("isPlayerTurnState =" + isPlayerTurnState);
+            NextPlayerIndicator.SetBool("IsPlayerTurn", isPlayerTurnState);
+
 
         }
 
-        
+
         /*
          * Manage the Restart Button of the left panel
          */
@@ -112,7 +119,7 @@ namespace UI
         {
             ActivateCurrentPanel(confirmRestartPanel);
         }
-        
+
         /*
          * Manage the Restart Button of the left panel
          */
@@ -120,8 +127,8 @@ namespace UI
         {
             ActivateCurrentPanel(confirmQuitPanel);
         }
-        
-        
+
+
         /*
          * Yes or No button of the ConfirmRestartPanel
          */
@@ -132,7 +139,7 @@ namespace UI
             if (currentPanel == confirmQuitPanel)
             {
 #if UNITY_EDITOR
-                // Quitter le Play Mode dans l’éditeur
+                // Quitter le Play Mode dans l'éditeur
                 UnityEditor.EditorApplication.isPlaying = false;
 
 #elif UNITY_ANDROID 
@@ -167,8 +174,8 @@ namespace UI
         {
             DesactivateCurrentPanel();
         }
-        
-        
+
+
     }
-        
+
 }
