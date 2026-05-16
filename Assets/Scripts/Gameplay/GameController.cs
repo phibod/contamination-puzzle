@@ -64,6 +64,14 @@ namespace ContaminationPuzzle.Gameplay
             EndOfGame = 4,
         }
 
+
+        public void Init()
+        {
+            gameState = GameStateValues.GameInitialized;
+            isWaitingEndOfAnimation = false;
+            
+        }
+
         private void Start()
         {
             model = new GameModel(cellPrefab);
@@ -73,10 +81,9 @@ namespace ContaminationPuzzle.Gameplay
             uiController.SetModel(model);
 
             cursorModel = cursorView.GetCursorModel();
-
             computerStrategy = new ComputerStrategy(model);
-            gameState = GameStateValues.GameInitialized;
-            isWaitingEndOfAnimation = false;
+
+            Init();
         }
 
         private void OnDestroy()
@@ -108,7 +115,7 @@ namespace ContaminationPuzzle.Gameplay
             {
                 case GameStateValues.GameInitialized :
                     isWaitingEndOfAnimation = true;
-                    model.InitGameModel();
+                    model.Init();
                     gameState = GameStateValues.WaitCellUserToBeSelected;
                     isPlayerTurn = true;
 

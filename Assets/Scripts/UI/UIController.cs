@@ -165,7 +165,8 @@ namespace ContaminationPuzzle.UI
             if (currentPanel == confirmRestartPanel)
             {
                 //init the model of the game
-                gameModel.InitGameModel();
+                gameModel.Init();
+                gameController.Init();
             }
 
         }

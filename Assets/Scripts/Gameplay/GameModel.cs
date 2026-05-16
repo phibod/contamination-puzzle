@@ -81,7 +81,7 @@ namespace ContaminationPuzzle.Gameplay
         /// Initializes the game board with 4 starting cells (2 for each player).
         /// </summary>
         // ReSharper disable Unity.PerformanceAnalysis
-        public void InitGameModel()
+        public void Init()
         {
             //1. Destroy previous game objects
             ClearCellsBoard();
