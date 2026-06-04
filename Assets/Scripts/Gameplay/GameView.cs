@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using ContaminationPuzzle.Entities;
 using DG.Tweening;
@@ -16,7 +17,7 @@ namespace ContaminationPuzzle.Gameplay
         [SerializeField] private float moveDuration;
 
         private const int LayerMove = -1,
-                          LayerPosition = 1;
+                          LayerPosition = 0;
 
         private enum RegisterType
         {
@@ -29,6 +30,7 @@ namespace ContaminationPuzzle.Gameplay
         private IReadOnlyList<CellAnimationStep> stepsToAnimate;
         private List<CellAnimationStep> chainedAnimations;
         private int dotweenOffset;
+        private AnimationData animationData;
 
         public event Action<ScoreData> OnEndRound;
 
@@ -124,7 +126,7 @@ namespace ContaminationPuzzle.Gameplay
             //Debug.Log("HandleCellAnimationExitState currentStepIndex="+currentStepIndex);
             if (currentStepIndex >= stepsToAnimate.Count || stepsToAnimate[currentStepIndex].animationType != AnimationType.ChainedAnimation)
             {
-                //Debug.Log("End animation chained indexStepAnimation="+currentStepIndex+", chainedAnimations.count="+chainedAnimations.Count);
+                Debug.Log("End animation chained indexStepAnimation="+currentStepIndex+", chainedAnimations.count="+chainedAnimations.Count);
                 RegisterOrUnregisterCells(chainedAnimations, RegisterType.UnRegister);
                 PlayNextStep();
             }
@@ -153,6 +155,7 @@ namespace ContaminationPuzzle.Gameplay
             sequence.OnComplete(() =>
             {
                 currentStepIndex += dotweenOffset;
+                Debug.Log("End of doTween sequence");
                 PlayNextStep();
             });
 
@@ -215,13 +218,14 @@ namespace ContaminationPuzzle.Gameplay
             gameController.GameBoardToAnimate -= AnimateGameBoard;
         }
 
-        private void ClearBoard(AnimationData animationData)
+        private void ClearBoard(AnimationData animationClearData)
         {
-            AnimateGameBoard(animationData);
+            AnimateGameBoard(animationClearData);
         }
 
         private void AnimateGameBoard(AnimationData obj)
         {
+            this.animationData = obj;
             stepsToAnimate = obj.animations;
             currentStepIndex = 0;
             PlayNextStep();

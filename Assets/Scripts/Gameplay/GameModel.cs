@@ -45,8 +45,13 @@ namespace ContaminationPuzzle.Gameplay
 
                 //Determinate the state of the cell
                 var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-                if (stateInfo.IsName("IsComputerCell")) return BoxValue.IsComputerCell;
+             
+                
+                if (stateInfo.IsName("IsComputerCell") || 
+                    stateInfo.IsName("IsComputerCellSelected") ||
+                    stateInfo.IsName("ComputerCellHatching") ) return BoxValue.IsComputerCell;
                 return BoxValue.IsUserCell;
+                
             }
         }
 
@@ -364,27 +369,27 @@ namespace ContaminationPuzzle.Gameplay
             if (originCellGO == null)
                 throw new InvalidOperationException("CloneACell called with a null origin cell");
 
-            // 2. Instantiate a new cell at the destination
-            var newCellGO = InstanciateCellPrefab(posDestination);
-
+            // 2. Instantiate a new cell at the origin position
+            var newCellGO =Object.Instantiate(cellPrefab, (Vector3Int)posOrigin + new Vector3(0.5f, 0.5f, 0),
+                Quaternion.identity);
+ 
             // 3. Add the birth / placement animation
             var triggerName = this[posOrigin.x, posOrigin.y] == BoxValue.IsUserCell
                 ? TriggerNameUserCellBirth
                 : TriggerNameComputerCellBirth;
 
-            // 3 . Add the birth animation of the cell
+            // 3 . Add the birth animation of the cell over the selected cell
             steps.Add(CellAnimationStep.Chained(newCellGO, triggerName));
 
-            // 4. Copy the owner type from the original cell (Animator state will be updated by the view)
-            // The model does not trigger animations; it only updates logical placement.
-            cellsBoard[posDestination.x, posDestination.y] = newCellGO;
-
-            // 5. Add a Move animation step (the view will move clone while appearing at the destination)
+            // 4. Add a Move animation step (the view will move clone while appearing at the destination)
             steps.Add(CellAnimationStep.Move(
                 newCellGO,
                 posOrigin,
                 posDestination
             ));
+
+            // 5. Sets the final position on the board of the new cell
+            cellsBoard[posDestination.x, posDestination.y] = newCellGO;
 
             // 6. Return the steps
             return steps;

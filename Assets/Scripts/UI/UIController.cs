@@ -105,7 +105,6 @@ namespace ContaminationPuzzle.UI
             fillComputerDominance.fillAmount = 1 - dominancePlayerRatio;
 
             var isPlayerTurnState = gameController.IsPlayerTurn;
-            Debug.Log("isPlayerTurnState =" + isPlayerTurnState);
             NextPlayerIndicator.SetBool("IsPlayerTurn", isPlayerTurnState);
 
 
