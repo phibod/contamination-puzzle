@@ -163,13 +163,13 @@ namespace ContaminationPuzzle.AI
                 if (freeBoxCandidate2.nbAdjacentCells > freeBoxCandidate1.nbAdjacentCells)
                 {
                     freeBoxToSelect = freeBoxCandidate2;
-                    Debug.Log("consolidation");
+//                    Debug.Log("consolidation");
                 }
                 //attack instead 
                 else
                 {
                     freeBoxToSelect = freeBoxCandidate1;
-                    Debug.Log("attack");
+ //                   Debug.Log("attack");
                 }
             }
 

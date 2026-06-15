@@ -297,6 +297,7 @@ namespace ContaminationPuzzle.Gameplay
             return new ScoreData(playerCellCount, computerCellCount);
         }
 
+        
         private GameObject InstanciateCellPrefab(Vector2Int position)
         {
             var goCell = Object.Instantiate(cellPrefab, (Vector3Int)position + new Vector3(0.5f, 0.5f, 0),

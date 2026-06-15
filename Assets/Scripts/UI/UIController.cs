@@ -87,12 +87,6 @@ namespace ContaminationPuzzle.UI
         }
 
 
-        private void UpdatePlayerIndicator(bool isPlayerTurnState)
-        {
-            NextPlayerIndicator.SetBool("IsPlayerTurn", isPlayerTurnState);
-        }
-
-
         private void UpdateLeftPanelComponents(ScoreData scoreData)
         {
 
@@ -103,11 +97,8 @@ namespace ContaminationPuzzle.UI
             var dominancePlayerRatio = scoreData.playerScore / totalCells;
             fillPlayerDominance.fillAmount = dominancePlayerRatio;
             fillComputerDominance.fillAmount = 1 - dominancePlayerRatio;
-
-            var isPlayerTurnState = gameController.IsPlayerTurn;
-            NextPlayerIndicator.SetBool("IsPlayerTurn", isPlayerTurnState);
-
-
+            var playerTypeValue = (int) gameController.identifyPlayerType();
+            NextPlayerIndicator.SetInteger("PlayerType", playerTypeValue);
         }
 
 
@@ -164,8 +155,10 @@ namespace ContaminationPuzzle.UI
             if (currentPanel == confirmRestartPanel)
             {
                 //init the model of the game
+                gameView.RemoveTheCup();
                 gameModel.Init();
                 gameController.Init();
+                
             }
 
         }

@@ -3,7 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using ContaminationPuzzle.Entities;
 using DG.Tweening;
+using Unity.InferenceEngine;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Object = UnityEngine.Object;
+using Sequence = DG.Tweening.Sequence;
 
 namespace ContaminationPuzzle.Gameplay
 {
@@ -15,9 +20,12 @@ namespace ContaminationPuzzle.Gameplay
     {
         [SerializeField] private GameController controller;
         [SerializeField] private float moveDuration;
+        [SerializeField] private GameObject winnerCupPrefab;
 
         private const int LayerMove = -1,
-                          LayerPosition = 0;
+            LayerPosition = 0,
+            PositionCupY = 3,
+            PositionCupX = 3;
 
         private enum RegisterType
         {
@@ -31,6 +39,8 @@ namespace ContaminationPuzzle.Gameplay
         private List<CellAnimationStep> chainedAnimations;
         private int dotweenOffset;
         private AnimationData animationData;
+        private GameObject gameObjectCup;
+        private bool isWaitingAnimatorExit;
 
         public event Action<ScoreData> OnEndRound;
 
@@ -50,6 +60,36 @@ namespace ContaminationPuzzle.Gameplay
             gameController.GameBoardToAnimate += AnimateGameBoard;
         }
 
+        public void ShowTheCup()
+        {
+            var positionCup = new Vector3Int
+            {
+                x = PositionCupX,
+                y = PositionCupY
+            };
+            if (gameObjectCup == null) gameObjectCup = (GameObject) Instantiate(winnerCupPrefab, (Vector3Int)positionCup + new Vector3(0.5f, 0.5f, 0),
+                Quaternion.identity);
+
+            var animatorCup = gameObjectCup.GetComponent<Animator>();
+            var scoreData = gameModel.GetScoreData();
+
+            //Equal scores , no winner
+            if (scoreData.playerScore == scoreData.computerScore) return;
+            
+            //A winner
+            gameObjectCup.SetActive(true);
+            animatorCup.SetTrigger(scoreData.playerScore > scoreData.computerScore
+                ? "BlueCupToShow"
+                : "GreenCupToShow");
+            
+        }
+
+        public void RemoveTheCup()
+        {
+            if (gameObjectCup != null) gameObjectCup.SetActive(false);
+            
+       
+        }
         //Register or unregister the cells to a chained animation
         private void RegisterOrUnregisterCells(IReadOnlyList<CellAnimationStep> steps, RegisterType registerType)
         {
@@ -71,6 +111,7 @@ namespace ContaminationPuzzle.Gameplay
             if (currentStepIndex >= stepsToAnimate.Count)
             {
                 //reactivate the GameController
+                Debug.Log("Fin du step d'animations");
                 controller.isWaitingEndOfAnimation = false;
 
                 //request the new scoreData
@@ -106,6 +147,7 @@ namespace ContaminationPuzzle.Gameplay
                 i++;
             }
             RegisterOrUnregisterCells(chainedAnimations, RegisterType.Register);
+            isWaitingAnimatorExit = true;
             TriggerStepAnimation();
         }
 
@@ -122,16 +164,27 @@ namespace ContaminationPuzzle.Gameplay
         // Next chained animation
         private void HandleCellAnimationExitState()
         {
+            
+            // 🔒 ignore tous les appels en trop
+            if (!isWaitingAnimatorExit)
+                return;
+
+            isWaitingAnimatorExit = false;
             currentStepIndex++;
-            //Debug.Log("HandleCellAnimationExitState currentStepIndex="+currentStepIndex);
+            
+            Debug.Log("HandleCellAnimationExitState currentStepIndex:" + currentStepIndex);
+            Debug.Log("HandleCellAnimationExitState stepsToAnimate.Count :" + stepsToAnimate.Count);
+
             if (currentStepIndex >= stepsToAnimate.Count || stepsToAnimate[currentStepIndex].animationType != AnimationType.ChainedAnimation)
             {
-                Debug.Log("End animation chained indexStepAnimation="+currentStepIndex+", chainedAnimations.count="+chainedAnimations.Count);
+       //         Debug.Log("End animation chained indexStepAnimation="+currentStepIndex+", chainedAnimations.count="+chainedAnimations.Count);
                 RegisterOrUnregisterCells(chainedAnimations, RegisterType.UnRegister);
                 PlayNextStep();
             }
             else
             {
+                // on attend à nouveau un seul exit pour le prochain step
+                isWaitingAnimatorExit = true;
                 TriggerStepAnimation();
             }
         }
@@ -139,15 +192,16 @@ namespace ContaminationPuzzle.Gameplay
         private void PlayDotweenSequence()
         {
             var sequence = DOTween.Sequence();
+            
+            //construire la sequence dotween jusqu'à la rencontre d'une animation chainée
             dotweenOffset = 0;
             while ((currentStepIndex + dotweenOffset) < stepsToAnimate.Count &&
                    stepsToAnimate[currentStepIndex + dotweenOffset].animationType != AnimationType.ChainedAnimation)
             {
-                var step = stepsToAnimate[currentStepIndex];
+                var step = stepsToAnimate[currentStepIndex + dotweenOffset];
 
                 // Construction du tween
                 AppendMoveTween(sequence, step);
-
                 dotweenOffset++;
             }
 
@@ -155,7 +209,7 @@ namespace ContaminationPuzzle.Gameplay
             sequence.OnComplete(() =>
             {
                 currentStepIndex += dotweenOffset;
-                Debug.Log("End of doTween sequence");
+                Debug.Log("End of doTween sequence offset =" + dotweenOffset);
                 PlayNextStep();
             });
 

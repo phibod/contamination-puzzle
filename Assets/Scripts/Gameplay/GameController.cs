@@ -23,13 +23,11 @@ namespace ContaminationPuzzle.Gameplay
             return positionInGrid;
         }
 
-        private GameStateValues gameState;
+        public GameState gameState;
 
         private Vector2Int cellUserSelectedPosition;
 
         private Vector2Int freeBoxSelectedPosition;
-
-        private CursorModel cursorModel;
 
         private ComputerStrategy computerStrategy;
 
@@ -46,29 +44,33 @@ namespace ContaminationPuzzle.Gameplay
         private GameModel model;
         public GameModel gameModel => model;
 
+        public PlayerType currentPlayerType;
+        
         public event Action<AnimationData> GameBoardToAnimate;
 
         public bool isWaitingEndOfAnimation;
 
-        public bool IsPlayerTurn => isPlayerTurn;
-
-        private bool isPlayerTurn;
         private GameObject selectedCellGO;
-
-        private enum GameStateValues
-        {
-            GameInitialized = default,
-            WaitCellUserToBeSelected = 1,
-            WaitFreeBoxToBeSelected = 2,
-            ComputerReadyToPlay = 3,
-            EndOfGame = 4,
-        }
-
 
         public void Init()
         {
-            gameState = GameStateValues.GameInitialized;
+            gameState = GameState.GameInitialized;
         }
+
+
+        public PlayerType identifyPlayerType()
+        {
+            currentPlayerType = gameState switch
+            {
+                GameState.GameInitialized or GameState.WaitCellUserToBeSelected or GameState.WaitFreeBoxToBeSelected =>
+                    PlayerType.User,
+                GameState.ComputerReadyToPlay => PlayerType.Opponent,
+                _ => currentPlayerType
+            };
+
+            return currentPlayerType;
+        }
+        
 
         private void Start()
         {
@@ -77,10 +79,9 @@ namespace ContaminationPuzzle.Gameplay
             gameView.Subscribe(model);
             gameView.Subscribe(this);
             uiController.SetModel(model);
-
-            cursorModel = cursorView.GetCursorModel();
             computerStrategy = new ComputerStrategy(model);
 
+            currentPlayerType = PlayerType.User;
             Init();
         }
 
@@ -98,64 +99,57 @@ namespace ContaminationPuzzle.Gameplay
             var isModalMode = uiController.isModalMode;
 
             //no animation running 
-            if (isWaitingEndOfAnimation) return;
+            if (isWaitingEndOfAnimation || isModalMode || gameState == GameState.WaitToRestartOrQuit) return;
             
             //A user action is needed in these states
             if (!Input.GetMouseButtonDown(0) &&
-                ( (gameState == GameStateValues.WaitCellUserToBeSelected && model.ReturnPlayableCellsPositions(BoxValue.IsUserCell).Count > 0)
+                ( (gameState == GameState.WaitCellUserToBeSelected && model.ReturnPlayableCellsPositions(BoxValue.IsUserCell).Count > 0)
                    ||
-                 gameState == GameStateValues.WaitFreeBoxToBeSelected
-                   ||
-                 gameState == GameStateValues.EndOfGame)
-                  ||
-                 isModalMode) return;
-
-
+                 gameState == GameState.WaitFreeBoxToBeSelected))
+                 return;
 
             switch (gameState)
             {
-                case GameStateValues.GameInitialized :
+                case GameState.GameInitialized :
                     isWaitingEndOfAnimation = true;
                     model.Init();
-                    gameState = GameStateValues.WaitCellUserToBeSelected;
-                    isPlayerTurn = true;
+                    
+                    gameState = GameState.WaitCellUserToBeSelected;
 
                     //Debug.Log("GameStateValues.waitCellUserToBeSelected");
                     break;
 
-                case GameStateValues.WaitCellUserToBeSelected :
+                case GameState.WaitCellUserToBeSelected :
                     if (model.ReturnPlayableCellsPositions(BoxValue.IsUserCell).Count == 0)
                     {
                         if (model.ReturnPlayableCellsPositions(BoxValue.IsComputerCell).Count == 0)
                         {
-                            gameState = GameStateValues.EndOfGame;
+                            gameState = GameState.EndOfGame;
                             Debug.Log("GameStateValues.endOfGame");
 
                         }
                         else
                         {
-                            gameState = GameStateValues.ComputerReadyToPlay;
+                            gameState = GameState.ComputerReadyToPlay;
 
                         }
                     }
 
-                    if (gameState == GameStateValues.WaitCellUserToBeSelected)
+                    if (gameState == GameState.WaitCellUserToBeSelected)
                     {
                         clickPosition = (Vector2Int) GetCursorPositionInGrid(grid);
                         if (model.CandidateCellIsChosen(clickPosition, BoxValue.IsUserCell))
                         {
                             // Nouvelle sélection
                             SelectCellUser(clickPosition);
-                            gameState = GameStateValues.WaitFreeBoxToBeSelected;
+                            gameState = GameState.WaitFreeBoxToBeSelected;
                             //Debug.Log("GameStateValues.waitFreeBoxToBeSelected");
                         }
 
                     }
                     break;
 
-                case GameStateValues.WaitFreeBoxToBeSelected :
-               //     if (isWaitingEndOfAnimation) break;
-
+                case GameState.WaitFreeBoxToBeSelected :
 
                     clickPosition = (Vector2Int) GetCursorPositionInGrid(grid);
                     if (model.CandidateCellIsChosen(clickPosition, BoxValue.IsFreeBox))
@@ -174,14 +168,13 @@ namespace ContaminationPuzzle.Gameplay
 
                             gameState = model.NoMoreBoxesWithCellValue(BoxValue.IsFreeBox) ||
                                         model.NoMoreBoxesWithCellValue(BoxValue.IsComputerCell)
-                                ? GameStateValues.EndOfGame
-                                : GameStateValues.ComputerReadyToPlay;
+                                ? GameState.EndOfGame
+                                : GameState.ComputerReadyToPlay;
 
                             //Debug.Log(gameState.Equals(GameStateValues.ComputerReadyToPlay)
                              //   ? "GameStateValues.computerReadyToPlay"
                               //  : "GameStateValues.endOfGame");
 
-                            isPlayerTurn = false;
 
                         }
                         else
@@ -201,7 +194,7 @@ namespace ContaminationPuzzle.Gameplay
                             selectedCellGO = null;
 
                             // Retour à l'état précédent
-                            gameState = GameStateValues.WaitCellUserToBeSelected;
+                            gameState = GameState.WaitCellUserToBeSelected;
                             //Debug.Log("Retour à WaitCellUserToBeSelected");
                             break;
                         }
@@ -219,23 +212,24 @@ namespace ContaminationPuzzle.Gameplay
                     }
                     break;
 
-                case GameStateValues.ComputerReadyToPlay :
+                case GameState.ComputerReadyToPlay :
 
+                    Debug.Log("Computer ready to play");    
                     if (model.ReturnPlayableCellsPositions(BoxValue.IsComputerCell).Count == 0)
                     {
                         if (model.ReturnPlayableCellsPositions(BoxValue.IsUserCell).Count == 0)
                         {
-                            gameState = GameStateValues.EndOfGame;
+                            gameState = GameState.EndOfGame;
                         //    Debug.Log("GameStateValues.endOfGame");
                         }
                         else
                         {
-                            gameState = GameStateValues.WaitCellUserToBeSelected;
+                            gameState = GameState.WaitCellUserToBeSelected;
                         //    Debug.Log("GameStateValues.waitCellUserToBeSelected");
                         }
                     }
 
-                    if (gameState == GameStateValues.ComputerReadyToPlay)
+                    if (gameState == GameState.ComputerReadyToPlay)
                     {
                         var animationSteps = computerStrategy.Play();
 
@@ -246,23 +240,20 @@ namespace ContaminationPuzzle.Gameplay
 
                         gameState = model.NoMoreBoxesWithCellValue(BoxValue.IsFreeBox) ||
                                     model.NoMoreBoxesWithCellValue(BoxValue.IsUserCell)
-                            ? GameStateValues.EndOfGame
-                            : GameStateValues.WaitCellUserToBeSelected;
+                            ? GameState.EndOfGame
+                            : GameState.WaitCellUserToBeSelected;
 
                         //Debug.Log(gameState.Equals(GameStateValues.WaitCellUserToBeSelected)
                          //   ? "GameStateValues.waitCellUserToBeSelected"
                          //   : "GameStateValues.endOfGame");
-
-                        isPlayerTurn = true;
                     }
 
 
                     break;
 
-                case GameStateValues.EndOfGame:
-                    //TODO display the cup depending of the winner  
-                    Debug.Log("GameStateValues.EndOfGame");
-
+                case GameState.EndOfGame:
+                    gameView.ShowTheCup();
+                    gameState = GameState.WaitToRestartOrQuit;
                     break;
 
                 default:

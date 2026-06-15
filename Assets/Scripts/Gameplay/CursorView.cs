@@ -1,3 +1,4 @@
+using ContaminationPuzzle.Entities;
 using UnityEngine;
 
 namespace ContaminationPuzzle.Gameplay
@@ -11,19 +12,37 @@ namespace ContaminationPuzzle.Gameplay
         [SerializeField] private Transform cursor;
 
         [SerializeField] private Grid grid;
+        
+        [Header("Controllers")]
+        [SerializeField] private GameController gameController;
+        
+        [Header("StateSprites")]
+        [SerializeField] private Sprite Arrow;
+        [SerializeField] private Sprite OpponentGameBoard;
+        [SerializeField] private Sprite UserGameBoard;
+        
 
         private SpriteRenderer spriteRenderer;
 
-        private CursorModel cursorModel;
-
         /// <summary>
-        /// Gets the cursor model associated with this view.
+        /// Defines the possible states of the cursor based on its position and context.
         /// </summary>
-        public CursorModel GetCursorModel()
+        private enum CursorState
         {
-            return cursorModel;
+            
+            /// <summary>Cursor is outside the game board area</summary>
+            OutOfGameArea = 1,
+            
+            /// <summary>Cursor is associated with player </summary>
+            IsUsedByPlayer  = 2,
+            
+            /// <summary>Cursor is associated with player</summary>
+            IsUsedByOpponent = 3,
+
         }
 
+        private CursorState currentState = CursorState.IsUsedByPlayer;
+        
         /// <summary>
         /// Determines if the cursor is within the game board area.
         /// </summary>
@@ -38,10 +57,9 @@ namespace ContaminationPuzzle.Gameplay
         // Start is called before the first frame update
         void Start()
         {
-            cursorModel = new CursorModel();
-
             //Fetch the SpriteRenderer from the GameObject
             spriteRenderer = cursor.GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = UserGameBoard;
 
         }
 
@@ -49,9 +67,26 @@ namespace ContaminationPuzzle.Gameplay
         private void Update()
         {
             cursor.position = GameController.GetCursorPositionInGrid(grid) + new Vector3(0.5f, 0.5f, 0);
-            spriteRenderer.color = CursorInGameArea() ? Color.yellow : Color.red;
+            if (CursorInGameArea())
+            {
+                if (gameController.currentPlayerType == PlayerType.User && currentState != CursorState.IsUsedByPlayer)
+                {
+                    spriteRenderer.sprite =  UserGameBoard;
+                    currentState = CursorState.IsUsedByPlayer;
+                }
+
+                if (gameController.currentPlayerType == PlayerType.Opponent && currentState != CursorState.IsUsedByOpponent)
+                {
+                    spriteRenderer.sprite =  OpponentGameBoard;
+                    currentState = CursorState.IsUsedByOpponent;
+                }
+            }
+            else if (currentState != CursorState.OutOfGameArea)
+            {
+                spriteRenderer.sprite = Arrow;
+                currentState = CursorState.OutOfGameArea;
+            }
+
         }
-
-
     }
 }
