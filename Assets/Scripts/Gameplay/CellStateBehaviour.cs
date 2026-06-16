@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace ContaminationPuzzle.Gameplay
 {
@@ -9,26 +10,16 @@ namespace ContaminationPuzzle.Gameplay
     /// </summary>
     public class CellStateBehaviour : StateMachineBehaviour
     {
-        public event Action OnCellExitState;
-        
-        public bool hasExited = false;
+       
+        private GameView gameView;
 
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            
-            if (hasExited) return; // no duplicates
-            hasExited = true;
-            
-            //Invoke the event
-            OnCellExitState?.Invoke();
-            //Debug.Log("OnCellExitState called LayerIndex="+layerIndex);
+            if (gameView == null) gameView = Object.FindAnyObjectByType<GameView>();
+            gameView.HandleCellAnimationExitState();
 
         }
-        
-        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-        {
-            hasExited = false; // reset
-        }
+       
     }
 
 }

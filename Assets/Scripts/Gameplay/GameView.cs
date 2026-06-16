@@ -41,9 +41,30 @@ namespace ContaminationPuzzle.Gameplay
         private AnimationData animationData;
         private GameObject gameObjectCup;
         private bool isWaitingAnimatorExit;
-
+       
         public event Action<ScoreData> OnEndRound;
 
+        // Next chained animation
+        public void HandleCellAnimationExitState()
+        {
+            currentStepIndex++;
+            
+            Debug.Log("HandleCellAnimationExitState currentStepIndex:" + currentStepIndex);
+            Debug.Log("HandleCellAnimationExitState stepsToAnimate.Count :" + stepsToAnimate.Count);
+
+            if (currentStepIndex >= stepsToAnimate.Count || stepsToAnimate[currentStepIndex].animationType != AnimationType.ChainedAnimation)
+            {
+                //         Debug.Log("End animation chained indexStepAnimation="+currentStepIndex+", chainedAnimations.count="+chainedAnimations.Count);
+                PlayNextStep();
+            }
+            else
+            {
+                TriggerStepAnimation();
+            }
+        }
+
+        
+        
         /// <summary>
         /// Subscribes to game model initialization events.
         /// </summary>
@@ -90,20 +111,6 @@ namespace ContaminationPuzzle.Gameplay
             
        
         }
-        //Register or unregister the cells to a chained animation
-        private void RegisterOrUnregisterCells(IReadOnlyList<CellAnimationStep> steps, RegisterType registerType)
-        {
-            foreach (var step in steps)
-            {
-                var handlers = step.cellGO.GetComponent<Animator>().GetBehaviours<CellStateBehaviour>();
-                foreach (var handler in handlers)
-                {
-                    if (registerType == RegisterType.Register) handler.OnCellExitState += HandleCellAnimationExitState;
-                    else handler.OnCellExitState -= HandleCellAnimationExitState;
-
-                }
-            }
-        }
 
         private void PlayNextStep()
         {
@@ -146,8 +153,6 @@ namespace ContaminationPuzzle.Gameplay
                 chainedAnimations.Add(step);
                 i++;
             }
-            RegisterOrUnregisterCells(chainedAnimations, RegisterType.Register);
-            isWaitingAnimatorExit = true;
             TriggerStepAnimation();
         }
 
@@ -161,33 +166,6 @@ namespace ContaminationPuzzle.Gameplay
             //  Debug.Log("GO " + step.cellGO.GetEntityId() + " triggered "+step.triggerName);
         }
 
-        // Next chained animation
-        private void HandleCellAnimationExitState()
-        {
-            
-            // 🔒 ignore tous les appels en trop
-            if (!isWaitingAnimatorExit)
-                return;
-
-            isWaitingAnimatorExit = false;
-            currentStepIndex++;
-            
-            Debug.Log("HandleCellAnimationExitState currentStepIndex:" + currentStepIndex);
-            Debug.Log("HandleCellAnimationExitState stepsToAnimate.Count :" + stepsToAnimate.Count);
-
-            if (currentStepIndex >= stepsToAnimate.Count || stepsToAnimate[currentStepIndex].animationType != AnimationType.ChainedAnimation)
-            {
-       //         Debug.Log("End animation chained indexStepAnimation="+currentStepIndex+", chainedAnimations.count="+chainedAnimations.Count);
-                RegisterOrUnregisterCells(chainedAnimations, RegisterType.UnRegister);
-                PlayNextStep();
-            }
-            else
-            {
-                // on attend à nouveau un seul exit pour le prochain step
-                isWaitingAnimatorExit = true;
-                TriggerStepAnimation();
-            }
-        }
 
         private void PlayDotweenSequence()
         {
