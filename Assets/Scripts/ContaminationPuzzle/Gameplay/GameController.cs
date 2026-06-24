@@ -52,6 +52,8 @@ namespace ContaminationPuzzle.Gameplay
 
         private GameObject selectedCellGO;
 
+
+
         public void Init()
         {
             gameState = GameState.GameInitialized;
@@ -77,7 +79,7 @@ namespace ContaminationPuzzle.Gameplay
             model = new GameModel(cellPrefab);
             gameView.SetModel(model);
             gameView.Subscribe(model);
-            gameView.Subscribe(this);
+//            gameView.Subscribe(this);
             uiController.SetModel(model);
             computerStrategy = new ComputerStrategy(model);
 
@@ -88,7 +90,7 @@ namespace ContaminationPuzzle.Gameplay
         private void OnDestroy()
         {
             gameView.UnSubscribe(model);
-            gameView.UnSubscribe(this);
+  //          gameView.UnSubscribe(this);
         }
 
         private void Update()

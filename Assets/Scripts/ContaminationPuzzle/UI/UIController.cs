@@ -3,6 +3,7 @@ using ContaminationPuzzle.Entities;
 using ContaminationPuzzle.Gameplay;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace ContaminationPuzzle.UI
@@ -16,6 +17,7 @@ namespace ContaminationPuzzle.UI
         private static readonly int IsPlayerTurn = Animator.StringToHash("isPlayerTurn");
         private static readonly int IsplayerTurn = Animator.StringToHash("IsplayerTurn");
         private GameObject currentPanel = null;
+        private readonly GameMode gameMode = new GameMode();
 
         public bool isModalMode = false;
 
@@ -33,6 +35,9 @@ namespace ContaminationPuzzle.UI
         [SerializeField]
         private GameObject confirmQuitPanel;
 
+        [SerializeField]
+        private GameObject gameModePanel;
+        
         [Header("ScoreTexts")]
         [SerializeField]
         private TextMeshProUGUI playerScoreText;
@@ -46,10 +51,17 @@ namespace ContaminationPuzzle.UI
         [SerializeField]
         private Image fillComputerDominance;
 
+        [FormerlySerializedAs("NextPlayerIndicator")]
         [Header("NextPlayerIndicator")]
         [SerializeField]
-        private Animator NextPlayerIndicator;
+        private Animator nextPlayerIndicator;
 
+        [Header("GameModeIndicator")]
+        [SerializeField]
+        private TextMeshProUGUI gameModeText;
+
+        
+        
         private GameModel gameModel;
 
         private GameObject playerScore;
@@ -62,10 +74,24 @@ namespace ContaminationPuzzle.UI
         {
             this.gameModel = gameModel;
         }
+        
+        public void UpdatePanelComponents(ScoreData scoreData)
+        {
 
+            playerScoreText.text = scoreData.playerScore.ToString("00");
+            computerScoreText.text = scoreData.computerScore.ToString("00");
+
+            float totalCells = scoreData.playerScore + scoreData.computerScore;
+            var dominancePlayerRatio = scoreData.playerScore / totalCells;
+            fillPlayerDominance.fillAmount = dominancePlayerRatio;
+            fillComputerDominance.fillAmount = 1 - dominancePlayerRatio;
+            var playerTypeValue = (int) gameController.identifyPlayerType();
+            nextPlayerIndicator.SetInteger("PlayerType", playerTypeValue);
+        }
+        
         private void Start()
         {
-            this.Subscribe(gameView);
+            this.ActivateCurrentPanel(gameModePanel);
         }
 
         private void DesactivateCurrentPanel()
@@ -81,29 +107,11 @@ namespace ContaminationPuzzle.UI
             currentPanel = panel;
         }
 
-        private void Subscribe(GameView view)
-        {
-            view.OnEndRound += UpdateLeftPanelComponents;
-        }
 
-
-        private void UpdateLeftPanelComponents(ScoreData scoreData)
-        {
-
-            playerScoreText.text = scoreData.playerScore.ToString("00");
-            computerScoreText.text = scoreData.computerScore.ToString("00");
-
-            float totalCells = scoreData.playerScore + scoreData.computerScore;
-            var dominancePlayerRatio = scoreData.playerScore / totalCells;
-            fillPlayerDominance.fillAmount = dominancePlayerRatio;
-            fillComputerDominance.fillAmount = 1 - dominancePlayerRatio;
-            var playerTypeValue = (int) gameController.identifyPlayerType();
-            NextPlayerIndicator.SetInteger("PlayerType", playerTypeValue);
-        }
 
 
         /*
-         * Manage the Restart Button of the left panel
+         * Manage the Restart Button of the right panel
          */
         public void OnRestartButtonClicked()
         {
@@ -111,14 +119,24 @@ namespace ContaminationPuzzle.UI
         }
 
         /*
-         * Manage the Restart Button of the left panel
+         * Manage the Restart Button of the right panel
          */
         public void OnQuitButtonClicked()
         {
             ActivateCurrentPanel(confirmQuitPanel);
         }
 
+        /*
+         * Manage the GameMode Button of the right panel
+         */
+        public void OnGameModeButtonClicked()
+        {
+            ActivateCurrentPanel(gameModePanel);
+        }
 
+        
+        
+        
         /*
          * Yes or No button of the ConfirmRestartPanel
          */
@@ -168,6 +186,28 @@ namespace ContaminationPuzzle.UI
             DesactivateCurrentPanel();
         }
 
+        /*
+         * Confirm one player mode
+         */
+        public void OnConfirmOnePlayer()
+        {
+            gameMode.value = GameMode.Options.Solo;
+            gameModeText.text = "One player";
+            DesactivateCurrentPanel();
+        }
+
+        /*
+         * Confirm two players mode
+         */
+        public void OnConfirmTwoPlayers()
+        {
+            gameMode.value = GameMode.Options.TwoPlayers;
+            gameModeText.text = "Two players";
+            DesactivateCurrentPanel();
+
+        }
+
+        
 
     }
 

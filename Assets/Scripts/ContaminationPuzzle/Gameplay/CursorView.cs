@@ -14,14 +14,24 @@ namespace ContaminationPuzzle.Gameplay
         [SerializeField] private Grid grid;
         
         [Header("Controllers")]
-        [SerializeField] private GameController gameController;
+        [SerializeField] private GameManager gameManager;
         
         [Header("StateSprites")]
         [SerializeField] private Sprite Arrow;
         [SerializeField] private Sprite OpponentGameBoard;
         [SerializeField] private Sprite UserGameBoard;
         
+        [Header("Players")]
+        [SerializeField]
+        private GameObject humanPlayer1;
+        
+        [SerializeField]
+        private GameObject humanPlayer2;
 
+        [SerializeField]
+        private GameObject aiPlayer;
+
+        
         private SpriteRenderer spriteRenderer;
 
         /// <summary>
@@ -69,13 +79,13 @@ namespace ContaminationPuzzle.Gameplay
             cursor.position = GameController.GetCursorPositionInGrid(grid) + new Vector3(0.5f, 0.5f, 0);
             if (CursorInGameArea())
             {
-                if (gameController.currentPlayerType == PlayerType.User && currentState != CursorState.IsUsedByPlayer)
+                if (gameManager.currentPlayer == humanPlayer1 && currentState != CursorState.IsUsedByPlayer)
                 {
                     spriteRenderer.sprite =  UserGameBoard;
                     currentState = CursorState.IsUsedByPlayer;
                 }
 
-                if (gameController.currentPlayerType == PlayerType.Opponent && currentState != CursorState.IsUsedByOpponent)
+                if (gameManager.currentPlayer != humanPlayer1 && currentState != CursorState.IsUsedByOpponent)
                 {
                     spriteRenderer.sprite =  OpponentGameBoard;
                     currentState = CursorState.IsUsedByOpponent;

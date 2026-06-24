@@ -42,7 +42,7 @@ namespace ContaminationPuzzle.Gameplay
         private GameObject gameObjectCup;
         private bool isWaitingAnimatorExit;
        
-        public event Action<ScoreData> OnEndRound;
+        public event Action OnEndRound;
 
         // Next chained animation
         public void HandleCellAnimationExitState()
@@ -62,8 +62,6 @@ namespace ContaminationPuzzle.Gameplay
                 TriggerStepAnimation();
             }
         }
-
-        
         
         /// <summary>
         /// Subscribes to game model initialization events.
@@ -74,11 +72,11 @@ namespace ContaminationPuzzle.Gameplay
         }
 
         /// <summary>
-        /// Subscribes to game controller animation events.
+        /// Subscribes to player controller animation events.
         /// </summary>
-        public void Subscribe(GameController gameController)
+        public void Subscribe(Player player)
         {
-            gameController.GameBoardToAnimate += AnimateGameBoard;
+            player.GameBoardToAnimate += AnimateGameBoard;
         }
 
         public void ShowTheCup()
@@ -121,11 +119,9 @@ namespace ContaminationPuzzle.Gameplay
                 Debug.Log("Fin du step d'animations");
                 controller.isWaitingEndOfAnimation = false;
 
-                //request the new scoreData
-                var scoreData = gameModel.GetScoreData();
 
                 //update the ui scores
-                OnEndRound?.Invoke(scoreData);
+                OnEndRound?.Invoke();
 
                 return;
             }
@@ -243,11 +239,11 @@ namespace ContaminationPuzzle.Gameplay
         }
 
         /// <summary>
-        /// Unsubscribes from game controller events.
+        /// Unsubscribes from player events.
         /// </summary>
-        public void UnSubscribe(GameController gameController)
+        public void UnSubscribe(Player player)
         {
-            gameController.GameBoardToAnimate -= AnimateGameBoard;
+            player.GameBoardToAnimate -= AnimateGameBoard;
         }
 
         private void ClearBoard(AnimationData animationClearData)
