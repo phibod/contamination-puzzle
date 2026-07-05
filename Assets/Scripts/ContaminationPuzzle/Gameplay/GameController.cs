@@ -90,7 +90,6 @@ namespace ContaminationPuzzle.Gameplay
         private void OnDestroy()
         {
             gameView.UnSubscribe(model);
-  //          gameView.UnSubscribe(this);
         }
 
         private void Update()

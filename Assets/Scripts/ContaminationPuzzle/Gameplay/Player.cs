@@ -6,11 +6,9 @@ namespace ContaminationPuzzle.Gameplay
 {
     public abstract class Player : MonoBehaviour
     {
-        public event Action<AnimationData> GameBoardToAnimate;
+        protected abstract bool SelectCell();
 
-        protected abstract Boolean SelectCell();
-
-        protected abstract Boolean SelectFreeBox();
+        protected abstract bool SelectFreeBox();
 
     }
 }

@@ -6,10 +6,10 @@
         {
             Solo,
             TwoPlayers,
+            NoSelection
         }
 
-        public Options value { get; set; } = Options.Solo;
-        
+        public Options Value { get; set; } = Options.NoSelection;
     }
 
 }

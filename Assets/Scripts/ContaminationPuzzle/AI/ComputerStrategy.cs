@@ -101,11 +101,14 @@ namespace ContaminationPuzzle.AI
             Choose 2.B) If a free box is surrounded by more player cells than computer cells
                         If it is the last move to win.  
         */
-        private Boolean Strategy1(ref Vector2Int computerCellToSelectPosition, ref Vector2Int freeBoxCellToSelectPosition)
-        {
-            BoxOutputSearchParameters freeBoxToSelect;
 
-            //select the computer cell which has less adjacent cells
+        // PUBLIC API: identify the computer cell to select (step 1).
+        // Returns true and sets computerCellToSelectPosition when a candidate was found.
+        //TODO loop situation to avoid
+        public bool IdentifyCellToSelect(out Vector2Int computerCellToSelectPosition)
+        {
+            computerCellToSelectPosition = new Vector2Int();
+
             var searchParametersComputerCell = new BoxInputSearchParameters
             {
                 adjacentBoxValue = BoxValue.IsComputerCell,
@@ -113,101 +116,101 @@ namespace ContaminationPuzzle.AI
                 boxPositionsCandidates = gameModel.ReturnPlayableCellsPositions(BoxValue.IsComputerCell)
             };
 
-            var computerCellToSelect = IdentifySurroundedBox(searchParametersComputerCell);
+            if (searchParametersComputerCell.boxPositionsCandidates == null || searchParametersComputerCell.boxPositionsCandidates.Count == 0)
+                return false;
 
-            //select the freebox which has the most adjacent player cells
-            var rectZone = new RectInt(computerCellToSelect.positionBoxFound.x - GameModel.MaxDistanceMove,
-                computerCellToSelect.positionBoxFound.y - GameModel.MaxDistanceMove,
+            var computerCellToSelect = IdentifySurroundedBox(searchParametersComputerCell);
+            computerCellToSelectPosition = computerCellToSelect.positionBoxFound;
+            return true;
+        }
+
+        // PUBLIC API: identify the free box to select (step 2), given the previously identified computer cell.
+        // Returns true and sets freeBoxCellToSelectPosition when a candidate was found.
+        public bool IdentifyFreeBoxToSelect(Vector2Int computerCellToSelectPosition, out Vector2Int freeBoxCellToSelectPosition)
+        {
+            freeBoxCellToSelectPosition = new Vector2Int();
+
+            // Define search zone centered on the chosen computer cell
+            var rectZone = new RectInt(computerCellToSelectPosition.x - GameModel.MaxDistanceMove,
+                computerCellToSelectPosition.y - GameModel.MaxDistanceMove,
                 GameModel.MaxDistanceMove * 2 + 1,
                 GameModel.MaxDistanceMove * 2 + 1);
+
+            // First candidate: free box which has the most adjacent player cells (attack)
             var searchParametersFreeBox = new BoxInputSearchParameters
             {
                 adjacentBoxValue = BoxValue.IsUserCell,
                 chosenSelectionType = SelectionType.TheMost,
                 boxPositionsCandidates = gameModel.ReturnFreeBoxesInArea(rectZone)
-
             };
+
+            if (searchParametersFreeBox.boxPositionsCandidates == null || searchParametersFreeBox.boxPositionsCandidates.Count == 0)
+            {
+                // no free boxes in area
+                return false;
+            }
+
             var freeBoxCandidate1 = IdentifySurroundedBox(searchParametersFreeBox);
 
-            //Debug.Log("Potential attack");
-            //Debug.Log("x =" + freeBoxCandidate1.positionBoxFound.x);
-            //Debug.Log("y=" + freeBoxCandidate1.positionBoxFound.y);
-            //Debug.Log("nbAdajcentCells = " + freeBoxCandidate1.nbAdjacentCells);
-
-            //last attack
+            // Last attack check
             if (freeBoxCandidate1.nbAdjacentCells == CountBoxesWithBoxValue(BoxValue.IsUserCell))
             {
-                freeBoxToSelect = freeBoxCandidate1;
-                //Debug.Log("last attack");
+                freeBoxCellToSelectPosition = freeBoxCandidate1.positionBoxFound;
+                return true;
             }
             else
             {
-                //potential consolidation
-                //select the free box which as the most adjacent computer cells
+                // Potential consolidation: free box with the most adjacent computer cells
                 searchParametersFreeBox = new BoxInputSearchParameters
                 {
                     adjacentBoxValue = BoxValue.IsComputerCell,
                     chosenSelectionType = SelectionType.TheMost,
                     boxPositionsCandidates = gameModel.ReturnFreeBoxesInArea(rectZone)
-
                 };
+
                 var freeBoxCandidate2 = IdentifySurroundedBox(searchParametersFreeBox);
 
-                //Debug.Log("potential consolidation");
-                //Debug.Log("x =" + freeBoxCandidate2.positionBoxFound.x);
-                //Debug.Log("y=" + freeBoxCandidate2.positionBoxFound.y);
-                //Debug.Log("nbAdajcentCells = " + freeBoxCandidate2.nbAdjacentCells);
-
-
-                //better to consolidate
+                // Choose the better candidate: consolidation vs attack
                 if (freeBoxCandidate2.nbAdjacentCells > freeBoxCandidate1.nbAdjacentCells)
                 {
-                    freeBoxToSelect = freeBoxCandidate2;
-//                    Debug.Log("consolidation");
+                    freeBoxCellToSelectPosition = freeBoxCandidate2.positionBoxFound;
                 }
-                //attack instead 
                 else
                 {
-                    freeBoxToSelect = freeBoxCandidate1;
- //                   Debug.Log("attack");
+                    freeBoxCellToSelectPosition = freeBoxCandidate1.positionBoxFound;
                 }
+
+                return true;
             }
-
-            computerCellToSelectPosition = computerCellToSelect.positionBoxFound;
-            freeBoxCellToSelectPosition = freeBoxToSelect.positionBoxFound;
-
-            return true;
-
         }
 
-        /// <summary>
-        /// Executes the computer player's turn and returns the animation steps to display.
-        /// </summary>
+        // Keep Play for backward-compatibility: it uses the new public helpers internally.
         public List<CellAnimationStep> Play()
         {
-
             List<CellAnimationStep> steps = null;
 
             Vector2Int computerCellToSelectPosition = new Vector2Int();
             Vector2Int freeBoxCellToSelectPosition = new Vector2Int();
 
-
-            if (Strategy1(computerCellToSelectPosition: ref computerCellToSelectPosition, ref freeBoxCellToSelectPosition))
+            if (IdentifyCellToSelect(out computerCellToSelectPosition))
             {
-                //move or clone the cell
-                //Debug.Log("Computer MoveOrCloneTheCell");
-                steps = gameModel.MoveOrCloneTheCell(computerCellToSelectPosition, freeBoxCellToSelectPosition);
-
+                if (IdentifyFreeBoxToSelect(computerCellToSelectPosition, out freeBoxCellToSelectPosition))
+                {
+                    steps = gameModel.MoveOrCloneTheCell(computerCellToSelectPosition, freeBoxCellToSelectPosition);
+                }
+                else
+                {
+                    Debug.Log("ComputerStrategy.Play: no free box candidate found.");
+                }
             }
             else
             {
-                Debug.Log("Computer stuck. No computer cell can move !!!!");
+                Debug.Log("ComputerStrategy.Play: no computer cell candidate found.");
             }
 
             return steps;
-
         }
 
-
+        // (other private helpers remain unchanged)
     }
 }

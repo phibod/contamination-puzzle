@@ -18,7 +18,7 @@ namespace ContaminationPuzzle.Gameplay
     /// </summary>
     public class GameView : MonoBehaviour
     {
-        [SerializeField] private GameController controller;
+        [SerializeField] private GameManager gameManager;
         [SerializeField] private float moveDuration;
         [SerializeField] private GameObject winnerCupPrefab;
 
@@ -49,8 +49,8 @@ namespace ContaminationPuzzle.Gameplay
         {
             currentStepIndex++;
             
-            Debug.Log("HandleCellAnimationExitState currentStepIndex:" + currentStepIndex);
-            Debug.Log("HandleCellAnimationExitState stepsToAnimate.Count :" + stepsToAnimate.Count);
+           // Debug.Log("HandleCellAnimationExitState currentStepIndex:" + currentStepIndex);
+           //Debug.Log("HandleCellAnimationExitState stepsToAnimate.Count :" + stepsToAnimate.Count);
 
             if (currentStepIndex >= stepsToAnimate.Count || stepsToAnimate[currentStepIndex].animationType != AnimationType.ChainedAnimation)
             {
@@ -66,17 +66,17 @@ namespace ContaminationPuzzle.Gameplay
         /// <summary>
         /// Subscribes to game model initialization events.
         /// </summary>
+        public void Subscribe(GameManager paramGameManager)
+        {
+            paramGameManager.GameBoardToAnimate += AnimateGameBoard;;
+        }
+        
+        /// <summary>
+        /// Subscribes to game model initialization events.
+        /// </summary>
         public void Subscribe(GameModel paramGameModel)
         {
             paramGameModel.OnInitialize += ClearBoard;
-        }
-
-        /// <summary>
-        /// Subscribes to player controller animation events.
-        /// </summary>
-        public void Subscribe(Player player)
-        {
-            player.GameBoardToAnimate += AnimateGameBoard;
         }
 
         public void ShowTheCup()
@@ -116,9 +116,8 @@ namespace ContaminationPuzzle.Gameplay
             if (currentStepIndex >= stepsToAnimate.Count)
             {
                 //reactivate the GameController
-                Debug.Log("Fin du step d'animations");
-                controller.isWaitingEndOfAnimation = false;
-
+         //       Debug.Log("Fin du step d'animations");
+                gameManager.IsWaitingEndOfAnimation = false;
 
                 //update the ui scores
                 OnEndRound?.Invoke();
@@ -183,7 +182,7 @@ namespace ContaminationPuzzle.Gameplay
             sequence.OnComplete(() =>
             {
                 currentStepIndex += dotweenOffset;
-                Debug.Log("End of doTween sequence offset =" + dotweenOffset);
+              //  Debug.Log("End of doTween sequence offset =" + dotweenOffset);
                 PlayNextStep();
             });
 
@@ -239,11 +238,11 @@ namespace ContaminationPuzzle.Gameplay
         }
 
         /// <summary>
-        /// Unsubscribes from player events.
+        /// Unsubscribes from GameManager events.
         /// </summary>
-        public void UnSubscribe(Player player)
+        public void UnSubscribe(GameManager paramGameManager)
         {
-            player.GameBoardToAnimate -= AnimateGameBoard;
+            paramGameManager.GameBoardToAnimate -= AnimateGameBoard;
         }
 
         private void ClearBoard(AnimationData animationClearData)

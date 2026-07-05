@@ -476,6 +476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f06cb65d66ad842bd0450ed51933bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  gameManager: {fileID: 1157436892}
+  grid: {fileID: 107278664}
 --- !u!4 &384190008
 Transform:
   m_ObjectHideFlags: 0
@@ -2736,9 +2738,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1157436888}
-  - component: {fileID: 1157436890}
   - component: {fileID: 1157436889}
   - component: {fileID: 1157436891}
+  - component: {fileID: 1157436892}
+  - component: {fileID: 1157436893}
   m_Layer: 0
   m_Name: Game Logic
   m_TagString: Untagged
@@ -2773,29 +2776,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13493e2d284c4825ae57081bbc5a2b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1157436890}
+  gameManager: {fileID: 1157436892}
   moveDuration: 1
   winnerCupPrefab: {fileID: 5060943181043832458, guid: 9b84f206961c2cb44b788cda66201bc6, type: 3}
---- !u!114 &1157436890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1157436886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ecb97d3fe64431ba32b1ea46cb5ed51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameState: 0
-  grid: {fileID: 107278664}
-  gameView: {fileID: 1157436889}
-  cursorView: {fileID: 1157436891}
-  cellPrefab: {fileID: 167262930685935790, guid: 64ab6f5f2ce997b4a98bddf88bca1e27, type: 3}
-  uiController: {fileID: 2028516567}
-  currentPlayerType: 0
-  isWaitingEndOfAnimation: 0
 --- !u!114 &1157436891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2810,10 +2793,129 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursor: {fileID: 1410392600}
   grid: {fileID: 107278664}
-  gameController: {fileID: 1157436890}
+  gameManager: {fileID: 1157436892}
   Arrow: {fileID: 21300000, guid: 019b1a89970e69e4eaeaf98dd3788c03, type: 3}
   OpponentGameBoard: {fileID: 21300000, guid: 413a44972793eca4b86d51f5d75e7055, type: 3}
   UserGameBoard: {fileID: 21300000, guid: d7b33a78ba65ce8449005e55cb1723a6, type: 3}
+  humanPlayer1: {fileID: 1997549028}
+  humanPlayer2: {fileID: 384190006}
+  aiPlayer: {fileID: 1350220390}
+--- !u!114 &1157436892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157436886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c9f36d8c5c43a9b8bc4cb824e98b3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ContaminationPuzzle.Gameplay.GameManager
+  humanPlayer1: {fileID: 1997549028}
+  humanPlayer2: {fileID: 384190006}
+  aiPlayer: {fileID: 1350220390}
+  gameView: {fileID: 1157436889}
+  uiController: {fileID: 2028516567}
+  cellPrefab: {fileID: 167262930685935790, guid: 64ab6f5f2ce997b4a98bddf88bca1e27, type: 3}
+  grid: {fileID: 107278664}
+--- !u!82 &1157436893
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157436886}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 407084ec8b22e83499a1b68176f9f495, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1311891989
 GameObject:
   m_ObjectHideFlags: 0
@@ -3065,6 +3167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6572023b9cae1b4db97bddf97a8ed30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  gameManager: {fileID: 1157436892}
+  thinkTimeSeconds: 0.6
+  betweenStepsDelay: 0.25
 --- !u!4 &1350220392
 Transform:
   m_ObjectHideFlags: 0
@@ -4178,6 +4283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f06cb65d66ad842bd0450ed51933bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  gameManager: {fileID: 1157436892}
+  grid: {fileID: 107278664}
 --- !u!4 &1997549030
 Transform:
   m_ObjectHideFlags: 0
@@ -4445,7 +4552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.UIController
   isModalMode: 0
-  gameController: {fileID: 1157436890}
+  gameManager: {fileID: 1157436892}
   gameView: {fileID: 1157436889}
   confirmRestartPanel: {fileID: 1322162616}
   confirmQuitPanel: {fileID: 1621714602}

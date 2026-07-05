@@ -46,9 +46,52 @@ namespace ContaminationPuzzle.Gameplay
                 //Determinate the state of the cell
                 var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
              
-                
+                /*Debug.LogWarning("BoxValue x:"+col+" y:"+row);
+                var stateFound = false;
+                if (stateInfo.IsName("IsComputerCell"))
+                {
+                    Debug.LogWarning("stateInfo.IsName : IsComputerCell");
+                    stateFound = true;
+                }
+
+                if (stateInfo.IsName("IsComputerCellSelected"))
+                {
+                    Debug.LogWarning("stateInfo.IsName : IsComputerCellSelected");
+                    stateFound = true;
+                }
+
+                if (stateInfo.IsName("ComputerCellHatching"))
+                {
+                    Debug.LogWarning("stateInfo.IsName : ComputerCellHatching");
+                    stateFound = true;
+                }
+
+                if (stateInfo.IsName("IsUserCell"))
+                {
+                    Debug.LogWarning("stateInfo.IsName : IsUserCell");
+                    stateFound = true;
+
+                }
+
+                if (stateInfo.IsName("IsUserCellSelected"))
+                {
+                    Debug.LogWarning("stateInfo.IsName : IsUserCellSelected");
+                    stateFound = true;
+
+                }
+
+                if (stateInfo.IsName("UserCellHatching"))
+                {
+                    Debug.LogWarning("stateInfo.IsName : UserCellHatching");
+                    stateFound = true;
+                }
+
+                if (!stateFound)
+                {
+                    Debug.LogWarning("no state found");
+                }*/
                 if (stateInfo.IsName("IsComputerCell") || 
-                    stateInfo.IsName("IsComputerCellSelected") ||
+                    stateInfo.IsName("ComputerCellSelected") ||
                     stateInfo.IsName("ComputerCellHatching") ) return BoxValue.IsComputerCell;
                 return BoxValue.IsUserCell;
                 
@@ -86,7 +129,7 @@ namespace ContaminationPuzzle.Gameplay
         /// Initializes the game board with 4 starting cells (2 for each player).
         /// </summary>
         // ReSharper disable Unity.PerformanceAnalysis
-        public void Init()
+        public List<CellAnimationStep> Init()
         {
             //1. Destroy previous game objects
             ClearCellsBoard();
@@ -109,9 +152,9 @@ namespace ContaminationPuzzle.Gameplay
                 CellAnimationStep.Chained(cell60, TriggerNameUserCellBirth)
             };
 
-            //5. Notify the view
-            var animationData = new AnimationData(steps);
-            OnInitialize?.Invoke(animationData);
+            //5. Return animation steps
+            return steps;
+            
         }
 
         /// <summary>

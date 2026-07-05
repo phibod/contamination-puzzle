@@ -17,13 +17,12 @@ namespace ContaminationPuzzle.UI
         private static readonly int IsPlayerTurn = Animator.StringToHash("isPlayerTurn");
         private static readonly int IsplayerTurn = Animator.StringToHash("IsplayerTurn");
         private GameObject currentPanel = null;
-        private readonly GameMode gameMode = new GameMode();
 
         public bool isModalMode = false;
 
 
         [SerializeField]
-        private GameController gameController;
+        private GameManager gameManager;
 
         [SerializeField]
         private GameView gameView;
@@ -59,20 +58,20 @@ namespace ContaminationPuzzle.UI
         [Header("GameModeIndicator")]
         [SerializeField]
         private TextMeshProUGUI gameModeText;
-
-        
         
         private GameModel gameModel;
 
         private GameObject playerScore;
         private GameObject opponentScore;
+        
+        public GameMode CurrentGameMode { get; } = new();
 
         /// <summary>
         /// Sets the game model for this UI controller.
         /// </summary>
-        public void SetModel(GameModel gameModel)
+        public void SetModel(GameModel paramGameModel)
         {
-            this.gameModel = gameModel;
+            this.gameModel = paramGameModel;
         }
         
         public void UpdatePanelComponents(ScoreData scoreData)
@@ -85,7 +84,7 @@ namespace ContaminationPuzzle.UI
             var dominancePlayerRatio = scoreData.playerScore / totalCells;
             fillPlayerDominance.fillAmount = dominancePlayerRatio;
             fillComputerDominance.fillAmount = 1 - dominancePlayerRatio;
-            var playerTypeValue = (int) gameController.identifyPlayerType();
+            var playerTypeValue = gameManager.PlayerType;
             nextPlayerIndicator.SetInteger("PlayerType", playerTypeValue);
         }
         
@@ -107,8 +106,12 @@ namespace ContaminationPuzzle.UI
             currentPanel = panel;
         }
 
-
-
+        private void StartNewGame()
+        {
+            gameManager.CurrentPlayer = null;
+            var animationData = new AnimationData(gameModel.Init());
+            gameManager.OnPlayerAnimationRequested(animationData);
+        }
 
         /*
          * Manage the Restart Button of the right panel
@@ -174,9 +177,7 @@ namespace ContaminationPuzzle.UI
             {
                 //init the model of the game
                 gameView.RemoveTheCup();
-                gameModel.Init();
-                gameController.Init();
-                
+                StartNewGame();
             }
 
         }
@@ -191,9 +192,12 @@ namespace ContaminationPuzzle.UI
          */
         public void OnConfirmOnePlayer()
         {
-            gameMode.value = GameMode.Options.Solo;
+            if (CurrentGameMode.Value == GameMode.Options.Solo) return;
+            CurrentGameMode.Value = GameMode.Options.Solo;
             gameModeText.text = "One player";
             DesactivateCurrentPanel();
+            StartNewGame();
+
         }
 
         /*
@@ -201,10 +205,11 @@ namespace ContaminationPuzzle.UI
          */
         public void OnConfirmTwoPlayers()
         {
-            gameMode.value = GameMode.Options.TwoPlayers;
+            if (CurrentGameMode.Value == GameMode.Options.TwoPlayers) return;
+            CurrentGameMode.Value = GameMode.Options.TwoPlayers;
             gameModeText.text = "Two players";
             DesactivateCurrentPanel();
-
+            StartNewGame();
         }
 
         

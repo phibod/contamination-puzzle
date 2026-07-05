@@ -79,13 +79,13 @@ namespace ContaminationPuzzle.Gameplay
             cursor.position = GameController.GetCursorPositionInGrid(grid) + new Vector3(0.5f, 0.5f, 0);
             if (CursorInGameArea())
             {
-                if (gameManager.currentPlayer == humanPlayer1 && currentState != CursorState.IsUsedByPlayer)
+                if (gameManager.CurrentPlayer == humanPlayer1 && currentState != CursorState.IsUsedByPlayer)
                 {
                     spriteRenderer.sprite =  UserGameBoard;
                     currentState = CursorState.IsUsedByPlayer;
                 }
 
-                if (gameManager.currentPlayer != humanPlayer1 && currentState != CursorState.IsUsedByOpponent)
+                if (gameManager.CurrentPlayer != humanPlayer1 && currentState != CursorState.IsUsedByOpponent)
                 {
                     spriteRenderer.sprite =  OpponentGameBoard;
                     currentState = CursorState.IsUsedByOpponent;
