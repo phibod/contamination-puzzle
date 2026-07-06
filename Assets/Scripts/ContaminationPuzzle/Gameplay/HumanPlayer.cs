@@ -17,7 +17,8 @@ namespace ContaminationPuzzle.Gameplay
 
         [SerializeField]
         public UnityEngine.Grid grid;
-       
+
+        public BoxValue candidateCell;
 
         // Local selection state
         private Vector2Int selectedCellPosition;
@@ -62,15 +63,15 @@ namespace ContaminationPuzzle.Gameplay
 
             // Process only on click
             if (!Input.GetMouseButtonDown(0)) return;
-
             Vector2Int clickPosition = (Vector2Int)GetCursorGridPosition();
+            Debug.Log("GetMouseButtonDown x= " + clickPosition.x + " y = " + clickPosition.y);
             var model = gameManager.GameModel;
             if (model == null) return;
             
            
  
             // If clicked a player-owned playable cell -> select/deselect
-            if (model.CandidateCellIsChosen(clickPosition, BoxValue.IsUserCell))
+            if (model.CandidateCellIsChosen(clickPosition, candidateCell))
             {
                 TryHandleSelectCell(clickPosition);
                 return;
@@ -92,12 +93,12 @@ namespace ContaminationPuzzle.Gameplay
         /// Try to select a cell owned by this player.
         /// Returns true if a selection/deselection occurred.
         /// </summary>
-        public bool TryHandleSelectCell(Vector2Int clickPosition)
+        private bool TryHandleSelectCell(Vector2Int clickPosition)
         {
             var model = gameManager.GameModel;
             if (model == null) return false;
 
-            if (!model.CandidateCellIsChosen(clickPosition, BoxValue.IsUserCell)) return false;
+            if (!model.CandidateCellIsChosen(clickPosition, candidateCell)) return false;
 
             var cellGO = model.GetCellGameObject(clickPosition.x, clickPosition.y);
 
@@ -125,7 +126,7 @@ namespace ContaminationPuzzle.Gameplay
         /// <summary>
         /// Try to apply a move to a free box. If valid, invoke GameBoardToAnimate and return true.
         /// </summary>
-        public bool TryHandleSelectFreeBox(Vector2Int clickPosition)
+        private bool TryHandleSelectFreeBox(Vector2Int clickPosition)
         {
             var model = gameManager.GameModel;
             if (model == null) return false;
