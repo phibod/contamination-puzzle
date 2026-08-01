@@ -76,7 +76,7 @@ namespace ContaminationPuzzle.Gameplay
         // Update is called once per frame
         private void Update()
         {
-            cursor.position = GameController.GetCursorPositionInGrid(grid) + new Vector3(0.5f, 0.5f, 0);
+            cursor.position = gameManager.GetCursorPositionInGrid(grid) + new Vector3(0.5f, 0.5f, 0);
             if (CursorInGameArea())
             {
                 if (gameManager.CurrentPlayer == humanPlayer1 && currentState != CursorState.IsUsedByPlayer)

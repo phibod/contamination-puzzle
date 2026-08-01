@@ -33,6 +33,17 @@ namespace ContaminationPuzzle.Gameplay
         
         private GameMode gameMode;
         private GameModel gameModel;
+        
+        /// <summary>
+        /// Gets the cursor position in grid coordinates from the mouse position.
+        /// </summary>
+        public Vector3Int GetCursorPositionInGrid(Grid gridOfGame)
+        {
+            Vector3 worldPoint = Camera.main!.ScreenToWorldPoint(Input.mousePosition);
+            Vector3Int positionInGrid = gridOfGame.WorldToCell(worldPoint);
+
+            return positionInGrid;
+        }
 
         // Routing of animation requests: players invoke their GameBoardToAnimate,
         // GameManager forwards to subscribed GameView via this event.

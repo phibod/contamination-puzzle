@@ -32,7 +32,7 @@ namespace ContaminationPuzzle.Gameplay
             // keep implementation consistent with TryHandleSelectCell for potential reuse.
             if (gameManager == null || gameManager.GameModel == null || grid == null) return false;
 
-            Vector2Int clickPos = (Vector2Int)GetCursorGridPosition();
+            Vector2Int clickPos = (Vector2Int)gameManager.GetCursorPositionInGrid(grid);
             return TryHandleSelectCell(clickPos);
         }
 
@@ -40,7 +40,7 @@ namespace ContaminationPuzzle.Gameplay
         {
             if (gameManager == null || gameManager.GameModel == null || grid == null) return false;
 
-            Vector2Int clickPos = (Vector2Int)GetCursorGridPosition();
+            Vector2Int clickPos = (Vector2Int)gameManager.GetCursorPositionInGrid(grid);
             return TryHandleSelectFreeBox(clickPos);
         }
 
@@ -63,7 +63,7 @@ namespace ContaminationPuzzle.Gameplay
 
             // Process only on click
             if (!Input.GetMouseButtonDown(0)) return;
-            Vector2Int clickPosition = (Vector2Int)GetCursorGridPosition();
+            Vector2Int clickPosition = (Vector2Int)gameManager.GetCursorPositionInGrid(grid);
             Debug.Log("GetMouseButtonDown x= " + clickPosition.x + " y = " + clickPosition.y);
             var model = gameManager.GameModel;
             if (model == null) return;
