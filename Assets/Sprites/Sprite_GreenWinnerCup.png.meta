@@ -1,0 +1,2340 @@
+fileFormatVersion: 2
+guid: 2dbad7fc2f08d404fa674fd408980d9d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2232402617104316024
+    second: Coupe_CoupeAdversaire_0
+  - first:
+      213: -3998385968198021148
+    second: Coupe_CoupeAdversaire_1
+  - first:
+      213: -2684863121564448906
+    second: Coupe_CoupeAdversaire_2
+  - first:
+      213: -1502108348398259150
+    second: Coupe_CoupeAdversaire_3
+  - first:
+      213: 4043171104816827218
+    second: Coupe_CoupeAdversaire_4
+  - first:
+      213: -1676919782826690125
+    second: Coupe_CoupeAdversaire_5
+  - first:
+      213: 7540370756139252973
+    second: Coupe_CoupeAdversaire_6
+  - first:
+      213: 4046562493446223743
+    second: Coupe_CoupeAdversaire_7
+  - first:
+      213: 73864823651463514
+    second: Coupe_CoupeAdversaire_8
+  - first:
+      213: -890310929269831812
+    second: Coupe_CoupeAdversaire_9
+  - first:
+      213: -9204718348945038945
+    second: Coupe_CoupeAdversaire_10
+  - first:
+      213: 7992049347274891068
+    second: Coupe_CoupeAdversaire_11
+  - first:
+      213: 1738319397632863154
+    second: Coupe_CoupeAdversaire_12
+  - first:
+      213: 2629560595080330880
+    second: Coupe_CoupeAdversaire_13
+  - first:
+      213: 2725608195623129427
+    second: Coupe_CoupeAdversaire_14
+  - first:
+      213: 3709577484224559841
+    second: Coupe_CoupeAdversaire_15
+  - first:
+      213: 7288357047229993676
+    second: Coupe_CoupeAdversaire_16
+  - first:
+      213: 1146715692734933191
+    second: Coupe_CoupeAdversaire_17
+  - first:
+      213: 7058199042728966338
+    second: Coupe_CoupeAdversaire_18
+  - first:
+      213: 8337112567032180056
+    second: Coupe_CoupeAdversaire_19
+  - first:
+      213: -7671031155028819938
+    second: Coupe_CoupeAdversaire_20
+  - first:
+      213: 6350384481583670500
+    second: Coupe_CoupeAdversaire_21
+  - first:
+      213: -4245831820763768203
+    second: Coupe_CoupeAdversaire_22
+  - first:
+      213: 6025277339155932600
+    second: Coupe_CoupeAdversaire_23
+  - first:
+      213: 7086411835527521620
+    second: Coupe_CoupeAdversaire_24
+  - first:
+      213: 1741071290127584334
+    second: Coupe_CoupeAdversaire_25
+  - first:
+      213: -1816079140229730010
+    second: Coupe_CoupeAdversaire_26
+  - first:
+      213: 1530345178003143661
+    second: Coupe_CoupeAdversaire_27
+  - first:
+      213: 7628600508982044533
+    second: Coupe_CoupeAdversaire_28
+  - first:
+      213: 8474001069369468274
+    second: Coupe_CoupeAdversaire_29
+  - first:
+      213: 8668501261369555519
+    second: Coupe_CoupeAdversaire_30
+  - first:
+      213: 2226598823764352079
+    second: Coupe_CoupeAdversaire_31
+  - first:
+      213: 8893839090879869194
+    second: Coupe_CoupeAdversaire_32
+  - first:
+      213: 8261155696510206057
+    second: Coupe_CoupeAdversaire_33
+  - first:
+      213: 3779853291114360855
+    second: Coupe_CoupeAdversaire_34
+  - first:
+      213: -6086009767732711500
+    second: Coupe_CoupeAdversaire_35
+  - first:
+      213: 7001711393639192128
+    second: Coupe_CoupeAdversaire_36
+  - first:
+      213: 519207737504345093
+    second: Coupe_CoupeAdversaire_37
+  - first:
+      213: -3772382157980348530
+    second: Coupe_CoupeAdversaire_38
+  - first:
+      213: 8883222203938965920
+    second: Coupe_CoupeAdversaire_39
+  - first:
+      213: 5818766615229467897
+    second: Coupe_CoupeAdversaire_40
+  - first:
+      213: -6607170342914260230
+    second: Coupe_CoupeAdversaire_41
+  - first:
+      213: -4935607454479369270
+    second: Coupe_CoupeAdversaire_42
+  - first:
+      213: 2926395308699611547
+    second: Coupe_CoupeAdversaire_43
+  - first:
+      213: 453652955602733322
+    second: Coupe_CoupeAdversaire_44
+  - first:
+      213: 7307081756607023632
+    second: Coupe_CoupeAdversaire_45
+  - first:
+      213: 3306486662440983440
+    second: Coupe_CoupeAdversaire_46
+  - first:
+      213: 7460302469564806741
+    second: Coupe_CoupeAdversaire_47
+  - first:
+      213: -3238728214727901343
+    second: Coupe_CoupeAdversaire_48
+  - first:
+      213: 2479025351650444926
+    second: Coupe_CoupeAdversaire_49
+  - first:
+      213: 3988708442933042640
+    second: Coupe_CoupeAdversaire_50
+  - first:
+      213: -1081593964752776827
+    second: Coupe_CoupeAdversaire_51
+  - first:
+      213: 1171903124344895157
+    second: Coupe_CoupeAdversaire_52
+  - first:
+      213: 4051056051431772093
+    second: Coupe_CoupeAdversaire_53
+  - first:
+      213: 6042252479634277530
+    second: Coupe_CoupeAdversaire_54
+  - first:
+      213: -561659986378821006
+    second: Coupe_CoupeAdversaire_55
+  - first:
+      213: -1676101386550715445
+    second: Coupe_CoupeAdversaire_56
+  - first:
+      213: -6463098864762048771
+    second: Coupe_CoupeAdversaire_57
+  - first:
+      213: -1243498859055793853
+    second: Coupe_CoupeAdversaire_58
+  - first:
+      213: 7304621865142290879
+    second: Coupe_CoupeAdversaire_59
+  - first:
+      213: -8133813490161280228
+    second: Coupe_CoupeAdversaire_60
+  - first:
+      213: -2824526041092526761
+    second: Coupe_CoupeAdversaire_61
+  - first:
+      213: -2514504300188397720
+    second: Coupe_CoupeAdversaire_62
+  - first:
+      213: -6530577513801025496
+    second: Coupe_CoupeAdversaire_63
+  - first:
+      213: -2667895082286969019
+    second: Coupe_CoupeAdversaire_64
+  - first:
+      213: -2994260527168243370
+    second: Coupe_CoupeAdversaire_65
+  - first:
+      213: 1606696796115465143
+    second: Coupe_CoupeAdversaire_66
+  - first:
+      213: 4412062203471685932
+    second: Coupe_CoupeAdversaire_67
+  - first:
+      213: 1146231820857567863
+    second: Coupe_CoupeAdversaire_68
+  - first:
+      213: -4976691540707105403
+    second: Coupe_CoupeAdversaire_69
+  - first:
+      213: -1121955252879152569
+    second: Coupe_CoupeAdversaire_70
+  - first:
+      213: -1303176765842928978
+    second: Coupe_CoupeAdversaire_71
+  - first:
+      213: 67282457952724896
+    second: Coupe_CoupeAdversaire_72
+  - first:
+      213: -6317854137686552587
+    second: Coupe_CoupeAdversaire_73
+  - first:
+      213: -6588815766660508350
+    second: Coupe_CoupeAdversaire_74
+  - first:
+      213: 664908543758789333
+    second: Coupe_CoupeAdversaire_75
+  - first:
+      213: -5999280968662067882
+    second: Coupe_CoupeAdversaire_76
+  - first:
+      213: -6273958645980649341
+    second: Coupe_CoupeAdversaire_77
+  - first:
+      213: -8449691989107836628
+    second: Coupe_CoupeAdversaire_78
+  - first:
+      213: -6550315554426787768
+    second: Coupe_CoupeAdversaire_79
+  - first:
+      213: 4009728585607909765
+    second: Coupe_CoupeAdversaire_80
+  - first:
+      213: -5179817428159843300
+    second: Coupe_CoupeAdversaire_81
+  - first:
+      213: -7083341087257881905
+    second: Coupe_CoupeAdversaire_82
+  - first:
+      213: 5268985626380616095
+    second: Coupe_CoupeAdversaire_83
+  - first:
+      213: -3065481937575917866
+    second: Coupe_CoupeAdversaire_84
+  - first:
+      213: 949332334131271883
+    second: Coupe_CoupeAdversaire_85
+  - first:
+      213: 7747779397494017689
+    second: Coupe_CoupeAdversaire_86
+  - first:
+      213: 6150162864422823957
+    second: Coupe_CoupeAdversaire_87
+  - first:
+      213: 1584667731894988848
+    second: Coupe_CoupeAdversaire_88
+  - first:
+      213: 4769317328866456494
+    second: Coupe_CoupeAdversaire_89
+  - first:
+      213: 6571011491456789505
+    second: Coupe_CoupeAdversaire_90
+  - first:
+      213: -7438501852130882244
+    second: Coupe_CoupeAdversaire_91
+  - first:
+      213: -4858975864653451017
+    second: Coupe_CoupeAdversaire_92
+  - first:
+      213: -1700580982137505492
+    second: Coupe_CoupeAdversaire_93
+  - first:
+      213: 1647344153553451327
+    second: Coupe_CoupeAdversaire_94
+  - first:
+      213: -6051739691383561629
+    second: Coupe_CoupeAdversaire_95
+  - first:
+      213: 251332995029340404
+    second: Coupe_CoupeAdversaire_96
+  - first:
+      213: 540842517801427955
+    second: Coupe_CoupeAdversaire_97
+  - first:
+      213: -4233930878567583082
+    second: Coupe_CoupeAdversaire_98
+  - first:
+      213: -1094944590938099688
+    second: Coupe_CoupeAdversaire_99
+  - first:
+      213: -993160043159480168
+    second: Coupe_CoupeAdversaire_100
+  - first:
+      213: 3475848926797202526
+    second: Coupe_CoupeAdversaire_101
+  - first:
+      213: -8711098316398957119
+    second: Coupe_CoupeAdversaire_102
+  - first:
+      213: -6024501731498282582
+    second: Coupe_CoupeAdversaire_103
+  - first:
+      213: -1061895412990537038
+    second: Coupe_CoupeAdversaire_104
+  - first:
+      213: 8355643763285611267
+    second: Coupe_CoupeAdversaire_105
+  - first:
+      213: -1876643468174594661
+    second: Coupe_CoupeAdversaire_106
+  - first:
+      213: 3439344406679191884
+    second: Coupe_CoupeAdversaire_107
+  - first:
+      213: 6546638668612836104
+    second: Coupe_CoupeAdversaire_108
+  - first:
+      213: -1458594052696232817
+    second: Coupe_CoupeAdversaire_109
+  - first:
+      213: -3072850868325762098
+    second: Coupe_CoupeAdversaire_110
+  - first:
+      213: 8934464223907453671
+    second: Coupe_CoupeAdversaire_111
+  - first:
+      213: -3038068008690159308
+    second: Coupe_CoupeAdversaire_112
+  - first:
+      213: -7575388731771044989
+    second: Coupe_CoupeAdversaire_113
+  - first:
+      213: -7667604639434124501
+    second: Coupe_CoupeAdversaire_114
+  - first:
+      213: -1372779226033078274
+    second: Coupe_CoupeAdversaire_115
+  - first:
+      213: 7329601044773755731
+    second: Coupe_CoupeAdversaire_116
+  - first:
+      213: 8391396766862552815
+    second: Coupe_CoupeAdversaire_117
+  - first:
+      213: -5936338589652788625
+    second: Coupe_CoupeAdversaire_118
+  - first:
+      213: 2331172120331558284
+    second: Coupe_CoupeAdversaire_119
+  - first:
+      213: -7310902434524094006
+    second: Coupe_CoupeAdversaire_120
+  - first:
+      213: 5191857818263938147
+    second: Coupe_CoupeAdversaire_121
+  - first:
+      213: 7576666740636768239
+    second: Coupe_CoupeAdversaire_122
+  - first:
+      213: 1974760186234265267
+    second: Coupe_CoupeAdversaire_123
+  - first:
+      213: 8216683050968714881
+    second: Coupe_CoupeAdversaire_124
+  - first:
+      213: -5943307255062073336
+    second: Coupe_CoupeAdversaire_125
+  - first:
+      213: 1120930660508033037
+    second: Coupe_CoupeAdversaire_126
+  - first:
+      213: 4337018793526606824
+    second: Coupe_CoupeAdversaire_127
+  - first:
+      213: -4385183426443857573
+    second: Coupe_CoupeAdversaire_128
+  - first:
+      213: 5988931502338203846
+    second: Coupe_CoupeAdversaire_129
+  - first:
+      213: -1858971512027430149
+    second: Coupe_CoupeAdversaire_130
+  - first:
+      213: 6603187457592631821
+    second: Coupe_CoupeAdversaire_131
+  - first:
+      213: 6161446861966074714
+    second: Coupe_CoupeAdversaire_132
+  - first:
+      213: 412803258068490413
+    second: Coupe_CoupeAdversaire_133
+  - first:
+      213: -3088691725331794871
+    second: Coupe_CoupeAdversaire_134
+  - first:
+      213: -962612760154271151
+    second: Coupe_CoupeAdversaire_135
+  - first:
+      213: 7906300540663338843
+    second: Coupe_CoupeAdversaire_136
+  - first:
+      213: 5119325023201340593
+    second: Coupe_CoupeAdversaire_137
+  - first:
+      213: 2103049252103582003
+    second: Coupe_CoupeAdversaire_138
+  - first:
+      213: 3768408719142403410
+    second: Coupe_CoupeAdversaire_139
+  - first:
+      213: 188668157989769159
+    second: Coupe_CoupeAdversaire_140
+  - first:
+      213: 1380827503255496249
+    second: Coupe_CoupeAdversaire_141
+  - first:
+      213: 3301606757444035715
+    second: Coupe_CoupeAdversaire_142
+  - first:
+      213: -4763278322258332723
+    second: Coupe_CoupeAdversaire_143
+  - first:
+      213: 8281337815946355476
+    second: Coupe_CoupeAdversaire_144
+  - first:
+      213: 8313861467191217658
+    second: Coupe_CoupeAdversaire_145
+  - first:
+      213: 1398317823233587258
+    second: Coupe_CoupeAdversaire_146
+  - first:
+      213: -5967642997592700270
+    second: Coupe_CoupeAdversaire_147
+  - first:
+      213: -8122837195187250535
+    second: Coupe_CoupeAdversaire_148
+  - first:
+      213: -7110643163191186032
+    second: Coupe_CoupeAdversaire_149
+  - first:
+      213: -3116215565108448359
+    second: Coupe_CoupeAdversaire_150
+  - first:
+      213: 1007232162093655482
+    second: Coupe_CoupeAdversaire_151
+  - first:
+      213: 9016244367035101424
+    second: Coupe_CoupeAdversaire_152
+  - first:
+      213: -6129298203924175737
+    second: Coupe_CoupeAdversaire_153
+  - first:
+      213: -7886978856261949207
+    second: Coupe_CoupeAdversaire_154
+  - first:
+      213: -2577476187887171341
+    second: Coupe_CoupeAdversaire_155
+  - first:
+      213: 2205609224685436551
+    second: Coupe_CoupeAdversaire_156
+  - first:
+      213: -7793557074553845519
+    second: Coupe_CoupeAdversaire_157
+  - first:
+      213: -5112528923152528596
+    second: Coupe_CoupeAdversaire_158
+  - first:
+      213: 131138553473773574
+    second: Coupe_CoupeAdversaire_159
+  - first:
+      213: 1935301799374764696
+    second: Coupe_CoupeAdversaire_160
+  - first:
+      213: 6818066562786319709
+    second: Coupe_CoupeAdversaire_161
+  - first:
+      213: -4269792418914672699
+    second: Coupe_CoupeAdversaire_162
+  - first:
+      213: 1373488306048982176
+    second: Coupe_CoupeAdversaire_163
+  - first:
+      213: 7705235592529438362
+    second: Coupe_CoupeAdversaire_164
+  - first:
+      213: 4078502954198724910
+    second: Coupe_CoupeAdversaire_165
+  - first:
+      213: 8760530362083971236
+    second: Coupe_CoupeAdversaire_166
+  - first:
+      213: 1941462816093020000
+    second: Coupe_CoupeAdversaire_167
+  - first:
+      213: 1290614699645962192
+    second: Coupe_CoupeAdversaire_168
+  - first:
+      213: 7736151647190056562
+    second: Coupe_CoupeAdversaire_169
+  - first:
+      213: 145353869615461721
+    second: Coupe_CoupeAdversaire_170
+  - first:
+      213: 2500772164765434737
+    second: Coupe_CoupeAdversaire_171
+  - first:
+      213: 443254378656264353
+    second: Coupe_CoupeAdversaire_172
+  - first:
+      213: -7496915145109046751
+    second: Coupe_CoupeAdversaire_173
+  - first:
+      213: -2787502517810304999
+    second: Coupe_CoupeAdversaire_174
+  - first:
+      213: -917105835106469814
+    second: Coupe_CoupeAdversaire_175
+  - first:
+      213: 4176283120089427905
+    second: Coupe_CoupeAdversaire_176
+  - first:
+      213: 8479311440567414350
+    second: Coupe_CoupeAdversaire_177
+  - first:
+      213: -8484758549076273819
+    second: Coupe_CoupeAdversaire_178
+  - first:
+      213: 1360405170447584412
+    second: Coupe_CoupeAdversaire_179
+  - first:
+      213: 7572572009406138308
+    second: Coupe_CoupeAdversaire_180
+  - first:
+      213: 7059453676843894655
+    second: Coupe_CoupeAdversaire_181
+  - first:
+      213: -3356107214086812404
+    second: Coupe_CoupeAdversaire_182
+  - first:
+      213: -5287214469570943032
+    second: Coupe_CoupeAdversaire_183
+  - first:
+      213: 3245007266400012190
+    second: Coupe_CoupeAdversaire_184
+  - first:
+      213: 4504927713175069044
+    second: Coupe_CoupeAdversaire_185
+  - first:
+      213: -7058138706800261173
+    second: Coupe_CoupeAdversaire_186
+  - first:
+      213: 3921949351158254937
+    second: Coupe_CoupeAdversaire_187
+  - first:
+      213: -173763308992978929
+    second: Coupe_CoupeAdversaire_188
+  - first:
+      213: 8718650027167109005
+    second: Coupe_CoupeAdversaire_189
+  - first:
+      213: 6686279895904025709
+    second: Coupe_CoupeAdversaire_190
+  - first:
+      213: -3588663877138910571
+    second: Coupe_CoupeAdversaire_191
+  - first:
+      213: 2519173614923731847
+    second: Coupe_CoupeAdversaire_192
+  - first:
+      213: -6571046218931123969
+    second: Coupe_CoupeAdversaire_193
+  - first:
+      213: -6240466473185166387
+    second: Coupe_CoupeAdversaire_194
+  - first:
+      213: -2458890249358442901
+    second: Coupe_CoupeAdversaire_195
+  - first:
+      213: -4429588179043136184
+    second: Coupe_CoupeAdversaire_196
+  - first:
+      213: -4734598787250832068
+    second: Coupe_CoupeAdversaire_197
+  - first:
+      213: 7405981062527854415
+    second: Coupe_CoupeAdversaire_198
+  - first:
+      213: 8098704380823808660
+    second: Coupe_CoupeAdversaire_199
+  - first:
+      213: 4945057999795937752
+    second: Coupe_CoupeAdversaire_200
+  - first:
+      213: 2076939762510290789
+    second: Coupe_CoupeAdversaire_201
+  - first:
+      213: 104459900858716386
+    second: Coupe_CoupeAdversaire_202
+  - first:
+      213: -7882279346529113709
+    second: Coupe_CoupeAdversaire_203
+  - first:
+      213: 6487078357384141870
+    second: Coupe_CoupeAdversaire_204
+  - first:
+      213: -4481045602007044395
+    second: Coupe_CoupeAdversaire_205
+  - first:
+      213: -4976542861502849934
+    second: Coupe_CoupeAdversaire_206
+  - first:
+      213: 8925714875643662222
+    second: Coupe_CoupeAdversaire_207
+  - first:
+      213: 2816133504171193591
+    second: Coupe_CoupeAdversaire_208
+  - first:
+      213: -7609940276274317439
+    second: Coupe_CoupeAdversaire_209
+  - first:
+      213: 3817575305415247857
+    second: Coupe_CoupeAdversaire_210
+  - first:
+      213: 2877646364097011506
+    second: Coupe_CoupeAdversaire_211
+  - first:
+      213: 6187845176820602201
+    second: Coupe_CoupeAdversaire_212
+  - first:
+      213: 4083666174691573455
+    second: Coupe_CoupeAdversaire_213
+  - first:
+      213: 2093032196087839474
+    second: Coupe_CoupeAdversaire_214
+  - first:
+      213: 3823120229890660100
+    second: Coupe_CoupeAdversaire_215
+  - first:
+      213: 8817403043326001261
+    second: Coupe_CoupeAdversaire_216
+  - first:
+      213: 4377613369168904369
+    second: Coupe_CoupeAdversaire_217
+  - first:
+      213: -7263768795984027177
+    second: Coupe_CoupeAdversaire_218
+  - first:
+      213: -3918668707568050485
+    second: Coupe_CoupeAdversaire_219
+  - first:
+      213: -2924158886329864270
+    second: Coupe_CoupeAdversaire_220
+  - first:
+      213: -329956754422270495
+    second: Coupe_CoupeAdversaire_221
+  - first:
+      213: 8513361442290629990
+    second: Coupe_CoupeAdversaire_222
+  - first:
+      213: 8766487973514391892
+    second: Coupe_CoupeAdversaire_223
+  - first:
+      213: -8005435771232116121
+    second: Coupe_CoupeAdversaire_224
+  - first:
+      213: 7745934430567351872
+    second: Coupe_CoupeAdversaire_225
+  - first:
+      213: -1080845196960935366
+    second: Coupe_CoupeAdversaire_226
+  - first:
+      213: -8112858480253630092
+    second: Coupe_CoupeAdversaire_227
+  - first:
+      213: -6951314858604075879
+    second: Coupe_CoupeAdversaire_228
+  - first:
+      213: -7853754111923624838
+    second: Coupe_CoupeAdversaire_229
+  - first:
+      213: -1862264722190657552
+    second: Coupe_CoupeAdversaire_230
+  - first:
+      213: -8359906145283587436
+    second: Coupe_CoupeAdversaire_231
+  - first:
+      213: -7212420478868469406
+    second: Coupe_CoupeAdversaire_232
+  - first:
+      213: -7385004274148343182
+    second: Coupe_CoupeAdversaire_233
+  - first:
+      213: -8881040919721897524
+    second: Coupe_CoupeAdversaire_234
+  - first:
+      213: -2270950676821356547
+    second: Coupe_CoupeAdversaire_235
+  - first:
+      213: -4046176403991129211
+    second: Coupe_CoupeAdversaire_236
+  - first:
+      213: 1703201550437808195
+    second: Coupe_CoupeAdversaire_237
+  - first:
+      213: 7810299409603346013
+    second: Coupe_CoupeAdversaire_238
+  - first:
+      213: 5811603709791774060
+    second: Coupe_CoupeAdversaire_239
+  - first:
+      213: -527703733728263954
+    second: Coupe_CoupeAdversaire_240
+  - first:
+      213: -2208872788870020816
+    second: Coupe_CoupeAdversaire_241
+  - first:
+      213: -4968228065226810410
+    second: Coupe_CoupeAdversaire_242
+  - first:
+      213: 603033805611751821
+    second: Coupe_CoupeAdversaire_243
+  - first:
+      213: -7402109010564256026
+    second: Coupe_CoupeAdversaire_244
+  - first:
+      213: -6608510873870047706
+    second: Coupe_CoupeAdversaire_245
+  - first:
+      213: 8006731465627194586
+    second: Coupe_CoupeAdversaire_246
+  - first:
+      213: 1185833128305810717
+    second: Coupe_CoupeAdversaire_247
+  - first:
+      213: -7103339606065007092
+    second: Coupe_CoupeAdversaire_248
+  - first:
+      213: 8637325207138593258
+    second: Coupe_CoupeAdversaire_249
+  - first:
+      213: -643052202366376696
+    second: Coupe_CoupeAdversaire_250
+  - first:
+      213: 2361895804166372589
+    second: Coupe_CoupeAdversaire_251
+  - first:
+      213: 8912514678025942265
+    second: Coupe_CoupeAdversaire_252
+  - first:
+      213: -9018827154165432145
+    second: Coupe_CoupeAdversaire_253
+  - first:
+      213: -1230610342014286158
+    second: Coupe_CoupeAdversaire_254
+  - first:
+      213: -1616055334947336383
+    second: Coupe_CoupeAdversaire_255
+  - first:
+      213: -5695790203028197157
+    second: Coupe_CoupeAdversaire_256
+  - first:
+      213: 8376306620989229070
+    second: Coupe_CoupeAdversaire_257
+  - first:
+      213: 1152258909547566785
+    second: Coupe_CoupeAdversaire_258
+  - first:
+      213: -2544307264220336773
+    second: Coupe_CoupeAdversaire_259
+  - first:
+      213: 4355086123890675022
+    second: Coupe_CoupeAdversaire_260
+  - first:
+      213: -4307743626819380025
+    second: Coupe_CoupeAdversaire_261
+  - first:
+      213: -7960338437363064634
+    second: Coupe_CoupeAdversaire_262
+  - first:
+      213: 3838725198129199657
+    second: Coupe_CoupeAdversaire_263
+  - first:
+      213: 1399986523339130524
+    second: Coupe_CoupeAdversaire_264
+  - first:
+      213: 5126398949973889498
+    second: Coupe_CoupeAdversaire_265
+  - first:
+      213: -6309027560377675031
+    second: Coupe_CoupeAdversaire_266
+  - first:
+      213: 8281721306118922150
+    second: Coupe_CoupeAdversaire_267
+  - first:
+      213: 7468871344896546748
+    second: Coupe_CoupeAdversaire_268
+  - first:
+      213: 8048892585412560583
+    second: Coupe_CoupeAdversaire_269
+  - first:
+      213: 25906963917358974
+    second: Coupe_CoupeAdversaire_270
+  - first:
+      213: -8362000082402962681
+    second: Coupe_CoupeAdversaire_271
+  - first:
+      213: 6106552289943468335
+    second: Coupe_CoupeAdversaire_272
+  - first:
+      213: 8051825161895938054
+    second: Coupe_CoupeAdversaire_273
+  - first:
+      213: -7227415542402644339
+    second: Coupe_CoupeAdversaire_274
+  - first:
+      213: 6884506505655689715
+    second: Coupe_CoupeAdversaire_275
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5285
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97414e97989cb5e489f1a74aa4ee032c
+      internalID: -295511778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_1
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 5285
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7dc8326473e78441a7e29621ff91c8f
+      internalID: 611994169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_2
+      rect:
+        serializedVersion: 2
+        x: 1510
+        y: 5285
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8587c40f863195d42a58a03ee27c9f90
+      internalID: 1339168228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_3
+      rect:
+        serializedVersion: 2
+        x: 2265
+        y: 5285
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43c3d87c2c4360a4d846a2f02ce6807b
+      internalID: -934152187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_4
+      rect:
+        serializedVersion: 2
+        x: 3020
+        y: 5285
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30f23514c56622143929e07995867aa4
+      internalID: -1480957211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_5
+      rect:
+        serializedVersion: 2
+        x: 3775
+        y: 5285
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d967150666e19454aaa9945410bd28b0
+      internalID: -693204764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_6
+      rect:
+        serializedVersion: 2
+        x: 4530
+        y: 5285
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c2b623252f4131488e007aa14dadbea
+      internalID: -1594885318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_7
+      rect:
+        serializedVersion: 2
+        x: 5285
+        y: 5285
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 732e477789ce7464c87e8db0ce2bacdd
+      internalID: 629752851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4530
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d96311ee9a1cf248b9f872aa0446b79
+      internalID: 1366836401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_9
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 4530
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63de2085c73ec7a40b417b10fef1eefb
+      internalID: 1579248781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_10
+      rect:
+        serializedVersion: 2
+        x: 1510
+        y: 4530
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 679b1c4858fe59647a0dc64e31e7cd79
+      internalID: -1967288021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_11
+      rect:
+        serializedVersion: 2
+        x: 2265
+        y: 4530
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e83c965621269e43b8eaec78dd26276
+      internalID: 2104377145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_12
+      rect:
+        serializedVersion: 2
+        x: 3020
+        y: 4530
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 402d52a1db1bc7e4cab5bf6606017c99
+      internalID: -1388752155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_13
+      rect:
+        serializedVersion: 2
+        x: 3775
+        y: 4530
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfee136c9ddcf2c43ba23ffe14e6f13e
+      internalID: -1551394120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_14
+      rect:
+        serializedVersion: 2
+        x: 4530
+        y: 4530
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68ec980714d73ce4895b0f59822c07f4
+      internalID: 965824311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_15
+      rect:
+        serializedVersion: 2
+        x: 5285
+        y: 4530
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78e6e47a7d16da2428891332d6a9f737
+      internalID: -1322536341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3775
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b14f118106e28024094fa65c3a2a5693
+      internalID: -738625180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_17
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 3775
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3564fbd1c7135c0448c2781477c6bbd0
+      internalID: 291810616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_18
+      rect:
+        serializedVersion: 2
+        x: 1510
+        y: 3775
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1c3299ccc3f71c469b5d96afd3d20d7
+      internalID: -2135851633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_19
+      rect:
+        serializedVersion: 2
+        x: 2265
+        y: 3775
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 306b95b03409f4a459f1f8e89c309953
+      internalID: 1133381188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_20
+      rect:
+        serializedVersion: 2
+        x: 3020
+        y: 3775
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc0b0e73935fbce40bf3313ed0431e21
+      internalID: -982608816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_21
+      rect:
+        serializedVersion: 2
+        x: 3775
+        y: 3775
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e06d6f0a8fddbe4297f5de46120022e
+      internalID: 234000565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_22
+      rect:
+        serializedVersion: 2
+        x: 4530
+        y: 3775
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c394234376c0c59448b5f51655d763ac
+      internalID: -924735302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_23
+      rect:
+        serializedVersion: 2
+        x: 5285
+        y: 3775
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c9c7954372295f48bf9d842def5584d
+      internalID: -2032671722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3020
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eb9e985ebf47c145ad6f1da37813a2f
+      internalID: 1599865708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_25
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 3020
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f942a24e30b524f42afd624e4a134edc
+      internalID: 61460462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_26
+      rect:
+        serializedVersion: 2
+        x: 1510
+        y: 3020
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 633c9e66784e5884fa9e0fb81fd2daf1
+      internalID: 469592499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_27
+      rect:
+        serializedVersion: 2
+        x: 2265
+        y: 3020
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dd510f47ab0c2c45b76f1a01c3275b2
+      internalID: 212355117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_28
+      rect:
+        serializedVersion: 2
+        x: 3020
+        y: 3020
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7f833d2634f9f84f8a8c273a5114329
+      internalID: 264126188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_29
+      rect:
+        serializedVersion: 2
+        x: 3775
+        y: 3020
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ead5c8d1f2a14084ab8c5ef52ee85acc
+      internalID: 1929390705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_30
+      rect:
+        serializedVersion: 2
+        x: 4530
+        y: 3020
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 342cbe9d2446ff34b8a90c99aaa8715b
+      internalID: 1929829576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_31
+      rect:
+        serializedVersion: 2
+        x: 5285
+        y: 3020
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b0bec3ece3ce824b80a5bd5cc7ed3fc
+      internalID: 831637162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2265
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03d8a17f9da755a42bb634cf5f9f8e8c
+      internalID: 1452681998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_33
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 2265
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f32ffe5df57d89447a9397273cf0c8c4
+      internalID: 1510802140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_34
+      rect:
+        serializedVersion: 2
+        x: 1510
+        y: 2265
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5be5a36ff125f00488aba35b9dd3c1c8
+      internalID: 1854387487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_35
+      rect:
+        serializedVersion: 2
+        x: 2265
+        y: 2265
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dced430192245754fa537e4739e91f93
+      internalID: 1557007792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_36
+      rect:
+        serializedVersion: 2
+        x: 3020
+        y: 2265
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d199512f6e774a34b8afc1be537497e8
+      internalID: 114415757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_37
+      rect:
+        serializedVersion: 2
+        x: 3775
+        y: 2265
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d6b9ce5bd4c81d4cb8399fcec85492f
+      internalID: -279644932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_38
+      rect:
+        serializedVersion: 2
+        x: 4530
+        y: 2265
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c028f11a5d0435488d6abb4e3de0438
+      internalID: -1263869803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_39
+      rect:
+        serializedVersion: 2
+        x: 5285
+        y: 2265
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8adbee101c15cc49aa909d5716030bf
+      internalID: -273858613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1510
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5856c3f624c069340b1c788b32ff8494
+      internalID: 822680200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_41
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 1510
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77901d57656dc1b4fab93d68cf315ffb
+      internalID: 2116111330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_42
+      rect:
+        serializedVersion: 2
+        x: 1510
+        y: 1510
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a552601683fd6b34bb800d33681f040d
+      internalID: 970700099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_43
+      rect:
+        serializedVersion: 2
+        x: 2265
+        y: 1510
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb248f076a8312a42bc9b2fa9376d931
+      internalID: 1119240809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_44
+      rect:
+        serializedVersion: 2
+        x: 3020
+        y: 1510
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 742eae25a86859144a277b2fbddb6db7
+      internalID: -192720258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_45
+      rect:
+        serializedVersion: 2
+        x: 3775
+        y: 1510
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd3ef6de8ab2b274a84314cb07de7b01
+      internalID: 1523803163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_46
+      rect:
+        serializedVersion: 2
+        x: 4530
+        y: 1510
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13ff322920a08ec4d9db1e2651d366c2
+      internalID: 384460291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_47
+      rect:
+        serializedVersion: 2
+        x: 5285
+        y: 1510
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6976c1cc030545041a86d0fa2a9059a9
+      internalID: -1758405335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 755
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 478c9502fd450aa48a8addb5b8d71cbb
+      internalID: -1497696544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_49
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 755
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 082fa7953b89e474aa3cce6eec29bf28
+      internalID: -1947132969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_50
+      rect:
+        serializedVersion: 2
+        x: 1510
+        y: 755
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3634e57fc8ef68247a80d03a16d8a678
+      internalID: -1422296343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_51
+      rect:
+        serializedVersion: 2
+        x: 2265
+        y: 755
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 309b6b654a8b9a7449e6bb85d533ffb0
+      internalID: -160603830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_52
+      rect:
+        serializedVersion: 2
+        x: 3020
+        y: 755
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dba484b1dde4d14dbdc9b32112ffb26
+      internalID: -859646815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_53
+      rect:
+        serializedVersion: 2
+        x: 3775
+        y: 755
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 240bee116204ff64e98107fdbd9f5c19
+      internalID: 357804657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_54
+      rect:
+        serializedVersion: 2
+        x: 4530
+        y: 755
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 417f2011afe98ad40853e8e2e11eb177
+      internalID: -1689209040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_55
+      rect:
+        serializedVersion: 2
+        x: 5285
+        y: 755
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1efc71e2ea8e104bbf68305dcb38755
+      internalID: -7694206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dda05b67afd9c7f42a6dcd25831ccba3
+      internalID: -1692151751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_57
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 0
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62b85627eeac9264c97d464ccdae1690
+      internalID: -1051833552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_58
+      rect:
+        serializedVersion: 2
+        x: 1510
+        y: 0
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c0d6460b06ca5c409dbc3f153ac9639
+      internalID: -52614810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_GreenWinnerCup_59
+      rect:
+        serializedVersion: 2
+        x: 2265
+        y: 0
+        width: 755
+        height: 755
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09454b624d463684f98224ec2304fe91
+      internalID: 68027805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 099af9bbdf26b684a89c46403cc1efa5
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":755.0,"y":755.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Sprite_GreenWinnerCup_0: -295511778
+      Sprite_GreenWinnerCup_1: 611994169
+      Sprite_GreenWinnerCup_10: -1967288021
+      Sprite_GreenWinnerCup_11: 2104377145
+      Sprite_GreenWinnerCup_12: -1388752155
+      Sprite_GreenWinnerCup_13: -1551394120
+      Sprite_GreenWinnerCup_14: 965824311
+      Sprite_GreenWinnerCup_15: -1322536341
+      Sprite_GreenWinnerCup_16: -738625180
+      Sprite_GreenWinnerCup_17: 291810616
+      Sprite_GreenWinnerCup_18: -2135851633
+      Sprite_GreenWinnerCup_19: 1133381188
+      Sprite_GreenWinnerCup_2: 1339168228
+      Sprite_GreenWinnerCup_20: -982608816
+      Sprite_GreenWinnerCup_21: 234000565
+      Sprite_GreenWinnerCup_22: -924735302
+      Sprite_GreenWinnerCup_23: -2032671722
+      Sprite_GreenWinnerCup_24: 1599865708
+      Sprite_GreenWinnerCup_25: 61460462
+      Sprite_GreenWinnerCup_26: 469592499
+      Sprite_GreenWinnerCup_27: 212355117
+      Sprite_GreenWinnerCup_28: 264126188
+      Sprite_GreenWinnerCup_29: 1929390705
+      Sprite_GreenWinnerCup_3: -934152187
+      Sprite_GreenWinnerCup_30: 1929829576
+      Sprite_GreenWinnerCup_31: 831637162
+      Sprite_GreenWinnerCup_32: 1452681998
+      Sprite_GreenWinnerCup_33: 1510802140
+      Sprite_GreenWinnerCup_34: 1854387487
+      Sprite_GreenWinnerCup_35: 1557007792
+      Sprite_GreenWinnerCup_36: 114415757
+      Sprite_GreenWinnerCup_37: -279644932
+      Sprite_GreenWinnerCup_38: -1263869803
+      Sprite_GreenWinnerCup_39: -273858613
+      Sprite_GreenWinnerCup_4: -1480957211
+      Sprite_GreenWinnerCup_40: 822680200
+      Sprite_GreenWinnerCup_41: 2116111330
+      Sprite_GreenWinnerCup_42: 970700099
+      Sprite_GreenWinnerCup_43: 1119240809
+      Sprite_GreenWinnerCup_44: -192720258
+      Sprite_GreenWinnerCup_45: 1523803163
+      Sprite_GreenWinnerCup_46: 384460291
+      Sprite_GreenWinnerCup_47: -1758405335
+      Sprite_GreenWinnerCup_48: -1497696544
+      Sprite_GreenWinnerCup_49: -1947132969
+      Sprite_GreenWinnerCup_5: -693204764
+      Sprite_GreenWinnerCup_50: -1422296343
+      Sprite_GreenWinnerCup_51: -160603830
+      Sprite_GreenWinnerCup_52: -859646815
+      Sprite_GreenWinnerCup_53: 357804657
+      Sprite_GreenWinnerCup_54: -1689209040
+      Sprite_GreenWinnerCup_55: -7694206
+      Sprite_GreenWinnerCup_56: -1692151751
+      Sprite_GreenWinnerCup_57: -1051833552
+      Sprite_GreenWinnerCup_58: -52614810
+      Sprite_GreenWinnerCup_59: 68027805
+      Sprite_GreenWinnerCup_6: -1594885318
+      Sprite_GreenWinnerCup_7: 629752851
+      Sprite_GreenWinnerCup_8: 1366836401
+      Sprite_GreenWinnerCup_9: 1579248781
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

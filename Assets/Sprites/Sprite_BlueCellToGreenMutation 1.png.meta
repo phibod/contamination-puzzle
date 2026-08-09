@@ -1,0 +1,912 @@
+fileFormatVersion: 2
+guid: 72f4fb6f352245949bd5b1acc5c2cca8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6070537568673810399
+    second: Sprite_BlueCellToGreenMutation 1_0
+  - first:
+      213: 6907063726530589983
+    second: Sprite_BlueCellToGreenMutation 1_1
+  - first:
+      213: 6114624164043425872
+    second: Sprite_BlueCellToGreenMutation 1_2
+  - first:
+      213: 497013181974864775
+    second: Sprite_BlueCellToGreenMutation 1_3
+  - first:
+      213: 1205348988536735829
+    second: Sprite_BlueCellToGreenMutation 1_4
+  - first:
+      213: 3277744994412234549
+    second: Sprite_BlueCellToGreenMutation 1_5
+  - first:
+      213: 8682359871922114038
+    second: Sprite_BlueCellToGreenMutation 1_6
+  - first:
+      213: 8256239634764243048
+    second: Sprite_BlueCellToGreenMutation 1_7
+  - first:
+      213: 4910394709156694798
+    second: Sprite_BlueCellToGreenMutation 1_8
+  - first:
+      213: -3146775983107467917
+    second: Sprite_BlueCellToGreenMutation 1_9
+  - first:
+      213: 1431549806614162994
+    second: Sprite_BlueCellToGreenMutation 1_10
+  - first:
+      213: 4004327203854968622
+    second: Sprite_BlueCellToGreenMutation 1_11
+  - first:
+      213: -8763026907894762665
+    second: Sprite_BlueCellToGreenMutation 1_12
+  - first:
+      213: 1813768500421755467
+    second: Sprite_BlueCellToGreenMutation 1_13
+  - first:
+      213: 8739244573171664638
+    second: Sprite_BlueCellToGreenMutation 1_14
+  - first:
+      213: -8799867860591872011
+    second: Sprite_BlueCellToGreenMutation 1_15
+  - first:
+      213: -76022906573384472
+    second: Sprite_BlueCellToGreenMutation 1_16
+  - first:
+      213: -1727038268465510427
+    second: Sprite_BlueCellToGreenMutation 1_17
+  - first:
+      213: -6749260226102430104
+    second: Sprite_BlueCellToGreenMutation 1_18
+  - first:
+      213: -1399494205275838321
+    second: Sprite_BlueCellToGreenMutation 1_19
+  - first:
+      213: -5264440564136263117
+    second: Sprite_BlueCellToGreenMutation 1_20
+  - first:
+      213: 1667611155803299759
+    second: Sprite_BlueCellToGreenMutation 1_21
+  - first:
+      213: -8214803923496657668
+    second: Sprite_BlueCellToGreenMutation 1_22
+  - first:
+      213: 1698337275607311119
+    second: Sprite_BlueCellToGreenMutation 1_23
+  - first:
+      213: -5794940299446452197
+    second: Sprite_BlueCellToGreenMutation 1_24
+  - first:
+      213: 1433611018874317080
+    second: Sprite_BlueCellToGreenMutation 1_25
+  - first:
+      213: 9142402664746790245
+    second: Sprite_BlueCellToGreenMutation 1_26
+  - first:
+      213: -4571929404685528880
+    second: Sprite_BlueCellToGreenMutation 1_27
+  - first:
+      213: 7945067179338808336
+    second: Sprite_BlueCellToGreenMutation 1_28
+  - first:
+      213: -1442099921245002804
+    second: Sprite_BlueCellToGreenMutation 1_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 91
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_0
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 455
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 128b88f8e3e11cba0800000000000000
+      internalID: -6070537568673810399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_1
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 455
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1577d43dd1dadf50800000000000000
+      internalID: 6907063726530589983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_2
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 455
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05804d0d7428bd450800000000000000
+      internalID: 6114624164043425872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_3
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 455
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7836c401bdeb5e600800000000000000
+      internalID: 497013181974864775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_4
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 455
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 558cb14d4824ab010800000000000000
+      internalID: 1205348988536735829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 364
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5378148c4b3ec7d20800000000000000
+      internalID: 3277744994412234549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_6
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 364
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fd060a6d40fd7870800000000000000
+      internalID: 8682359871922114038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_7
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 364
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 860af92543e049270800000000000000
+      internalID: 8256239634764243048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_8
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 364
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0b0e3ab8f9352440800000000000000
+      internalID: 4910394709156694798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 364
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 375162b6ae76454d0800000000000000
+      internalID: -3146775983107467917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_10
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 364
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23e2485e6f2edd310800000000000000
+      internalID: 1431549806614162994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 273
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e276536406a329730800000000000000
+      internalID: 4004327203854968622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_12
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 273
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7533ebda479736680800000000000000
+      internalID: -8763026907894762665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_13
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 273
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b428e6467dccb2910800000000000000
+      internalID: 1813768500421755467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_14
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 273
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef6482503a8084970800000000000000
+      internalID: 8739244573171664638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_15
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 273
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f77b03fdc690e580800000000000000
+      internalID: -8799867860591872011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_16
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 273
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e496eab199e1fef0800000000000000
+      internalID: -76022906573384472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 182
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e78b9658d35808e0800000000000000
+      internalID: -1727038268465510427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_18
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 182
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 866fd7e559fc552a0800000000000000
+      internalID: -6749260226102430104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_19
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 182
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f88e0556f6ff39ce0800000000000000
+      internalID: -1399494205275838321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_20
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 182
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3324089f233f0f6b0800000000000000
+      internalID: -5264440564136263117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_21
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 182
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: faf5225c28b842710800000000000000
+      internalID: 1667611155803299759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_22
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 182
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfc1f700b572ffd80800000000000000
+      internalID: -8214803923496657668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 91
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f03e06501c4b19710800000000000000
+      internalID: 1698337275607311119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_24
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 91
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1006e4208c349fa0800000000000000
+      internalID: -5794940299446452197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_25
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 91
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 819e61640a535e310800000000000000
+      internalID: 1433611018874317080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_26
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 91
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56d21d9f8c650ee70800000000000000
+      internalID: 9142402664746790245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_27
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 91
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d05e87fd6e3d80c0800000000000000
+      internalID: -4571929404685528880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_28
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 91
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01cba1d318c824e60800000000000000
+      internalID: 7945067179338808336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellToGreenMutation 1_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc3a29f13c1acfbe0800000000000000
+      internalID: -1442099921245002804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: b0f3480c20b7a3a45ac532ecad28eb75
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":90.0,"y":91.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Sprite_BlueCellToGreenMutation 1_0: -6070537568673810399
+      Sprite_BlueCellToGreenMutation 1_1: 6907063726530589983
+      Sprite_BlueCellToGreenMutation 1_10: 1431549806614162994
+      Sprite_BlueCellToGreenMutation 1_11: 4004327203854968622
+      Sprite_BlueCellToGreenMutation 1_12: -8763026907894762665
+      Sprite_BlueCellToGreenMutation 1_13: 1813768500421755467
+      Sprite_BlueCellToGreenMutation 1_14: 8739244573171664638
+      Sprite_BlueCellToGreenMutation 1_15: -8799867860591872011
+      Sprite_BlueCellToGreenMutation 1_16: -76022906573384472
+      Sprite_BlueCellToGreenMutation 1_17: -1727038268465510427
+      Sprite_BlueCellToGreenMutation 1_18: -6749260226102430104
+      Sprite_BlueCellToGreenMutation 1_19: -1399494205275838321
+      Sprite_BlueCellToGreenMutation 1_2: 6114624164043425872
+      Sprite_BlueCellToGreenMutation 1_20: -5264440564136263117
+      Sprite_BlueCellToGreenMutation 1_21: 1667611155803299759
+      Sprite_BlueCellToGreenMutation 1_22: -8214803923496657668
+      Sprite_BlueCellToGreenMutation 1_23: 1698337275607311119
+      Sprite_BlueCellToGreenMutation 1_24: -5794940299446452197
+      Sprite_BlueCellToGreenMutation 1_25: 1433611018874317080
+      Sprite_BlueCellToGreenMutation 1_26: 9142402664746790245
+      Sprite_BlueCellToGreenMutation 1_27: -4571929404685528880
+      Sprite_BlueCellToGreenMutation 1_28: 7945067179338808336
+      Sprite_BlueCellToGreenMutation 1_29: -1442099921245002804
+      Sprite_BlueCellToGreenMutation 1_3: 497013181974864775
+      Sprite_BlueCellToGreenMutation 1_4: 1205348988536735829
+      Sprite_BlueCellToGreenMutation 1_5: 3277744994412234549
+      Sprite_BlueCellToGreenMutation 1_6: 8682359871922114038
+      Sprite_BlueCellToGreenMutation 1_7: 8256239634764243048
+      Sprite_BlueCellToGreenMutation 1_8: 4910394709156694798
+      Sprite_BlueCellToGreenMutation 1_9: -3146775983107467917
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,909 @@
+fileFormatVersion: 2
+guid: 6249821f156bb424da4f5e176845ca70
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4170541620204565262
+    second: Sprite_BlueCellBirth 1_0
+  - first:
+      213: 8743391445273688247
+    second: Sprite_BlueCellBirth 1_1
+  - first:
+      213: -1301356887027772621
+    second: Sprite_BlueCellBirth 1_2
+  - first:
+      213: -8276369828230396038
+    second: Sprite_BlueCellBirth 1_3
+  - first:
+      213: -4964645809260693099
+    second: Sprite_BlueCellBirth 1_4
+  - first:
+      213: 3872793996543516689
+    second: Sprite_BlueCellBirth 1_5
+  - first:
+      213: -5565945809805967074
+    second: Sprite_BlueCellBirth 1_6
+  - first:
+      213: -8212363678793950959
+    second: Sprite_BlueCellBirth 1_7
+  - first:
+      213: 547666465336234155
+    second: Sprite_BlueCellBirth 1_8
+  - first:
+      213: 7109292483049094742
+    second: Sprite_BlueCellBirth 1_9
+  - first:
+      213: -6411940549901528045
+    second: Sprite_BlueCellBirth 1_10
+  - first:
+      213: 4120688384915389502
+    second: Sprite_BlueCellBirth 1_11
+  - first:
+      213: 152749563281754299
+    second: Sprite_BlueCellBirth 1_12
+  - first:
+      213: 7247246435159259908
+    second: Sprite_BlueCellBirth 1_13
+  - first:
+      213: 6600431223433833004
+    second: Sprite_BlueCellBirth 1_14
+  - first:
+      213: -2976044638081293630
+    second: Sprite_BlueCellBirth 1_15
+  - first:
+      213: -5718787691280762613
+    second: Sprite_BlueCellBirth 1_16
+  - first:
+      213: -6730549925118788640
+    second: Sprite_BlueCellBirth 1_17
+  - first:
+      213: -1906457243170795671
+    second: Sprite_BlueCellBirth 1_18
+  - first:
+      213: 3669561254367889813
+    second: Sprite_BlueCellBirth 1_19
+  - first:
+      213: 2286291182405567788
+    second: Sprite_BlueCellBirth 1_20
+  - first:
+      213: -8016916584383431043
+    second: Sprite_BlueCellBirth 1_21
+  - first:
+      213: -5047597436592729751
+    second: Sprite_BlueCellBirth 1_22
+  - first:
+      213: 7429977903848423777
+    second: Sprite_BlueCellBirth 1_23
+  - first:
+      213: -5610713379645393258
+    second: Sprite_BlueCellBirth 1_24
+  - first:
+      213: -4400512233030932575
+    second: Sprite_BlueCellBirth 1_25
+  - first:
+      213: 6971344902710209134
+    second: Sprite_BlueCellBirth 1_26
+  - first:
+      213: -2627266328737010897
+    second: Sprite_BlueCellBirth 1_27
+  - first:
+      213: -9014671673689129033
+    second: Sprite_BlueCellBirth 1_28
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 90
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_0
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 455
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fc89be2e724f16c0800000000000000
+      internalID: -4170541620204565262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_1
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 455
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b83abbe134c65970800000000000000
+      internalID: 8743391445273688247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_2
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 455
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33393be5ec6a0fde0800000000000000
+      internalID: -1301356887027772621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_3
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 455
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a770196cd7d642d80800000000000000
+      internalID: -8276369828230396038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_4
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 455
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5997267b0f80a1bb0800000000000000
+      internalID: -4964645809260693099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 364
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 110ed34fe9deeb530800000000000000
+      internalID: 3872793996543516689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_6
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 364
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e11017f86c9c1c2b0800000000000000
+      internalID: -5565945809805967074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_7
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 364
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1199a2fbeb2d70e80800000000000000
+      internalID: -8212363678793950959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_8
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 364
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba092c1afb3b99700800000000000000
+      internalID: 547666465336234155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 364
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65efe70c8d749a260800000000000000
+      internalID: 7109292483049094742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_10
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 364
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3145232ba063407a0800000000000000
+      internalID: -6411940549901528045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 273
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3cb5f4f040af2930800000000000000
+      internalID: 4120688384915389502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_12
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 273
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb841032becae1200800000000000000
+      internalID: 152749563281754299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_13
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 273
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40b32673c34639460800000000000000
+      internalID: 7247246435159259908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_14
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 273
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2aab252a31799b50800000000000000
+      internalID: 6600431223433833004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_15
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 273
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c2657f5b27f2b6d0800000000000000
+      internalID: -2976044638081293630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_16
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 273
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b09755be4e8c2a0b0800000000000000
+      internalID: -5718787691280762613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 182
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0eb334ac0884892a0800000000000000
+      internalID: -6730549925118788640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_18
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 182
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96f8559fc37ea85e0800000000000000
+      internalID: -1906457243170795671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_19
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 182
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5998228c486ece230800000000000000
+      internalID: 3669561254367889813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_20
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 182
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c25446497b98abf10800000000000000
+      internalID: 2286291182405567788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_21
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 182
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7e33e987d03eb090800000000000000
+      internalID: -8016916584383431043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_22
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 182
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 961d7beefd453f9b0800000000000000
+      internalID: -5047597436592729751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 91
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16103efa9859c1760800000000000000
+      internalID: 7429977903848423777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_24
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 91
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69674b578edb222b0800000000000000
+      internalID: -5610713379645393258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_25
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 91
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a72e60607d3ee2c0800000000000000
+      internalID: -4400512233030932575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_26
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 91
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6aa5c4d0413fb060800000000000000
+      internalID: 6971344902710209134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_27
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 91
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2b2941a1331a8bd0800000000000000
+      internalID: -2627266328737010897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_28
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 91
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bfbbf2efd375e280800000000000000
+      internalID: -9014671673689129033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_BlueCellBirth 1_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 90
+        height: 91
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81eadb2e75efa524e9931d1c802c7c43
+      internalID: 956541713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 68726e85851cdfa488eb8f6075f63a21
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":90.0,"y":91.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Sprite_BlueCellBirth 1_0: -4170541620204565262
+      Sprite_BlueCellBirth 1_1: 8743391445273688247
+      Sprite_BlueCellBirth 1_10: -6411940549901528045
+      Sprite_BlueCellBirth 1_11: 4120688384915389502
+      Sprite_BlueCellBirth 1_12: 152749563281754299
+      Sprite_BlueCellBirth 1_13: 7247246435159259908
+      Sprite_BlueCellBirth 1_14: 6600431223433833004
+      Sprite_BlueCellBirth 1_15: -2976044638081293630
+      Sprite_BlueCellBirth 1_16: -5718787691280762613
+      Sprite_BlueCellBirth 1_17: -6730549925118788640
+      Sprite_BlueCellBirth 1_18: -1906457243170795671
+      Sprite_BlueCellBirth 1_19: 3669561254367889813
+      Sprite_BlueCellBirth 1_2: -1301356887027772621
+      Sprite_BlueCellBirth 1_20: 2286291182405567788
+      Sprite_BlueCellBirth 1_21: -8016916584383431043
+      Sprite_BlueCellBirth 1_22: -5047597436592729751
+      Sprite_BlueCellBirth 1_23: 7429977903848423777
+      Sprite_BlueCellBirth 1_24: -5610713379645393258
+      Sprite_BlueCellBirth 1_25: -4400512233030932575
+      Sprite_BlueCellBirth 1_26: 6971344902710209134
+      Sprite_BlueCellBirth 1_27: -2627266328737010897
+      Sprite_BlueCellBirth 1_28: -9014671673689129033
+      Sprite_BlueCellBirth 1_29: 956541713
+      Sprite_BlueCellBirth 1_3: -8276369828230396038
+      Sprite_BlueCellBirth 1_4: -4964645809260693099
+      Sprite_BlueCellBirth 1_5: 3872793996543516689
+      Sprite_BlueCellBirth 1_6: -5565945809805967074
+      Sprite_BlueCellBirth 1_7: -8212363678793950959
+      Sprite_BlueCellBirth 1_8: 547666465336234155
+      Sprite_BlueCellBirth 1_9: 7109292483049094742
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
